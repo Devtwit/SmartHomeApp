@@ -8,6 +8,7 @@ import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import com.example.bthome.MainActivity
 
 
 /*
@@ -35,6 +36,17 @@ class LeScanCallback(var context: Context) : ScanCallback() {
                 TAG,
                 "Device " + result.device.address + " rssi: " + result.rssi + " Tx: " + result.txPower
             )
+            if(result.rssi <= -20  && result.rssi > -85   ){
+                Log.d(
+                    TAG,
+                    "Device " + result.device.address + " rssi: " + result.rssi + " Onside if"
+                )
+                MainActivity.receivedNearestDeviceName = result.device.address
+
+            } else {
+                MainActivity.receivedNearestDeviceName = ""
+            }
+
         }
         if (ActivityCompat.checkSelfPermission(
                 context,

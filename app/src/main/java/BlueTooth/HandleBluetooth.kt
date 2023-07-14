@@ -41,6 +41,7 @@ class HandleBluetooth {
         if (parcelUuid == null) {
             parcelUuid = ParcelUuid(uuid)
         }
+        Log.d(TAG, "leScanCallback : $leScanCallback")
         if (leScanCallback == null) {
             leScanCallback = LeScanCallback(context)
         }
