@@ -17,6 +17,7 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Button
 import android.widget.EditText
 import android.widget.GridView
 import android.widget.ImageButton
@@ -51,6 +52,7 @@ class MainActivity : AppCompatActivity(), LeScanCallback.DeviceFound, ItemClickL
 
 
         val scanButton: ImageButton = findViewById(R.id.addBleDeviceBtn)
+        val moreButton: Button = findViewById(R.id.moreButton)
         scanButton.setOnClickListener {
             Log.d("Permission", "Required Permission : ${permissions.size}")
             permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
@@ -63,6 +65,12 @@ class MainActivity : AppCompatActivity(), LeScanCallback.DeviceFound, ItemClickL
                 AddBleDeviceFragment.dialog = CustomDialog(this)
                 AddBleDeviceFragment.dialog.showDialog(awsConfig!!)
             }
+        }
+
+        moreButton.setOnClickListener {
+//            Log.d("MainActivity", "Clicked item ID: $itemId")
+            val intent = Intent(this, MoreActivity::class.java)
+            startActivity(intent)
         }
         gridView = findViewById(R.id.gridView)
 

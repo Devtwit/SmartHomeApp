@@ -4,6 +4,7 @@ import AwsConfigThing.AwsConfigClass
 import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import Data.ResponseData
 import Database.DatabaseHelper
+import android.annotation.SuppressLint
 import android.content.res.Resources
 import android.graphics.Color
 import android.support.v7.widget.CardView
@@ -116,14 +117,17 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
             messageTextView.text = responseData.message
 
         }
+
         fun cardColor(isNear : Boolean){
             if(isNear){
-                cardView.setBackgroundColor(Color.GREEN)
-                cardView.cardElevation = 10.dpToPx()
+                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
+                cardView.setBackgroundResource(R.drawable.select_device_selected_bg)
+//                cardView.cardElevation = 10.dpToPx()
 //
             } else {
                 cardView.setBackgroundColor(Color.WHITE)
-                cardView.cardElevation = 10.dpToPx()
+                cardView.setBackgroundResource(R.drawable.select_device_unselected_bg)
+//                cardView.cardElevation = 10.dpToPx()
 //
 
             }
