@@ -11,8 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.example.bthome.MainActivity
+
 import com.example.bthome.R
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 
 class MoreScreenAdapter(private var responseDataList: List<ResponseData>, private val itemClickListener: ItemClickListener, private val awsConfig: AwsConfigClass) : BaseAdapter() {
     var lastNearestDeviceName = ""
@@ -87,11 +88,11 @@ class MoreScreenAdapter(private var responseDataList: List<ResponseData>, privat
 
 
 
-        Log.d("TAG", MainActivity.receivedNearestDeviceName)
+        Log.d("TAG", receivedNearestDeviceName)
 //        Log.d("TAG", responseData.message)
 
 
-        viewHolder.cardColor(responseData.message.equals(MainActivity.receivedNearestDeviceName))
+        viewHolder.cardColor(responseData.message.equals(receivedNearestDeviceName))
 
         return view
     }

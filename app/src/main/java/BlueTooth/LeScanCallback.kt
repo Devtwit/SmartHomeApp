@@ -8,17 +8,18 @@ import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.util.Log
-import com.example.bthome.MainActivity
+
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 
 
 /*
 To receive LE scan callback from android.bluetooth.le.ScanCallback
 */
-class LeScanCallback(var context: Context) : ScanCallback() {
+class LeScanCallback(private val deviceFound: DeviceFound) : ScanCallback() {
     private val TAG = LeScanCallback::class.java.simpleName
     var mScanResult: ArrayList<ScanResult>? = ArrayList()
     var isScanStarted = false
-    var deviceFound: DeviceFound  = context as DeviceFound
+//    var deviceFound: DeviceFound  = context as DeviceFound
 
 
     interface DeviceFound {
@@ -41,22 +42,21 @@ class LeScanCallback(var context: Context) : ScanCallback() {
                     TAG,
                     "Device " + result.device.address + " rssi: " + result.rssi + " Onside if"
                 )
-                MainActivity.receivedNearestDeviceName = result.device.address
+                receivedNearestDeviceName = result.device.address
 
             } else {
-                MainActivity.receivedNearestDeviceName = ""
+                receivedNearestDeviceName = ""
             }
 
         }
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.BLUETOOTH_CONNECT
-            ) != PERMISSION_GRANTED
-        ) {
-            Log.d(TAG, "No access to scan")
-
-            return
-        }
+//        if (ActivityCompat.checkSelfPermission(
+//                context,
+//                Manifest.permission.BLUETOOTH_CONNECT
+//            ) != PERMISSION_GRANTED
+//        ) {
+//            Log.d(TAG, "No access to scan")
+//            return
+//        }
         if (result.device.name != null || result.device.address != null) {
             if (mScanResult != null && mScanResult!!.size > 0) {
                 var hasDevice = false

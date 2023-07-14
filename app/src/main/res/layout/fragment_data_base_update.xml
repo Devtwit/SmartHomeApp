@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.DataBaseUpdateFragment">
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="3"
+        android:minLines="1"
+        android:paddingTop="55dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:singleLine="false"
+        android:text="Update Details "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+
+        <TextView
+            android:id="@+id/room_number_id"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-medium"
+            android:background="@color/white"
+            android:paddingLeft="45dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Change Name"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:background="@color/white"
+            android:layout_height="match_parent"
+            android:paddingEnd="17dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_bg">
+
+
+        <TextView
+            android:id="@+id/delete"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="sans-serif-medium"
+            android:background="@color/white"
+            android:paddingLeft="45dp"
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Delete "
+            android:textSize="20sp" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:background="@color/white"
+            android:layout_height="match_parent"
+            android:paddingEnd="17dp"
+            android:paddingTop="17dp"
+            android:paddingBottom="17dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
+

@@ -14,9 +14,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import com.example.bthome.MainActivity
-import com.example.bthome.MainActivity.Companion.processedScanResultIndex
+
 import com.example.bthome.R
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 
 interface ItemClickListener {
     fun onItemClick(itemId: Long)
@@ -94,11 +94,11 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
 
 
-        Log.d("TAG", MainActivity.receivedNearestDeviceName)
+        Log.d("TAG", receivedNearestDeviceName)
 //        Log.d("TAG", responseData.message)
 
 
-        viewHolder.cardColor(responseData.message.equals(MainActivity.receivedNearestDeviceName))
+        viewHolder.cardColor(responseData.message.equals(receivedNearestDeviceName))
 
         return view
     }

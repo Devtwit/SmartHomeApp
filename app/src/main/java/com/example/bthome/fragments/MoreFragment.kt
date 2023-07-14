@@ -1,0 +1,78 @@
+package com.example.bthome.fragments
+
+import Adapter.ItemClickListener
+import Adapter.MoreScreenAdapter
+import AwsConfigThing.AwsConfigClass
+import Database.DatabaseHelper
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.GridView
+import androidx.navigation.Navigation
+import com.example.bthome.R
+
+class MoreFragment : Fragment(), ItemClickListener {
+//
+//    companion object {
+//        fun newInstance() = MoreFragment()
+//    }
+
+//    private lateinit var viewModel: MoreViewModel
+
+
+
+
+    var awsConfig: AwsConfigClass? = null
+
+    companion object{
+        lateinit var responseAdapter : MoreScreenAdapter
+         var idValue : Long = 0
+    }
+    //    grid layout
+    private lateinit var gridView: GridView
+    @SuppressLint("MissingInflatedId")
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_more, container, false)
+//        getWindow().setFlags(
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        awsConfig = AwsConfigClass()
+        awsConfig!!.startAwsConfigurations(requireContext())
+
+
+        gridView = view.findViewById(R.id.ghost_view)
+
+        val dbHelper = DatabaseHelper(requireContext())
+        // Initialize the adapter
+        responseAdapter = MoreScreenAdapter(emptyList(),this, awsConfig!! )
+        gridView.adapter = responseAdapter
+        val initialData = dbHelper.getAllResponseData()
+        responseAdapter.updateData(initialData)
+        setupGridView()
+        return view
+    }
+    fun setupGridView() {
+        val dbHelper = DatabaseHelper(requireContext())
+        val responseDataList = dbHelper.getAllResponseData()
+        responseAdapter = MoreScreenAdapter(responseDataList, this, awsConfig!!)
+//        responseAdapter = ResponseAdapter(responseDataList,this)
+        gridView.adapter = responseAdapter
+
+    }
+    override fun onItemClick(itemId: Long) {
+        idValue = itemId
+        Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_moreFragment_to_dataBaseUpdateFragment)
+    }
+
+    override fun onItemLongClick(itemId: Long) {
+        TODO("Not yet implemented")
+    }
+
+}

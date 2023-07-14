@@ -34,4 +34,6 @@
     <color name="gray_600">#FF757575</color>
     <color name="gray_transparent">#59979797</color>
     <color name="white_transparent">#eeffffff</color>
+    <color name="disable_color">#C8C8C8</color>
+    <color name="soft_gray">#66000000</color>
 </resources>

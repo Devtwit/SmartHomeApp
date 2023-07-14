@@ -14,7 +14,6 @@ import android.os.Handler
 import android.os.ParcelUuid
 import android.support.v4.app.ActivityCompat
 import android.util.Log
-import com.example.bthome.MainActivity
 import java.util.UUID
 
 class HandleBluetooth {
@@ -27,7 +26,7 @@ class HandleBluetooth {
     /*
     To start LE scanning if already scanning then stop ongoing scanning
     */
-    fun scanLeDevices(context: Context) {
+    fun scanLeDevices(context: LeScanCallback.DeviceFound) {
         if (bluetoothAdapter == null) {
             bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         }
@@ -56,14 +55,14 @@ class HandleBluetooth {
         handler.post(Runnable {
 
 //            if (!isScanning) {
-                if (ActivityCompat.checkSelfPermission(
-                        context,
-                        Manifest.permission.BLUETOOTH_SCAN
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    Log.d(TAG, "No access to scan")
-                    return@Runnable
-                }
+//                if (ActivityCompat.checkSelfPermission(
+//                        context,
+//                        Manifest.permission.BLUETOOTH_SCAN
+//                    ) != PackageManager.PERMISSION_GRANTED
+//                ) {
+//                    Log.d(TAG, "No access to scan")
+//                    return@Runnable
+//                }
                 bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback)
                 isScanning = true
 //            }

@@ -12,9 +12,9 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttClientStatusCallback
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttNewMessageCallback
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
-import com.example.bthome.MainActivity
-import com.example.bthome.MainActivity.Companion.receivedNearestDeviceName
-import com.example.bthome.MainActivity.Companion.responseAdapter
+import com.example.bthome.SmartActivity
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.responseAdapter
 import java.io.UnsupportedEncodingException
 import java.util.UUID
 
@@ -79,9 +79,9 @@ class AwsConfigClass() {
                             Log.d(TAG, "Message arrived:")
                             Log.d(TAG, "   Topic: $topic")
                             Log.d(TAG, " Message: $message")
-                            MainActivity.receivedNearestDeviceName = message
+                           receivedNearestDeviceName = message
                             if (topic.equals(SET_CONFIG, ignoreCase = true)) {
-                                MainActivity.receivedNearestDeviceName = message
+                                receivedNearestDeviceName = message
                             }
 
 
@@ -122,7 +122,7 @@ class AwsConfigClass() {
            // Initialize the adapter
 
            // Update the adapter with the new data
-           (context as MainActivity).runOnUiThread {
+           (context as SmartActivity ).runOnUiThread {
                responseAdapter.updateData(updatedData)
            }
        } else {

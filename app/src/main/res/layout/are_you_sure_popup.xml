@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="35dp"
+    android:paddingEnd="20dp">
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="3"
+        android:minLines="1"
+        android:paddingTop="55dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:singleLine="false"
+        android:text="Are you sure ? "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/descriptionView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="29dp"
+        android:fontFamily="@font/akkurat_pro_light"
+        android:lineSpacingExtra="4sp"
+        android:text="Are you sure you want to remove the place"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/yes_button"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        style="@style/PrimaryButton"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="43dp"
+        android:text="Yes"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        style="@style/PrimaryWhiteButton"
+        android:text="Cancel"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginEnd="43dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        />
+
+</LinearLayout>

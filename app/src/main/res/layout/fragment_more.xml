@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MoreActivity"
-
-    tools:ignore="MissingClass">
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.MoreFragment">
     <TextView
         android:id="@+id/header_title"
         android:layout_width="match_parent"
@@ -59,34 +56,13 @@
             android:layout_width="0dp"
             android:background="@color/white"
             android:layout_height="match_parent"
-           android:paddingEnd="17dp"
+            android:paddingEnd="17dp"
             android:paddingTop="17dp"
             android:paddingBottom="17dp"
             android:layout_weight="1"
             android:src="@drawable/baseline_keyboard_arrow_right_24" />
 
     </LinearLayout>
-
-    <!--    <android.support.v7.widget.RecyclerView-->
-    <!--        android:id="@+id/recyclerView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/header_title"-->
-    <!--        app:spanCount="2" />-->
-
-<!--    <GridView-->
-<!--        android:id="@+id/gridView"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_weight=".55"-->
-<!--        android:horizontalSpacing="6dp"-->
-<!--        android:numColumns="1"-->
-<!--        android:verticalSpacing="6dp"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintStart_toEndOf="@+id/header_title"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/header_title" />-->
 
     <GridView
         android:id="@+id/ghost_view"
@@ -95,4 +71,5 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_bg" />
+
 </android.support.constraint.ConstraintLayout>

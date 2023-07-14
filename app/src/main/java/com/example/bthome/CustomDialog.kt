@@ -11,6 +11,7 @@ import android.content.Intent
 import android.location.Address
 import android.net.Uri
 import android.provider.Settings
+import android.support.design.widget.BottomSheetDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -188,5 +189,26 @@ class CustomDialog(private val context: Context) {
         val uri = Uri.fromParts("package", context.packageName, null)
         intent.data = uri
         context.startActivity(intent)
+    }
+
+    fun buildTurnOffAlertPopup(context: Context, listener: ThreeButtonsListener) : BottomSheetDialog {
+        val mBottomSheetDialog = BottomSheetDialog(context)
+        val inflater = LayoutInflater.from(context)
+        val sheetView: View = inflater.inflate(R.layout.are_you_sure_popup, null)
+//        val sheetView = AreYouSurePopup.inflate(LayoutInflater.from(context))
+
+        var yesButton :Button = sheetView.findViewById(R.id.yes_button)
+        var cancelButton :Button = sheetView.findViewById(R.id.cancel_button)
+       yesButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onOkButtonClicked()
+        }
+        cancelButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onCancelButtonClicked()
+        }
+        mBottomSheetDialog.setContentView(sheetView)
+        mBottomSheetDialog.setCancelable(false)
+        return mBottomSheetDialog
     }
 }

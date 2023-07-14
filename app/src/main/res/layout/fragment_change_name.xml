@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.ChangeNameFragment">
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="3"
+        android:minLines="1"
+        android:paddingTop="55dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:singleLine="false"
+        android:text="Change Name "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/header_title"
+        app:layout_constraintStart_toStartOf="@+id/header_title"
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <EditText
+            android:id="@+id/device_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_button"
+        style="@style/PrimaryButton"
+        android:layout_width="222dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/primary_button_background_selector"
+        android:text="Next"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/skipButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+        <Button
+            android:id="@+id/skipButton"
+            style="@style/PrimaryWhiteButton"
+            android:layout_width="210dp"
+            android:layout_height="53dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/next_button"
+            app:layout_constraintStart_toStartOf="@+id/next_button"
+            android:text="Cancel"
+            tools:text="Skip" />
+
+</android.support.constraint.ConstraintLayout>
