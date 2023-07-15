@@ -152,7 +152,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
                         // Handle the updated text as needed
                         // For example, update the data in the database using dbHelper
 
-                        var newRD  = ResponseData("topic",newText)
+                        var newRD  = ResponseData("topic",newText,"")
 
                         DatabaseHelper(requireContext()).updateResponseData(responseAdapter.getString(itemId.toInt()).toString(),newRD)
                         Toast.makeText(requireContext(), "Update option selected", Toast.LENGTH_SHORT).show()

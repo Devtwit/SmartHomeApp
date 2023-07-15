@@ -36,7 +36,7 @@ class ChangeNameFragment : Fragment() {
             // Handle the updated text as needed
             // For example, update the data in the database using dbHelper
 
-            var newRD  = ResponseData("topic",newText)
+            var newRD  = ResponseData("topic",newText,"")
 
             DatabaseHelper(requireContext()).updateResponseData(AddBleDeviceFragment.responseAdapter.getString(
                 MoreFragment.idValue.toInt()).toString(),newRD)

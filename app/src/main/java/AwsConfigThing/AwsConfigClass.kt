@@ -83,10 +83,10 @@ class AwsConfigClass() {
                             if (topic.equals(SET_CONFIG, ignoreCase = true)) {
                                 receivedNearestDeviceName = message
                             }
-
+                          var s = message.split(" ")
 
                             // Store the response in the database
-                            val responseData = ResponseData(topic, message)
+                            val responseData = ResponseData(topic, s[0],s[1])
                             storeResponseInDatabase(responseData, context )
                         } catch (e: UnsupportedEncodingException) {
                             Log.e(TAG, "Message encoding error.", e)
@@ -110,6 +110,7 @@ class AwsConfigClass() {
            val values = ContentValues().apply {
                put("topic", responseData.topic)
                put("message", responseData.message)
+               put("address", responseData.address)
            }
 
            // Insert the data into the appropriate table

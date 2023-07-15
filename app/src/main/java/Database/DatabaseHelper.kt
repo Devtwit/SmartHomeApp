@@ -17,13 +17,15 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         private const val COLUMN_ID = "_id"
         private const val COLUMN_TOPIC = "topic"
         private const val COLUMN_MESSAGE = "message"
+        private const val COLUMN_ADDRESS = "address"
     }
 
     override fun onCreate(db: SQLiteDatabase) {
         val createTableQuery = "CREATE TABLE $TABLE_NAME (" +
                 "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "$COLUMN_TOPIC TEXT, " +
-                "$COLUMN_MESSAGE TEXT UNIQUE" +
+                "$COLUMN_MESSAGE TEXT, " +
+                "$COLUMN_ADDRESS TEXT UNIQUE" +
                 ");"
         db.execSQL(createTableQuery)
     }
@@ -41,7 +43,7 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val db = readableDatabase
         val cursor = db.query(
             "response_table",
-            arrayOf("topic", "message"),
+            arrayOf("topic", "message", "address"),
             null,
             null,
             null,
@@ -51,7 +53,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         while (cursor.moveToNext()) {
             val topic = cursor.getString(cursor.getColumnIndex("topic"))
             val message = cursor.getString(cursor.getColumnIndex("message"))
-            val responseData = ResponseData(topic, message)
+            val address = cursor.getString(cursor.getColumnIndex("address"))
+            val responseData = ResponseData(topic, message, address )
             responseDataList.add(responseData)
         }
         cursor.close()
@@ -62,6 +65,8 @@ class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME
         val values = ContentValues().apply {
             put(COLUMN_TOPIC, responseData.topic)
             put(COLUMN_MESSAGE, responseData.message)
+            if(responseData.address != "")
+            put(COLUMN_ADDRESS, responseData.address)
         }
         db.update(TABLE_NAME, values, "$COLUMN_MESSAGE = ?", arrayOf(message))
     }

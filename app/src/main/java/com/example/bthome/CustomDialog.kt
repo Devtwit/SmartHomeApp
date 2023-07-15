@@ -32,6 +32,7 @@ class CustomDialog(private val context: Context) {
     private lateinit var button2  :Button
     companion object{
         lateinit var scannedData : String
+        lateinit var scannedAddress : String
     }
 
     @SuppressLint("MissingInflatedId")
@@ -141,7 +142,7 @@ class CustomDialog(private val context: Context) {
         button1.isClickable = true
         button2.isClickable = true
 //        scannedData = "Name : " +deviceName + "\n" + "Address : " +deviceAddress
-        scannedData = deviceAddress
+        scannedData =  deviceName+" "+deviceAddress
         textView2.setText(scannedData)
     }
 
