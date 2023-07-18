@@ -3,7 +3,8 @@ package AwsConfigThing
 import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import AwsConfigThing.AwsConfigConstants.Companion.SET_CONFIG
 import Data.ResponseData
-import Database.DatabaseHelper
+import DatabaseHelper
+//import Database.DatabaseHelper
 import android.content.ContentValues
 import android.content.Context
 import android.util.Log
@@ -15,17 +16,20 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
 import com.example.bthome.SmartActivity
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.responseAdapter
+import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.util.UUID
 
 /*
-AwsConfigClass is to config the AWS with Cognito-pool-ID and to connect, subscribe and publish any mqtt message
-* */
+AwsConfigClass is to config the AWS with Cognito-pool-ID and to connect, subscribe and publish any MQTT message
+*/
 class AwsConfigClass() {
     var mqttManager: AWSIotMqttManager? = null
     var clientId = UUID.randomUUID().toString()
     var credentialsProvider: CognitoCachingCredentialsProvider? = null
+    var databaseHelper: DatabaseHelper? = null
     fun startAwsConfigurations(context: Context?) {
+        databaseHelper = DatabaseHelper(context)
         credentialsProvider = CognitoCachingCredentialsProvider(
             context,
             AwsConfigConstants.COGNITO_POOL_ID,
@@ -36,31 +40,35 @@ class AwsConfigClass() {
         mqttManager!!.setKeepAlive(10)
         try {
             mqttManager!!.connect(credentialsProvider, object : AWSIotMqttClientStatusCallback {
-                override fun onStatusChanged(status: AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus, throwable: Throwable?) {
+                override fun onStatusChanged(
+                    status: AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus,
+                    throwable: Throwable?
+                ) {
                     Log.d(TAG, "Status = $status")
-                    Log.d(TAG, "Status = $status")
-                    when(status){
-                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting ->{
+                    when (status) {
+                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting -> {
                             Log.d(TAG, "Connecting...")
                         }
-                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected ->{
+                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected -> {
                             Log.d(TAG, "Connected")
-                            subscribeToTopic(SET_CONFIG,context)
-                            subscribeToTopic(GET_CONFIG,context)
-                            Log.d(TAG, "Subscribed on : $SET_CONFIG")
+                            subscribeToTopic(SET_CONFIG, context)
+                            subscribeToTopic(GET_CONFIG, context)
+                            Log.d(TAG, "Subscribed on: $SET_CONFIG")
                         }
-                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting->{
+                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting -> {
                             if (throwable != null) {
                                 Log.d(TAG, "Connection error.", throwable)
                             }
                         }
-                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost->{
+                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost -> {
                             if (throwable != null) {
                                 Log.e(TAG, "Connection error.", throwable)
                             }
                             Log.d(TAG, "Disconnected")
                         }
-                        else -> { Log.d(TAG, "Disconnected")}
+                        else -> {
+                            Log.d(TAG, "Disconnected")
+                        }
                     }
                 }
             })
@@ -69,25 +77,23 @@ class AwsConfigClass() {
         }
     }
 
-    fun subscribeToTopic(topic: String?,context: Context?) {
+    fun subscribeToTopic(topic: String?, context: Context?) {
         try {
-            mqttManager!!.subscribeToTopic(topic, AWSIotMqttQos.QOS0,
+            mqttManager!!.subscribeToTopic(
+                topic, AWSIotMqttQos.QOS0,
                 object : AWSIotMqttNewMessageCallback {
-                    override fun onMessageArrived(topic: String, data: ByteArray?) {
+                    override fun onMessageArrived(topic: String?, data: ByteArray?) {
                         try {
                             val message = String(data!!, Charsets.UTF_8)
+                            val jsonData = message.trim()
+
                             Log.d(TAG, "Message arrived:")
                             Log.d(TAG, "   Topic: $topic")
-                            Log.d(TAG, " Message: $message")
-                           receivedNearestDeviceName = message
-                            if (topic.equals(SET_CONFIG, ignoreCase = true)) {
-                                receivedNearestDeviceName = message
-                            }
-                          var s = message.split(" ")
+                            Log.d(TAG, " Message: $jsonData")
 
-                            // Store the response in the database
-                            val responseData = ResponseData(topic, s[0],s[1])
-                            storeResponseInDatabase(responseData, context )
+                            if (topic.equals(SET_CONFIG, ignoreCase = true)) {
+                                handleAcknowledgment(jsonData, context)
+                            }
                         } catch (e: UnsupportedEncodingException) {
                             Log.e(TAG, "Message encoding error.", e)
                         }
@@ -98,52 +104,88 @@ class AwsConfigClass() {
         }
     }
 
-    private fun storeResponseInDatabase(responseData: ResponseData,context: Context?) {
-        // Initialize your SQLiteOpenHelper or database client
-        val dbHelper = DatabaseHelper(context!! ) // Replace with your actual database helper class
+    private fun handleAcknowledgment(json: String, context: Context?) {
+        val responseData = parseResponseJson(json)
 
-        // Get a writable database instance
-        val db = dbHelper.writableDatabase
+        // Handle the acknowledgment status
+        val devices = responseData.devices
+        val location = responseData.location
 
-       if(!responseData.message.equals("No device found in range")) {
-           // Create a ContentValues object to store the data
-           val values = ContentValues().apply {
-               put("topic", responseData.topic)
-               put("message", responseData.message)
-               put("address", responseData.address)
-           }
+        val dbHelper = DatabaseHelper(context)
+        dbHelper.insertData(location, devices)
 
-           // Insert the data into the appropriate table
-           db.insert("response_table", null, values)
-           // Insert the data into the appropriate table
-           val newRowId = db.insert("response_table", null, values)
+        // Handle the acknowledgment status and error message as desired
+        for ((deviceName, deviceData) in devices) {
+            val status = deviceData["status"] as? String
+            val ack = deviceData["ack"] as? String
+            val errMsg = deviceData["err_msg"] as? String
 
-           // Fetch the updated data from the database
-           val updatedData = dbHelper.getAllResponseData()
-           // Initialize the adapter
-
-           // Update the adapter with the new data
-           (context as SmartActivity ).runOnUiThread {
-               responseAdapter.updateData(updatedData)
-           }
-       } else {
-           receivedNearestDeviceName = ""
-       }
-
-        // Close the database connection
-        db.close()
+            if (ack == "true") {
+                // Acknowledgment received
+                Log.d(TAG, "$deviceName: Acknowledgment received")
+                Log.d(TAG, "$deviceName Status: $status")
+            } else {
+                // Acknowledgment not received, handle the error message
+                Log.d(TAG, "$deviceName: Error - $errMsg")
+            }
+        }
     }
 
 
-    /*
-    publishData is to publish mqtt data to a topic
-    * */
     fun publishData(msg: String?, topic: String?) {
         try {
             mqttManager!!.publishString(msg, topic, AWSIotMqttQos.QOS0)
         } catch (e: Exception) {
             Log.e(TAG, "Publish error.", e)
         }
+    }
+
+    fun publishDeviceName(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "on/off"
+                },
+                "fan": {
+                    "status": "on/off"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+    }
+
+    private fun parseResponseJson(json: String): ResponseData {
+        val jsonObject = JSONObject(json)
+        val location = jsonObject.getString("location")
+        val devicesObject = jsonObject.getJSONObject("devices")
+        val devices = mutableMapOf<String, Map<String, Any>>()
+        Log.d(TAG,"RESP LOCATION $location")
+        Log.d(TAG,"RESP devicesObject $devicesObject")
+        val keysIterator = devicesObject.keys()
+        while (keysIterator.hasNext()) {
+            val deviceName = keysIterator.next() as String
+            val deviceData = devicesObject.getJSONObject(deviceName).toMap()
+            devices[deviceName] = deviceData
+            Log.d(TAG,"RESP devicesObject $deviceName $deviceData")
+        }
+
+        return ResponseData(location, devices, "add")
+    }
+
+    private fun JSONObject.toMap(): Map<String, Any> {
+        val map = mutableMapOf<String, Any>()
+        val keysIterator = keys()
+        while (keysIterator.hasNext()) {
+            val key = keysIterator.next() as String
+            val value = get(key)
+            map[key] = value
+        }
+        return map
     }
 
     companion object {

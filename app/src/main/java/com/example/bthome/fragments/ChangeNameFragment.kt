@@ -1,8 +1,10 @@
 package com.example.bthome.fragments
 import Data.ResponseData
-import Database.DatabaseHelper
+import DatabaseHelper
+
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,12 +14,14 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.bthome.R
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.responseAdapter
 
 class ChangeNameFragment : Fragment() {
 
     companion object {
         fun newInstance() = ChangeNameFragment()
     }
+
 
 //    private lateinit var viewModel: ChangeNameViewModel
 
@@ -35,11 +39,10 @@ class ChangeNameFragment : Fragment() {
             val newText = editText.text.toString()
             // Handle the updated text as needed
             // For example, update the data in the database using dbHelper
+            val oldName = responseAdapter.getString(MoreFragment.idValue.toInt()).toString()
 
-            var newRD  = ResponseData("topic",newText,"")
+            DatabaseHelper(requireContext()).updateLocationName(oldName, newText)
 
-            DatabaseHelper(requireContext()).updateResponseData(AddBleDeviceFragment.responseAdapter.getString(
-                MoreFragment.idValue.toInt()).toString(),newRD)
             Toast.makeText(requireContext(), "Update option selected", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_changeNameFragment_to_addBleDeviceFragment)
          }

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.SelectRoomFragment">
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="3"
+        android:minLines="1"
+        android:paddingTop="55dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:singleLine="false"
+        android:text="Select Room "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/kitchenlayout"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/select_device_unselected_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:text="Kitchen" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingBottom="35dp"
+                    android:scaleType="center"
+                    android:src="@drawable/kitchen" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/poojaLayout"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/select_device_unselected_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:text="Pooja Room " />
+
+                <ImageView
+                    android:id="@+id/pooja"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingBottom="16dp"
+                    android:scaleType="center"
+                    android:src="@drawable/storeroom" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/bedroomlayout"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/select_device_unselected_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:text="Bed Room" />
+
+                <ImageView
+                    android:id="@+id/bedroom"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingBottom="35dp"
+                    android:scaleType="center"
+                    android:src="@drawable/bedroom" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/studylayout"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/select_device_unselected_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:text="Study Room " />
+
+                <ImageView
+                    android:id="@+id/study"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:paddingBottom="20dp"
+                    android:scaleType="center"
+                    android:src="@drawable/study" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="22dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/halllayout"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/select_device_unselected_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:text="Hall" />
+
+                <ImageView
+                    android:id="@+id/hall"
+                    android:paddingBottom="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:scaleType="center"
+                    android:src="@drawable/hall" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/storeRoom"
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/select_device_unselected_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+                    android:gravity="center"
+                    android:textColor="#000000"
+                    android:textSize="16dp"
+                    android:text="Store Room " />
+
+                <ImageView
+                    android:id="@+id/store"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="1dp"
+                    android:scaleType="center"
+                    android:src="@drawable/storeroom" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/next_button"
+            style="@style/PrimaryGrayButton"
+            android:padding="15dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:clickable="false"
+            android:text="Next"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <Button
+            android:layout_margin="5dp"
+            android:id="@+id/skipButton"
+            style="@style/PrimaryButton"
+            android:padding="15dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Skip"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Skip" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

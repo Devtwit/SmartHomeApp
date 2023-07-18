@@ -1,5 +1,6 @@
 package com.example.bthome
 
+//import Database.DatabaseHelper
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
@@ -8,7 +9,11 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.content.ContextCompat
+import androidx.navigation.Navigation
+import com.example.bthome.fragments.AddBleDeviceFragment
+import com.example.bthome.fragments.MoreFragment
 
 class PermissionHandler( private val context: Context,private val activity: Activity) {
 
@@ -19,7 +24,8 @@ class PermissionHandler( private val context: Context,private val activity: Acti
         val result = ContextCompat.checkSelfPermission(activity, permission)
         return result == PackageManager.PERMISSION_GRANTED
     }
-
+    private var customPopUp: BottomSheetDialog? = BottomSheetDialog(context)
+    private var appSettingPopup: BottomSheetDialog? = BottomSheetDialog(context)
 
     fun checkMultiplePermissions(permissions: Array<String>): Array<String> {
         val permissionsToRequest = ArrayList<String>()
@@ -34,7 +40,21 @@ class PermissionHandler( private val context: Context,private val activity: Acti
     fun requestMultiplePermissions(permissions: Array<String>, requestCode: Int) {
         val permissionsToRequest = checkMultiplePermissions(permissions)
         if(permissionsToRequest.isNotEmpty()) {
-            CustomDialog(context).showAppSettingsDialog()
+//            CustomDialog(context).showAppSettingsDialog()
+
+            appSettingPopup = CustomDialog(context).openSystemSettingPopup(context,object :
+                ThreeButtonsListener {
+                override fun onOkButtonClicked() {
+                    CustomDialog(context).openAppSettings()
+                    appSettingPopup?.dismiss()
+                }
+
+                override fun onCancelButtonClicked() {
+                    super.onCancelButtonClicked()
+                    appSettingPopup?.dismiss()
+                }
+            })
+                appSettingPopup?.show()
         }
         else
             multipleRequest = true
@@ -63,7 +83,22 @@ class PermissionHandler( private val context: Context,private val activity: Acti
             .append(if (internetEnabled) "Enabled" else "Disabled")
             .append("\n")
             .append("To Scan device all Permissions must be Enabled ")
-        CustomDialog(context).showStatusDialog(message.toString(),!(isLocationEnabled() && isBluetoothEnabled() && isInternetEnabled()))
+
+
+        customPopUp = CustomDialog(context).buildTurnOffAlertPopup(context, message.toString(),!(isLocationEnabled() && isBluetoothEnabled() && isInternetEnabled()),object :
+            ThreeButtonsListener {
+            override fun onOkButtonClicked() {
+                customPopUp?.dismiss()
+            }
+
+            override fun onCancelButtonClicked() {
+                super.onCancelButtonClicked()
+                customPopUp?.dismiss()
+            }
+        })
+        if(!(isLocationEnabled() && isBluetoothEnabled() && isInternetEnabled()))
+        customPopUp?.show()
+
     }
 
     private fun isBluetoothEnabled(): Boolean {

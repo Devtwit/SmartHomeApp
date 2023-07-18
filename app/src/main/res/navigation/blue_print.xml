@@ -16,6 +16,15 @@
         <action
             android:id="@+id/action_addBleDeviceFragment_to_moreFragment"
             app:destination="@id/moreFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_selectRoomFragment"
+            app:destination="@id/selectRoomFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_dataBaseUpdateFragment"
+            app:destination="@id/dataBaseUpdateFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
     </fragment>
     <fragment
         android:id="@+id/bleScanResultFragment"
@@ -60,5 +69,26 @@
         <action
             android:id="@+id/action_changeNameFragment_to_addBleDeviceFragment"
             app:destination="@id/addBleDeviceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectRoomFragment"
+        android:name="com.example.bthome.fragments.SelectRoomFragment"
+        android:label="fragment_select_room"
+        tools:layout="@layout/fragment_select_room" >
+        <action
+            android:id="@+id/action_selectRoomFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_addBleDeviceFragment"
+            app:destination="@id/addBleDeviceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchLocationFragment"
+        android:name="com.example.bthome.fragments.SearchLocationFragment"
+        android:label="fragment_search_location"
+        tools:layout="@layout/fragment_search_location" >
+        <action
+            android:id="@+id/action_searchLocationFragment_to_selectRoomFragment"
+            app:destination="@id/selectRoomFragment" />
     </fragment>
 </navigation>

@@ -37,13 +37,15 @@ class LeScanCallback(private val deviceFound: DeviceFound) : ScanCallback() {
                 TAG,
                 "Device " + result.device.address + " rssi: " + result.rssi + " Tx: " + result.txPower
             )
-            if(result.rssi <= -20  && result.rssi > -85   ){
+            if(result.rssi <= -20  && result.rssi > -100   ){
                 Log.d(
                     TAG,
-                    "Device " + result.device.address + " rssi: " + result.rssi + " Onside if"
+                    "Device " + result.device.name + " rssi: " + result.rssi + " Onside if"
                 )
+                if(result.device.name != null)
                 receivedNearestDeviceName = result.device.address
-
+                else
+                    receivedNearestDeviceName = result.device.address
             } else {
                 receivedNearestDeviceName = ""
             }

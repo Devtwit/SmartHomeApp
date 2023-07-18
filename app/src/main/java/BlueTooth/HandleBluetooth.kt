@@ -1,5 +1,6 @@
 package Bluetooth
 
+import AwsConfigThing.AwsConfigClass.Companion.TAG
 import AwsConfigThing.AwsConfigConstants.Companion.UUID_FILTER
 import android.Manifest
 import android.app.ProgressDialog
@@ -16,7 +17,7 @@ import android.support.v4.app.ActivityCompat
 import android.util.Log
 import java.util.UUID
 
-class HandleBluetooth {
+class HandleBluetooth( val cont: Context) {
 
     var leScanCallback: LeScanCallback? = null
     var bluetoothLeScanner: BluetoothLeScanner? = null
@@ -55,14 +56,14 @@ class HandleBluetooth {
         handler.post(Runnable {
 
 //            if (!isScanning) {
-//                if (ActivityCompat.checkSelfPermission(
-//                        context,
-//                        Manifest.permission.BLUETOOTH_SCAN
-//                    ) != PackageManager.PERMISSION_GRANTED
-//                ) {
-//                    Log.d(TAG, "No access to scan")
-//                    return@Runnable
-//                }
+                if (ActivityCompat.checkSelfPermission(
+                        cont,
+                        Manifest.permission.BLUETOOTH_SCAN
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    Log.d(TAG, "No access to scan")
+                    return@Runnable
+                }
                 bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback)
                 isScanning = true
 //            }

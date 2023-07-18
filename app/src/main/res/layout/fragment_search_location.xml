@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragments.SearchLocationFragment">
+
+
+    <TextView
+        android:id="@+id/header_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:gravity="center_vertical"
+        android:background="@color/white"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="3"
+        android:minLines="1"
+        android:paddingTop="55dp"
+        android:paddingBottom="15dp"
+        android:paddingStart="45dp"
+        android:singleLine="false"
+        android:text="Start Searching "
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        app:flow_horizontalAlign="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/foundDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:gravity="start"
+        android:padding="20dp"
+        android:layout_marginStart="35sp"
+        android:textColor="#000000"
+        android:textSize="32sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title"
+        tools:text="Room" />
+
+    <ProgressBar
+        android:id="@+id/loading_container"
+        style="?android:attr/progressBackgroundTintMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/black"
+        app:layout_constraintBottom_toTopOf="@+id/next_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
+
+
+
+    <Button
+        android:id="@+id/next_button"
+        style="@style/PrimaryButton"
+        android:layout_width="210dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/primary_button_background_selector"
+        android:text="Next"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/skipButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/start_button"
+        style="@style/PrimaryButton"
+        android:layout_width="210dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/primary_button_background_selector"
+        android:text="Start"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/skipButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/skipButton"
+        style="@style/PrimaryWhiteButton"
+        android:layout_width="210dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginBottom="16dp"
+        android:text="Cancel"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Skip" />
+
+</android.support.constraint.ConstraintLayout>

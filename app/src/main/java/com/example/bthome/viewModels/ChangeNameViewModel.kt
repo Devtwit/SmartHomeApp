@@ -1,4 +1,4 @@
-package com.example.bthome.fragments
+package com.example.bthome.viewModels
 //
 //import androidx.lifecycle.ViewModel
 //

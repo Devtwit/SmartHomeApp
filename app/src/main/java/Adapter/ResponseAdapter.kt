@@ -3,8 +3,10 @@ package Adapter
 import AwsConfigThing.AwsConfigClass
 import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import Data.ResponseData
-import Database.DatabaseHelper
+import DatabaseHelper
+
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.support.v7.widget.CardView
@@ -32,31 +34,13 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         return responseDataList[position]
     }
      fun getString(position: Int): Any {
-        return responseDataList[position].message
+        return responseDataList[position].location
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
     }
 
-    fun updateItem(position: Long, newData: ResponseData) {
-        // Update the item in the list
-        responseDataList.toMutableList().add(position.toInt(),newData)
-//        responseDataList[position] = newData
-        notifyDataSetChanged()
-
-        // Update the item in the database
-//        databaseHelper.updateResponseData(position.toLong(),newData)
-    }
-
-    fun deleteItem(position: Long) {
-        // Remove the item from the list
-        responseDataList.toMutableList().removeAt(position.toInt())
-        notifyDataSetChanged()
-
-        // Delete the item from the database
-//        databaseHelper.deleteResponseData(position.toLong())
-    }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
         val view: View
@@ -71,15 +55,8 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
             viewHolder = view.tag as ViewHolder
         }
 
-
-
         val responseData = getItem(position) as ResponseData
         viewHolder.bind(responseData)
-
-
-//        val responseDataPKEY = responseDataList[position]
-//        val itemId = responseDataPKEY.itemId
-
 
         view.setOnClickListener {
             val itemId = getItemId(position)
@@ -95,10 +72,10 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
 
         Log.d("TAG", receivedNearestDeviceName)
-//        Log.d("TAG", responseData.message)
+        Log.d("TAG", responseData.location)
 
 
-        viewHolder.cardColor(responseData.message.equals(receivedNearestDeviceName))
+        viewHolder.cardColor(responseData.location.equals(receivedNearestDeviceName))
 
         return view
     }
@@ -113,24 +90,22 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
 
         fun bind(responseData: ResponseData) {
-//            topicTextView.text = responseData.topic
-            messageTextView.text = responseData.message
+            messageTextView.text = responseData.location
 
         }
 
         fun cardColor(isNear : Boolean){
             if(isNear){
+                Log.d("isNear", receivedNearestDeviceName )
+                Log.d("isNear", isNear.toString())
                 cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
                 cardView.setBackgroundResource(R.drawable.select_device_selected_bg)
-//                cardView.cardElevation = 10.dpToPx()
-//
             } else {
+                Log.d("isNear", receivedNearestDeviceName )
+                Log.d("isNear", isNear.toString())
                 cardView.setBackgroundColor(Color.WHITE)
                 cardView.setBackgroundResource(R.drawable.select_device_unselected_bg)
-//                cardView.cardElevation = 10.dpToPx()
-//
-
-            }
+           }
         }
 
         private fun Int.dpToPx(): Float {

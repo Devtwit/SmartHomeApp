@@ -26,30 +26,12 @@ class MoreScreenAdapter(private var responseDataList: List<ResponseData>, privat
     }
 
     fun getString(position: Int): Any {
-        return responseDataList[position].message
+        return responseDataList[position].location
+//        return ""
     }
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
-    }
-
-    fun updateItem(position: Long, newData: ResponseData) {
-        // Update the item in the list
-        responseDataList.toMutableList().add(position.toInt(), newData)
-//        responseDataList[position] = newData
-        notifyDataSetChanged()
-
-        // Update the item in the database
-//        databaseHelper.updateResponseData(position.toLong(),newData)
-    }
-
-    fun deleteItem(position: Long) {
-        // Remove the item from the list
-        responseDataList.toMutableList().removeAt(position.toInt())
-        notifyDataSetChanged()
-
-        // Delete the item from the database
-//        databaseHelper.deleteResponseData(position.toLong())
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -71,10 +53,6 @@ class MoreScreenAdapter(private var responseDataList: List<ResponseData>, privat
         viewHolder.bind(responseData)
 
 
-//        val responseDataPKEY = responseDataList[position]
-//        val itemId = responseDataPKEY.itemId
-
-
         view.setOnClickListener {
             val itemId = getItemId(position)
             itemClickListener.onItemClick(itemId)
@@ -89,10 +67,7 @@ class MoreScreenAdapter(private var responseDataList: List<ResponseData>, privat
 
 
         Log.d("TAG", receivedNearestDeviceName)
-//        Log.d("TAG", responseData.message)
-
-
-        viewHolder.cardColor(responseData.message.equals(receivedNearestDeviceName))
+        viewHolder.cardColor(responseData.location.equals(receivedNearestDeviceName))
 
         return view
     }
@@ -110,7 +85,7 @@ class MoreScreenAdapter(private var responseDataList: List<ResponseData>, privat
 
         fun bind(responseData: ResponseData) {
 //            topicTextView.text = responseData.topic
-            messageTextView.text = responseData.message
+            messageTextView.text = responseData.location
 
         }
 

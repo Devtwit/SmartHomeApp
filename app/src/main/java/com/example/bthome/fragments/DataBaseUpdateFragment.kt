@@ -2,7 +2,8 @@ package com.example.bthome.fragments
 
 
 import Data.ResponseData
-import Database.DatabaseHelper
+import DatabaseHelper
+//import Database.DatabaseHelper
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.Fragment
@@ -41,34 +42,6 @@ class DataBaseUpdateFragment : Fragment() {
         updateClicked.setOnClickListener{
             Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_dataBaseUpdateFragment_to_changeNameFragment)
 
-//            val dialogBuilder = AlertDialog.Builder(requireContext())
-//            val inflater = this.layoutInflater
-//            val dialogView = inflater.inflate(R.layout.popup_window, null)
-//            dialogBuilder.setView(dialogView)
-//
-//            val editText = dialogView.findViewById<EditText>(R.id.editText)
-//
-//            dialogBuilder.setTitle("Edit Item")
-//            dialogBuilder.setPositiveButton("Save") { dialog, whichButton ->
-//                val newText = editText.text.toString()
-//                // Handle the updated text as needed
-//                // For example, update the data in the database using dbHelper
-//
-//                var newRD  = ResponseData("topic",newText)
-//
-//                DatabaseHelper(requireContext()).updateResponseData(AddBleDeviceFragment.responseAdapter.getString(
-//                    idValue.toInt()).toString(),newRD)
-//                Toast.makeText(requireContext(), "Update option selected", Toast.LENGTH_SHORT).show()
-//                Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_dataBaseUpdateFragment_to_changeNameFragment)
-//            }
-//            dialogBuilder.setNegativeButton("Cancel") { dialog, whichButton ->
-//                // Do nothing or perform any desired action on cancel
-//            }
-//
-//            val alertDialog = dialogBuilder.create()
-//            alertDialog.show()
-
-
         }
 
         deletClicked.setOnClickListener{
@@ -82,7 +55,7 @@ class DataBaseUpdateFragment : Fragment() {
             customPopUp = CustomDialog(requireContext()).buildTurnOffAlertPopup(requireContext(), object :
                 ThreeButtonsListener {
                 override fun onOkButtonClicked() {
-                    DatabaseHelper(requireContext()).deleteResponseData(AddBleDeviceFragment.responseAdapter.getString(
+                    DatabaseHelper(requireContext()).deleteLocation(AddBleDeviceFragment.responseAdapter.getString(
                 idValue.toInt()).toString())
                     Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_dataBaseUpdateFragment_to_addBleDeviceFragment)
                 }

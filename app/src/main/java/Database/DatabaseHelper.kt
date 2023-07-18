@@ -1,79 +1,184 @@
-package Database
-
 import Data.ResponseData
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
-class DatabaseHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
-
-    companion object {
-        private const val DATABASE_NAME = "response_database.db1"
-        private const val DATABASE_VERSION = 1
-
-        private const val TABLE_NAME = "response_table"
-        private const val COLUMN_ID = "_id"
-        private const val COLUMN_TOPIC = "topic"
-        private const val COLUMN_MESSAGE = "message"
-        private const val COLUMN_ADDRESS = "address"
-    }
+class DatabaseHelper(context: Context?) :
+    SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     override fun onCreate(db: SQLiteDatabase) {
-        val createTableQuery = "CREATE TABLE $TABLE_NAME (" +
-                "$COLUMN_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "$COLUMN_TOPIC TEXT, " +
-                "$COLUMN_MESSAGE TEXT, " +
-                "$COLUMN_ADDRESS TEXT UNIQUE" +
-                ");"
-        db.execSQL(createTableQuery)
+        val createLocationTable =
+            "CREATE TABLE $TABLE_LOCATION ($COLUMN_LOCATION_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "$COLUMN_LOCATION_NAME TEXT, $COLUMN_LOCATION_ADDRESS TEXT UNIQUE)"
+
+        val createDeviceTable =
+            "CREATE TABLE $TABLE_DEVICE ($COLUMN_DEVICE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    "$COLUMN_LOCATION_ID INTEGER, $COLUMN_DEVICE_NAME TEXT, " +
+                    "$COLUMN_STATUS TEXT, $COLUMN_ACK TEXT, $COLUMN_ERROR_MESSAGE TEXT, " +
+                    "FOREIGN KEY($COLUMN_LOCATION_ID) REFERENCES $TABLE_LOCATION($COLUMN_LOCATION_ID))"
+
+        db.execSQL(createLocationTable)
+        db.execSQL(createDeviceTable)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        db.execSQL("DROP TABLE IF EXISTS $TABLE_NAME")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_DEVICE")
+        db.execSQL("DROP TABLE IF EXISTS $TABLE_LOCATION")
         onCreate(db)
     }
 
-    // Inside your DatabaseHelper class
+    fun insertData(location: String, devices: Map<String, Map<String, Any>>) {
+        val db = this.writableDatabase
+        db.beginTransaction()
+        try {
+            // Insert or retrieve the location ID
+//            val locationId = insertLocation(db, location)
+            val locationData = location.split(" ")
+            val name = locationData[0]
+            val address = locationData[1]
+
+            // Insert or retrieve the location ID
+            val locationId = insertLocation(db, name, address)
+            // Insert devices for the location
+            for ((deviceName, deviceData) in devices) {
+                val status = deviceData["status"] as? String
+                val ack = deviceData["ack"] as? String
+                val errorMessage = deviceData["err_msg"] as? String
+
+                val contentValues = ContentValues()
+                contentValues.put(COLUMN_LOCATION_ID, locationId)
+                contentValues.put(COLUMN_DEVICE_NAME, deviceName)
+                contentValues.put(COLUMN_STATUS, status)
+                contentValues.put(COLUMN_ACK, ack)
+                contentValues.put(COLUMN_ERROR_MESSAGE, errorMessage)
+
+                db.insert(TABLE_DEVICE, null, contentValues)
+            }
+
+            db.setTransactionSuccessful()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error inserting data.", e)
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
+    }
 
     @SuppressLint("Range")
     fun getAllResponseData(): List<ResponseData> {
         val responseDataList = mutableListOf<ResponseData>()
-        val db = readableDatabase
-        val cursor = db.query(
-            "response_table",
-            arrayOf("topic", "message", "address"),
-            null,
-            null,
+
+        val selectQuery = "SELECT * FROM $TABLE_LOCATION"
+        val db = this.readableDatabase
+        val cursor = db.rawQuery(selectQuery, null)
+
+        cursor.use {
+            while (cursor.moveToNext()) {
+                val locationId = cursor.getLong(cursor.getColumnIndex(COLUMN_LOCATION_ID))
+                val locationName = cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION_NAME))
+
+                val devices = getDevicesForLocation(db, locationId)
+
+                val responseData = ResponseData(locationName, devices,"")
+                responseDataList.add(responseData)
+            }
+        }
+
+        return responseDataList
+    }
+
+    @SuppressLint("Range")
+    private fun getDevicesForLocation(db: SQLiteDatabase, locationId: Long): Map<String, Map<String, Any>> {
+        val devices = mutableMapOf<String, Map<String, Any>>()
+
+        val selectQuery = "SELECT * FROM $TABLE_DEVICE WHERE $COLUMN_LOCATION_ID=$locationId"
+        val cursor = db.rawQuery(selectQuery, null)
+
+        cursor.use {
+            while (cursor.moveToNext()) {
+                val deviceName = cursor.getString(cursor.getColumnIndex(COLUMN_DEVICE_NAME))
+                val status = cursor.getString(cursor.getColumnIndex(COLUMN_STATUS))
+                val ack = cursor.getString(cursor.getColumnIndex(COLUMN_ACK))
+                val errorMessage = cursor.getString(cursor.getColumnIndex(COLUMN_ERROR_MESSAGE))
+
+                val deviceData = mapOf(
+                    "status" to status,
+                    "ack" to ack,
+                    "err_msg" to errorMessage
+                )
+
+                devices[deviceName] = deviceData
+            }
+        }
+
+        return devices
+    }
+
+    @SuppressLint("Range")
+    private fun insertLocation(db: SQLiteDatabase, name: String, address: String): Long {
+
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_LOCATION_NAME, name)
+        contentValues.put(COLUMN_LOCATION_ADDRESS, address)
+
+        val existingLocationId = db.query(
+            TABLE_LOCATION,
+            arrayOf(COLUMN_LOCATION_ID),
+            "$COLUMN_LOCATION_NAME=? AND $COLUMN_LOCATION_ADDRESS=?",
+            arrayOf(name, address),
             null,
             null,
             null
         )
-        while (cursor.moveToNext()) {
-            val topic = cursor.getString(cursor.getColumnIndex("topic"))
-            val message = cursor.getString(cursor.getColumnIndex("message"))
-            val address = cursor.getString(cursor.getColumnIndex("address"))
-            val responseData = ResponseData(topic, message, address )
-            responseDataList.add(responseData)
+
+        return if (existingLocationId.moveToFirst()) {
+            // Location already exists, return its ID
+            val locationId = existingLocationId.getLong(existingLocationId.getColumnIndex(COLUMN_LOCATION_ID))
+            existingLocationId.close()
+            locationId
+        } else {
+            // Location doesn't exist, insert it and return the new ID
+            val newLocationId = db.insert(TABLE_LOCATION, null, contentValues)
+            existingLocationId.close()
+            newLocationId
         }
-        cursor.close()
-        return responseDataList
-    }
-    fun updateResponseData(message: String,responseData: ResponseData) {
-        val db = writableDatabase
-        val values = ContentValues().apply {
-            put(COLUMN_TOPIC, responseData.topic)
-            put(COLUMN_MESSAGE, responseData.message)
-            if(responseData.address != "")
-            put(COLUMN_ADDRESS, responseData.address)
-        }
-        db.update(TABLE_NAME, values, "$COLUMN_MESSAGE = ?", arrayOf(message))
     }
 
-    fun deleteResponseData(message: String) {
-        val db = writableDatabase
-//        db.delete(TABLE_NAME, "$COLUMN_ID = ?", arrayOf(id.toString()))
-        db.delete(TABLE_NAME, "$COLUMN_MESSAGE = ?", arrayOf(message))
+
+
+    companion object {
+        private const val DATABASE_VERSION = 1
+        private const val DATABASE_NAME = "BT_HOME.db"
+        private const val TABLE_LOCATION = "BT_LOCATION"
+        private const val TABLE_DEVICE = "BT_DEVICE"
+        private const val COLUMN_LOCATION_ID = "location_id"
+        private const val COLUMN_LOCATION_NAME = "location_name"
+        private const val COLUMN_LOCATION_ADDRESS = "location_address"
+        private const val COLUMN_DEVICE_ID = "device_id"
+        private const val COLUMN_DEVICE_NAME = "device_name"
+        private const val COLUMN_STATUS = "status"
+        private const val COLUMN_ACK = "ack"
+        private const val COLUMN_ERROR_MESSAGE = "error_message"
+        val TAG = DatabaseHelper::class.java.simpleName
+    }
+    fun updateLocationName(oldName: String, newName: String): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_LOCATION_NAME, newName)
+        val updatedRows = db.update(TABLE_LOCATION, contentValues, "$COLUMN_LOCATION_NAME=?", arrayOf(oldName))
+//        db.close()
+
+        return updatedRows > 0
+    }
+
+    fun deleteLocation(oldName: String): Boolean {
+        val db = this.writableDatabase
+        val deletedRows = db.delete(TABLE_LOCATION, "$COLUMN_LOCATION_NAME=?", arrayOf(oldName))
+//        db.close()
+
+        return deletedRows > 0
     }
 }

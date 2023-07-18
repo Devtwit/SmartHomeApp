@@ -24,7 +24,6 @@
             android:layout_height="160dp"
             android:layout_gravity="center"
             android:background="@drawable/select_device_unselected_bg"
-
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
