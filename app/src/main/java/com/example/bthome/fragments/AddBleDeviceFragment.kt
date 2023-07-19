@@ -157,7 +157,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         //if different update device
         for (i in mScanResult.indices) {
 
-            if (mScanResult[i].rssi >= -85) {
+            if (mScanResult[i].rssi >= -70) {
                 hasDeviceInRange = true
                 Log.d("ANDRD_DEV 1", " ${mScanResult[i].rssi}")
                 Log.d("ANDRD_DEV 2", " ${mScanResult[i].device.address}")

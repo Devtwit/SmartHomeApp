@@ -1,5 +1,6 @@
 package Adapter
 
+import Data.ResponseData
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.bthome.R
 
-class RoomAdapter(private val itemList: List<String>) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
+class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     // Keep track of the positions of the items that have been animated
     private val animatedPositions = HashSet<Int>()
 
@@ -21,11 +22,49 @@ class RoomAdapter(private val itemList: List<String>) : RecyclerView.Adapter<Roo
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
 
         // Bind data to views
-        holder.textView.text = item
+        holder.textView.text = item.location
+
+        // Determine the status and set appropriate animations
+        val lightStatus = item.devices["light"]?.get("status")
+        val fanStatus = item.devices["fan"]?.get("status")
+
+        if (lightStatus == "on") {
+            // Light is on, show different animation
+            val lightAnimation = AlphaAnimation(0f, 1f)
+            lightAnimation.duration = 1000
+            lightAnimation.repeatCount = Animation.INFINITE
+            lightAnimation.repeatMode = Animation.REVERSE
+
+            holder.menuButton.startAnimation(lightAnimation)
+        } else {
+            // Light is off, clear animation
+            holder.menuButton.clearAnimation()
+        }
+
+        if (fanStatus == "on") {
+            // Fan is on, show different animation
+            val fanAnimation = RotateAnimation(
+                0f,
+                360f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f
+            )
+            fanAnimation.duration = 1000
+            fanAnimation.interpolator = LinearInterpolator()
+            fanAnimation.repeatCount = Animation.INFINITE
+
+            holder.menuButton2.startAnimation(fanAnimation)
+        } else {
+            // Fan is off, clear animation
+            holder.menuButton2.clearAnimation()
+        }
 
         // Create a fade-in animation
         val fadeInAnimation = AlphaAnimation(0f, 1f)
@@ -37,32 +76,8 @@ class RoomAdapter(private val itemList: List<String>) : RecyclerView.Adapter<Roo
         // Check if the position has been animated before
         if (!animatedPositions.contains(position)) {
             animatedPositions.add(position)
-
-            // Add glowing animation to the first ImageButton
-            val glowAnimation = AlphaAnimation(0.5f, 1f)
-            glowAnimation.duration = 1000
-            glowAnimation.repeatCount = AlphaAnimation.INFINITE
-            glowAnimation.repeatMode = AlphaAnimation.REVERSE
-
-            holder.menuButton.startAnimation(glowAnimation)
-
-            // Add fan animation to the second ImageButton
-            val fanAnimation = RotateAnimation(
-                0f,
-                360f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f
-            )
-            fanAnimation.duration = 1000
-            fanAnimation.interpolator = LinearInterpolator()
-            fanAnimation.repeatCount = RotateAnimation.INFINITE
-
-            holder.menuButton2.startAnimation(fanAnimation)
         }
     }
-
 
 
     override fun onViewAttachedToWindow(holder: ViewHolder) {
@@ -73,26 +88,41 @@ class RoomAdapter(private val itemList: List<String>) : RecyclerView.Adapter<Roo
         holder.menuButton2.clearAnimation()
 
         if (animatedPositions.contains(holder.adapterPosition)) {
-            val glowAnimation = AlphaAnimation(0.5f, 1f)
-            glowAnimation.duration = 1000
-            glowAnimation.repeatCount = AlphaAnimation.INFINITE
-            glowAnimation.repeatMode = AlphaAnimation.REVERSE
+            // Get the corresponding item
+            val item = itemList[holder.adapterPosition]
 
-            holder.menuButton.startAnimation(glowAnimation)
+            // Determine the status and set appropriate animations
+            val lightStatus = item.devices["light"]?.get("status")
+            val fanStatus = item.devices["fan"]?.get("status")
 
-            val fanAnimation = RotateAnimation(
-                0f,
-                360f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f
-            )
-            fanAnimation.duration = 1000
-            fanAnimation.interpolator = LinearInterpolator()
-            fanAnimation.repeatCount = RotateAnimation.INFINITE
+            if (lightStatus == "on") {
+                // Light is on, show different animation
+                val lightAnimation = AlphaAnimation(0f, 1f)
+                lightAnimation.duration = 1000
+                lightAnimation.repeatCount = Animation.INFINITE
+                lightAnimation.repeatMode = Animation.REVERSE
 
-            holder.menuButton2.startAnimation(fanAnimation)
+                holder.menuButton.startAnimation(lightAnimation)
+            }
+
+            if (fanStatus == "on") {
+                // Fan is on, show different animation
+                val fanAnimation = RotateAnimation(
+                    0f,
+                    360f,
+                    Animation.RELATIVE_TO_SELF,
+                    0.5f,
+                    Animation.RELATIVE_TO_SELF,
+                    0.5f
+                )
+                fanAnimation.duration = 1000
+                fanAnimation.interpolator = LinearInterpolator()
+                fanAnimation.repeatCount = Animation.INFINITE
+
+                holder.menuButton2.startAnimation(fanAnimation)
+            } else {
+                holder.menuButton2.setImageResource(R.drawable.baseline_toys_24)
+            }
         }
     }
 

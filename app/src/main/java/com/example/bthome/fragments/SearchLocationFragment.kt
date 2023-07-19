@@ -58,33 +58,6 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
 //        nextButton.visibility= View.VISIBLE
         loader.visibility= View.GONE
         nextButton.visibility = View.GONE
-//        skipButton.setOnClickListener {
-//            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_changeNameFragment)
-//        }
-//        nextButton.setOnClickListener {
-//            if(nextButton.text.equals("START")) {
-////                loader.visibility = View.VISIBLE
-//                nextButton.visibility = View.GONE
-//                nextButton.text = "Next"
-//                permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
-//                permissionHandler.checkStatuses()
-//                if (permissionHandler.isAllPermissionsEnabled()) {
-//                    if (handleBluetooth == null) {
-//                        handleBluetooth = HandleBluetooth()
-//                    }
-//                    loader.visibility = View.VISIBLE
-//                    handleBluetooth!!.scanLeDevices(this)
-//                }
-//            }
-//            else{
-//                loader.visibility= View.GONE
-//                // Publish the scanned data to the MQTT topic
-//                val topic = AwsConfigConstants.SET_CONFIG // Replace with your desired MQTT topic
-//                Log.d("SearchLocation","else on button click")
-//                awsConfig!!.publishData(scannedResult, topic)
-//                Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_changeNameFragment)
-//            }
-//        }
         return view
     }
 

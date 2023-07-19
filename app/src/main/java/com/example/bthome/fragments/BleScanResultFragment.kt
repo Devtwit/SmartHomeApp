@@ -1,6 +1,8 @@
 package com.example.bthome.fragments
 
 import Adapter.RoomAdapter
+import Data.ResponseData
+import DatabaseHelper
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -30,12 +32,13 @@ class BleScanResultFragment : Fragment() {
 //            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
 //            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-    Log.d("BLE SCANRESULT", "")
+
         recyclerView = view.findViewById(R.id.scanResultRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        val itemList = listOf("Item 3", "Item 2", "Item 3", "Item 4", "Item 5","Item 6")
-        adapter = RoomAdapter(itemList)
+        val dbHelper = DatabaseHelper(requireContext())
+        val responseDataList = dbHelper.getAllResponseData()
+        Log.d("Responce", "${responseDataList}")
+        adapter = RoomAdapter(responseDataList)
         recyclerView.adapter = adapter
         return  view
     }
