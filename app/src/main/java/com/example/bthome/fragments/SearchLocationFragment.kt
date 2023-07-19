@@ -26,6 +26,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
 
     companion object {
         lateinit var scannedResult : String
+        lateinit var selectedRoom : String
         fun newInstance() = SearchLocationFragment()
     }
 
@@ -113,6 +114,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
                 Log.d("SearchLocation", "else on button click")
 //                awsConfig!!.publishData(scannedResult, topic)
                 awsConfig!!.publishDeviceName(scannedResult)
+
                 Handler().postDelayed({
                     //doSomethingHere()
                 Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
@@ -148,12 +150,14 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             Log.d("SearchLocation","scanCompleted null")
             if (result.device.name == null) {
                 foundDevice.text = "UnknownDevice"
+                selectedRoom = result.device.address
                 scannedResult = "UnknownDevice " + result.device.address
                 Log.d("SearchLocation","scanCompleted $scannedResult")
             } else {
                 foundDevice.text = result.device.name
-//                scannedResult = result.device.name+ " " + result.device.address
-                scannedResult = result.device.name
+                selectedRoom = result.device.address
+                scannedResult = result.device.name+ " " + result.device.address
+//                scannedResult = result.device.name
             }
 
         }

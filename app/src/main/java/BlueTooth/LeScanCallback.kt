@@ -8,6 +8,9 @@ import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
 import android.support.v4.app.ActivityCompat
 import android.util.Log
+import android.widget.Toast
+import com.example.bthome.fragments.AddBleDeviceFragment
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.newInstance
 
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 
@@ -37,16 +40,31 @@ class LeScanCallback(private val deviceFound: DeviceFound) : ScanCallback() {
                 TAG,
                 "Device " + result.device.address + " rssi: " + result.rssi + " Tx: " + result.txPower
             )
-            if(result.rssi <= -20  && result.rssi > -100   ){
+            if(result.rssi <= -20  && result.rssi > -85   ){
                 Log.d(
                     TAG,
-                    "Device " + result.device.name + " rssi: " + result.rssi + " Onside if"
+                    "Device " + result.device.name + "address :"+ result.device.address +" rssi: " + result.rssi + " Onside if"
                 )
-                if(result.device.name != null)
-                receivedNearestDeviceName = result.device.address
-                else
-                    receivedNearestDeviceName = result.device.address
+                if(result.device.name != null) {
+//                     AddBleDeviceFragment().awsConfig!!.publishDeviceName("BT-Beacon_room1")
+                    receivedNearestDeviceName = result.device.name
+
+                } else {
+                    receivedNearestDeviceName = "result.device.name"
+                }
+                Log.d(
+                    TAG,
+                    "AWS CONFIG AWS CONFIG DEVICE FOUND"
+                )
+//                AddBleDeviceFragment().awsConfig!!.publishDeviceName("BT-Beacon_room1")
+//                AddBleDeviceFragment().deviceFound()
+
             } else {
+                Log.d(
+                    TAG,
+                    "AWS CONFIG NO DEVICE FOUND"
+                )
+//                AddBleDeviceFragment().awsConfig!!.publishDeviceName("No Device found")
                 receivedNearestDeviceName = ""
             }
 
@@ -88,6 +106,7 @@ class LeScanCallback(private val deviceFound: DeviceFound) : ScanCallback() {
     override fun onScanFailed(errorCode: Int) {
         super.onScanFailed(errorCode)
         Log.d(TAG, "Failed errorCode: $errorCode")
+
     }
 
     override fun onBatchScanResults(results: List<ScanResult>) {

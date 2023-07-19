@@ -53,6 +53,7 @@ class AwsConfigClass() {
                             Log.d(TAG, "Connected")
                             subscribeToTopic(SET_CONFIG, context)
                             subscribeToTopic(GET_CONFIG, context)
+                            subscribeToTopic("sdk/Falcon/setconfig_ack", context)
                             Log.d(TAG, "Subscribed on: $SET_CONFIG")
                         }
                         AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting -> {
@@ -87,11 +88,11 @@ class AwsConfigClass() {
                             val message = String(data!!, Charsets.UTF_8)
                             val jsonData = message.trim()
 
-                            Log.d(TAG, "Message arrived:")
-                            Log.d(TAG, "   Topic: $topic")
-                            Log.d(TAG, " Message: $jsonData")
+                            Log.d(TAG, "Message arrived: Handle AKN")
+                            Log.d(TAG, "   Topic tag: $topic")
+                            Log.d(TAG, " Message json data: $jsonData")
 
-                            if (topic.equals(SET_CONFIG, ignoreCase = true)) {
+                            if (topic.equals("sdk/Falcon/setconfig_ack", ignoreCase = true)) {
                                 handleAcknowledgment(jsonData, context)
                             }
                         } catch (e: UnsupportedEncodingException) {
@@ -105,6 +106,7 @@ class AwsConfigClass() {
     }
 
     private fun handleAcknowledgment(json: String, context: Context?) {
+        Log.d(TAG, "$json: Acknowledgment received")
         val responseData = parseResponseJson(json)
 
         // Handle the acknowledgment status
@@ -119,7 +121,7 @@ class AwsConfigClass() {
             val status = deviceData["status"] as? String
             val ack = deviceData["ack"] as? String
             val errMsg = deviceData["err_msg"] as? String
-
+            Log.d(TAG, "$deviceName ack : $ack")
             if (ack == "true") {
                 // Acknowledgment received
                 Log.d(TAG, "$deviceName: Acknowledgment received")
@@ -173,7 +175,7 @@ class AwsConfigClass() {
             devices[deviceName] = deviceData
             Log.d(TAG,"RESP devicesObject $deviceName $deviceData")
         }
-
+//        jsonData = json
         return ResponseData(location, devices, "add")
     }
 
@@ -190,5 +192,6 @@ class AwsConfigClass() {
 
     companion object {
         val TAG = AwsConfigClass::class.java.simpleName
+        lateinit var jsonData : String
     }
 }

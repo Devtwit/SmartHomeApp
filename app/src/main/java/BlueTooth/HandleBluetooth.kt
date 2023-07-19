@@ -52,7 +52,7 @@ class HandleBluetooth( val cont: Context) {
         val scanFilter = ScanFilter.Builder().setServiceUuid(parcelUuid).build()
         scanFilters.add(scanFilter)
         val scanSettings =
-            ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_LATENCY).build()
+            ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_POWER).build()
         handler.post(Runnable {
 
 //            if (!isScanning) {
@@ -73,7 +73,7 @@ class HandleBluetooth( val cont: Context) {
 //                Log.d(TAG, "Scanning Stopped")
 //                isScanning = false
 //                leScanCallback!!.mScanResult = ArrayList()
-//                //                    bluetoothLeScanner.startScan(scanFilters, scanSettings, leScanCallback);
+////                                    bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback);
 //            }
         })
     }

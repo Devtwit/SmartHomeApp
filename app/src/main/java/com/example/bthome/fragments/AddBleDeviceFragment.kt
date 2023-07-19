@@ -12,6 +12,7 @@ import DatabaseHelper
 import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.le.ScanResult
+import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
@@ -44,8 +45,10 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         lateinit var responseAdapter: ResponseAdapter
         var receivedNearestDeviceName = ""
         var processedScanResultIndex = 0
+        lateinit var apkContext :Context
         @SuppressLint("StaticFieldLeak")
         lateinit var dialog: CustomDialog
+        fun newInstance() = AddBleDeviceFragment()
     }
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -54,7 +57,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_ble_device, container, false)
 
-
+        apkContext=activity!!.applicationContext
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
         dialog = CustomDialog(requireContext())
@@ -82,6 +85,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 
         val initialData = dbHelper.getAllResponseData()
         responseAdapter.updateData(initialData)
+//        blueTooth()
         setupGridView()
         return  view
     }
@@ -153,18 +157,29 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         //if different update device
         for (i in mScanResult.indices) {
 
-            if (mScanResult[i].rssi >= -100) {
+            if (mScanResult[i].rssi >= -85) {
                 hasDeviceInRange = true
                 Log.d("ANDRD_DEV 1", " ${mScanResult[i].rssi}")
                 Log.d("ANDRD_DEV 2", " ${mScanResult[i].device.address}")
                 Log.d("ANDRD_DEV 3", " ${mScanResult[i].scanRecord}")
+                Toast.makeText(requireContext(),"RSSI : ${mScanResult[i].rssi}",Toast.LENGTH_LONG).show()
             }
         }
 
         if (!hasDeviceInRange) {
+            Log.d("Range_No ", "" + result.rssi)
             receivedNearestDeviceName = ""
-            aws!!.publishData("No device found in range", AwsConfigConstants.SET_CONFIG)
+//            aws!!.publishData("No device found", AwsConfigConstants.SET_CONFIG)
+            aws!!.publishDeviceName("No device found")
+
+        } else {
+            Log.d("Range has device ", "" + result.rssi)
+//            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
+            aws!!.publishDeviceName("BT-Beacon_room1")
         }
+
+
+
         return if (mScanResult.size == 1) {
             Log.d("Inside if", "" + result.rssi)
             Log.d("ANDRD_DEV 4", "" + result.rssi)
@@ -235,7 +250,6 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
             }
         }
     }
-
 
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
 //        TODO("Not yet implemented")

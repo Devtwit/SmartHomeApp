@@ -27,15 +27,26 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-
             <TextView
                 android:id="@+id/room_number_id"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+android:layout_marginTop="10dp"
+                android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                 android:gravity="center"
-                android:padding="5dp"
-                android:text="Room1"
-                android:textSize="20sp" />
+                android:textColor="#000000"
+                android:textSize="16dp"
+                android:text="Kitchen" />
+
+            <ImageView
+
+                android:id="@+id/selectedImg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:scaleType="center"
+                android:layout_gravity="center"
+                 />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>

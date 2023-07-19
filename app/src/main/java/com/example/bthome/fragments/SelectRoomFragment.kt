@@ -1,5 +1,6 @@
 package com.example.bthome.fragments
 
+import DatabaseHelper
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -95,7 +96,7 @@ lateinit var  study: LinearLayout
 
 
         nextButton.setOnClickListener {
-            if(  poojaRoom.isSelected ||
+            if(  kitchen.isSelected ||
                 store.isSelected ||
                 study.isSelected ||
                 poojaRoom.isSelected ||
@@ -111,6 +112,9 @@ lateinit var  study: LinearLayout
 
 
     fun kitchenClicked(){
+        val oldName = SearchLocationFragment.selectedRoom
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "kitchen")
+
         kitchen.setBackgroundColor(Color.parseColor("#eaf2ee"))
         bedRoom.setBackgroundColor(Color.parseColor("#ffffff"))
         hall.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -125,6 +129,8 @@ lateinit var  study: LinearLayout
         study.setBackgroundResource(R.drawable.select_device_unselected_bg)
     }
     fun poojaRoomClicked(){
+        val oldName = SearchLocationFragment.selectedRoom
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "Pooja Room")
         kitchen.setBackgroundColor(Color.parseColor("#ffffff"))
         bedRoom.setBackgroundColor(Color.parseColor("#ffffff"))
         hall.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -139,6 +145,8 @@ lateinit var  study: LinearLayout
         study.setBackgroundResource(R.drawable.select_device_unselected_bg)
     }
     fun storeClicked(){
+        val oldName = SearchLocationFragment.selectedRoom
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "Store Room")
         kitchen.setBackgroundColor(Color.parseColor("#ffffff"))
         bedRoom.setBackgroundColor(Color.parseColor("#ffffff"))
         hall.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -153,6 +161,8 @@ lateinit var  study: LinearLayout
         study.setBackgroundResource(R.drawable.select_device_unselected_bg)
     }
     fun studyClicked(){
+        val oldName = SearchLocationFragment.selectedRoom
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "Study")
         kitchen.setBackgroundColor(Color.parseColor("#ffffff"))
         bedRoom.setBackgroundColor(Color.parseColor("#ffffff"))
         hall.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -167,6 +177,8 @@ lateinit var  study: LinearLayout
         study.setBackgroundResource(R.drawable.select_device_selected_bg)
     }
     fun bedRoomClicked(){
+        val oldName = SearchLocationFragment.selectedRoom
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "Bed Room")
         kitchen.setBackgroundColor(Color.parseColor("#ffffff"))
         bedRoom.setBackgroundColor(Color.parseColor("#eaf2ee"))
         hall.setBackgroundColor(Color.parseColor("#ffffff"))
@@ -181,6 +193,8 @@ lateinit var  study: LinearLayout
         study.setBackgroundResource(R.drawable.select_device_unselected_bg)
     }
     fun hallClicked(){
+        val oldName = SearchLocationFragment.selectedRoom
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "Hall")
         kitchen.setBackgroundColor(Color.parseColor("#ffffff"))
         bedRoom.setBackgroundColor(Color.parseColor("#ffffff"))
         hall.setBackgroundColor(Color.parseColor("#eaf2ee"))

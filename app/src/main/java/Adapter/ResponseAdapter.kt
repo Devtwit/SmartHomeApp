@@ -15,6 +15,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 
 import com.example.bthome.R
@@ -34,7 +35,8 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         return responseDataList[position]
     }
      fun getString(position: Int): Any {
-        return responseDataList[position].location
+         Log.d("GETALL RESPONCE POSITION",responseDataList[position].address)
+        return responseDataList[position].address
     }
 
     override fun getItemId(position: Int): Long {
@@ -72,11 +74,11 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
 
         Log.d("TAG", receivedNearestDeviceName)
-        Log.d("TAG", responseData.location)
+        Log.d("TAG", responseData.address)
 
 
         viewHolder.cardColor(responseData.location.equals(receivedNearestDeviceName))
-
+        viewHolder.setImage(responseData.location)
         return view
     }
     fun updateData(newData: List<ResponseData>) {
@@ -87,6 +89,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 //        private val topicTextView: TextView = view.findViewById(R.id.topicTextView)
         private val messageTextView: TextView = view.findViewById(R.id.room_number_id)
         private val cardView: CardView = view.findViewById(R.id.card)
+        private val selectedImg: ImageView = view.findViewById(R.id.selectedImg)
 
 
         fun bind(responseData: ResponseData) {
@@ -104,10 +107,23 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                 Log.d("isNear", receivedNearestDeviceName )
                 Log.d("isNear", isNear.toString())
                 cardView.setBackgroundColor(Color.WHITE)
-                cardView.setBackgroundResource(R.drawable.select_device_unselected_bg)
+                cardView.setBackgroundResource(R.drawable.selected_device_orange)
            }
         }
 
+
+        fun setImage(name : String){
+           when(name){
+               "Hall" ->{selectedImg.setBackgroundResource(R.drawable.hall)}
+               "Store Room" ->{selectedImg.setBackgroundResource(R.drawable.storeroom)}
+               "Study" ->{selectedImg.setBackgroundResource(R.drawable.study)}
+               "Bed Room" ->{selectedImg.setBackgroundResource(R.drawable.bedroom)}
+               "Pooja Room" ->{selectedImg.setBackgroundResource(R.drawable.kitchen)}
+               "kitchen" ->{selectedImg.setBackgroundResource(R.drawable.kitchen)}
+               else ->{}
+           }
+
+        }
         private fun Int.dpToPx(): Float {
             val scale = Resources.getSystem().displayMetrics.density
             return (this * scale + 0.5f)

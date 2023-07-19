@@ -36,10 +36,11 @@ class DatabaseHelper(context: Context?) :
         try {
             // Insert or retrieve the location ID
 //            val locationId = insertLocation(db, location)
+            Log.d("locationData","$location")
             val locationData = location.split(" ")
             val name = locationData[0]
-            val address = locationData[1]
-
+            val address = "locationData[1]"
+            Log.d("locationData"," : location $location name :  $name  address : $address" )
             // Insert or retrieve the location ID
             val locationId = insertLocation(db, name, address)
             // Insert devices for the location
@@ -79,10 +80,12 @@ class DatabaseHelper(context: Context?) :
             while (cursor.moveToNext()) {
                 val locationId = cursor.getLong(cursor.getColumnIndex(COLUMN_LOCATION_ID))
                 val locationName = cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION_NAME))
-
+                val locationAddress = cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION_ADDRESS))
+              Log.d("GETALL RESPONCE",locationName)
+              Log.d("GETALL RESPONCE",locationAddress)
                 val devices = getDevicesForLocation(db, locationId)
 
-                val responseData = ResponseData(locationName, devices,"")
+                val responseData = ResponseData(locationName, devices,locationAddress)
                 responseDataList.add(responseData)
             }
         }
@@ -168,7 +171,8 @@ class DatabaseHelper(context: Context?) :
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COLUMN_LOCATION_NAME, newName)
-        val updatedRows = db.update(TABLE_LOCATION, contentValues, "$COLUMN_LOCATION_NAME=?", arrayOf(oldName))
+        Log.d("GETALL RESPONCE POSITION",oldName)
+        val updatedRows = db.update(TABLE_LOCATION, contentValues, "$COLUMN_LOCATION_ADDRESS=?", arrayOf(oldName))
 //        db.close()
 
         return updatedRows > 0
@@ -176,7 +180,7 @@ class DatabaseHelper(context: Context?) :
 
     fun deleteLocation(oldName: String): Boolean {
         val db = this.writableDatabase
-        val deletedRows = db.delete(TABLE_LOCATION, "$COLUMN_LOCATION_NAME=?", arrayOf(oldName))
+        val deletedRows = db.delete(TABLE_LOCATION, "$COLUMN_LOCATION_ADDRESS=?", arrayOf(oldName))
 //        db.close()
 
         return deletedRows > 0
