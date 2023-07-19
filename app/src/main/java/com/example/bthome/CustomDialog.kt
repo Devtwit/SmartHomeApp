@@ -24,17 +24,6 @@ import android.widget.TextView
 import android.widget.Toast
 
 class CustomDialog(private val context: Context) {
-    private var dialog: AlertDialog? = null
-    private var progressBar: ProgressBar? = null
-    private lateinit var textView1 : TextView
-    private lateinit var textView2 : TextView
-    private lateinit var button1 : Button
-    private lateinit var button2  :Button
-    companion object{
-        lateinit var scannedData : String
-        lateinit var scannedAddress : String
-    }
-
      fun openAppSettings() {
         val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
         val uri = Uri.fromParts("package", context.packageName, null)

@@ -11,6 +11,7 @@ import DatabaseHelper
 //import Database.DatabaseHelper
 import android.Manifest
 import android.annotation.SuppressLint
+import android.arch.lifecycle.ViewModelProvider
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.os.Bundle
@@ -31,13 +32,15 @@ import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
+import com.example.bthome.viewModels.AddBleDeviceViewModel
+import com.example.bthome.viewModels.BleScanResultViewModel
 import java.util.ArrayList
 
 
 class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickListener {
 
     var awsConfig: AwsConfigClass? = null
-
+    private lateinit var viewModel: AddBleDeviceViewModel
 
     //    grid layout
     private lateinit var gridView: GridView
@@ -56,7 +59,8 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_ble_device, container, false)
-
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            AddBleDeviceViewModel::class.java)
         apkContext=activity!!.applicationContext
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
@@ -145,116 +149,10 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         Manifest.permission.BLUETOOTH_ADVERTISE,
     )
 
-    fun precessScanResult(
-        mScanResult: java.util.ArrayList<ScanResult>,
-        result: ScanResult,
-        aws: AwsConfigClass?,
-    ): Int {
-        var nearestDeviceIndex = 0
-        var hasDeviceInRange = false
-        //last nearest device
-        //check rssi
-        //if different update device
-        for (i in mScanResult.indices) {
-
-            if (mScanResult[i].rssi >= -70) {
-                hasDeviceInRange = true
-                Log.d("ANDRD_DEV 1", " ${mScanResult[i].rssi}")
-                Log.d("ANDRD_DEV 2", " ${mScanResult[i].device.address}")
-                Log.d("ANDRD_DEV 3", " ${mScanResult[i].scanRecord}")
-                Toast.makeText(requireContext(),"RSSI : ${mScanResult[i].rssi}",Toast.LENGTH_LONG).show()
-            }
-        }
-
-        if (!hasDeviceInRange) {
-            Log.d("Range_No ", "" + result.rssi)
-            receivedNearestDeviceName = ""
-//            aws!!.publishData("No device found", AwsConfigConstants.SET_CONFIG)
-            aws!!.publishDeviceName("No device found")
-
-        } else {
-            Log.d("Range has device ", "" + result.rssi)
-//            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
-            aws!!.publishDeviceName("BT-Beacon_room1")
-        }
-
-
-
-        return if (mScanResult.size == 1) {
-            Log.d("Inside if", "" + result.rssi)
-            Log.d("ANDRD_DEV 4", "" + result.rssi)
-            nearestDevice = result
-//            receivedNearestDeviceName = result.device.address
-            Log.d("ANDRD_DEV 1", " ${result.rssi}")
-            Log.d("ANDRD_DEV 2", " ${result.device.address}")
-            Log.d("ANDRD_DEV 3", " ${result.scanRecord}")
-            Log.d("ANDRD_DEV 5", " ${nearestDevice}")
-            Log.d("ANDRD_DEV 6", " ${result}")
-            if (Math.abs(mScanResult[0].rssi) > 100) {
-                nearestDeviceIndex = 404
-            }
-            nearestDeviceIndex
-        } else {
-            Log.d("Nearest Device ", "$nearestDevice")
-            nearestDevice = result
-//            receivedNearestDeviceName = result.device.address
-            Log.d("Nearest Device ", "$nearestDevice")
-            Log.d("Nearest Device ", "$nearestDevice")
-            Log.d(
-                "MATH",
-                "" + Math.abs(result.rssi) + " ABC " + Math.abs(nearestDevice!!.getRssi())
-            )
-            if (Math.abs(result.rssi) < Math.abs(nearestDevice!!.getRssi()) && Math.abs(result.rssi) <= 100) {
-                Log.d("Inside else if", "" + result.rssi)
-                nearestDevice = result
-//                receivedNearestDeviceName = result.device.address
-                for (i in mScanResult.indices) {
-                    if (mScanResult[i].device.address.equals(
-                            result.device.address,
-                            ignoreCase = true
-                        )
-                    ) {
-                        nearestDeviceIndex = i
-//                        receivedNearestDeviceName = nearestDevice!!.device.address
-                        Log.d("Matched", "" + nearestDeviceIndex)
-                        break
-                    }
-                }
-                if (nearestDeviceIndex == 0) {
-                    nearestDeviceIndex = 404
-                }
-                nearestDeviceIndex
-            } else {
-                for (i in mScanResult.indices) {
-                    if (Math.abs(mScanResult[i].rssi) <= 100) {
-                        nearestDevice = mScanResult[i]
-//                        receivedNearestDeviceName = nearestDevice!!.device.address
-                    }
-                    if (mScanResult[i].device.address.equals(
-                            nearestDevice!!.getDevice().getAddress(),
-                            ignoreCase = true
-                        ) && Math.abs(
-                            mScanResult[i].rssi
-                        ) <= 100
-                    ) {
-                        nearestDeviceIndex = i
-//                        receivedNearestDeviceName = nearestDevice!!.device.address
-                        Log.d("Matched", "" + nearestDeviceIndex)
-                        break
-                    }
-                }
-                if (nearestDeviceIndex == 0) {
-                    nearestDeviceIndex = 404
-                }
-                nearestDeviceIndex
-            }
-        }
-    }
-
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
 //        TODO("Not yet implemented")
         setupGridView()
-        processedScanResultIndex = precessScanResult(mScanResult!!, result!!,awsConfig)
+        processedScanResultIndex = viewModel.precessScanResult(mScanResult!!, result!!,awsConfig,requireContext())
         Log.d("POSITION ", "" + processedScanResultIndex)
 
     }

@@ -53,10 +53,4 @@ class ChangeNameFragment : Fragment() {
         return view
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-//        viewModel = ViewModelProvider(this).get(ChangeNameViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
