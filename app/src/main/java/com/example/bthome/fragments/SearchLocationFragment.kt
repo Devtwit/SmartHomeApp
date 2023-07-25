@@ -69,17 +69,17 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         }
 
         startButton.setOnClickListener {
-                startButton.visibility = View.GONE
-                permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
-                permissionHandler.checkStatuses()
-                if (permissionHandler.isAllPermissionsEnabled()) {
-                    if (handleBluetooth == null) {
-                        handleBluetooth = HandleBluetooth(requireContext())
-                    }
-                    loader.visibility = View.VISIBLE
-                    handleBluetooth!!.scanLeDevices(this)
+            startButton.visibility = View.GONE
+            permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
+            permissionHandler.checkStatuses()
+            if (permissionHandler.isAllPermissionsEnabled()) {
+                if (handleBluetooth == null) {
+                    handleBluetooth = HandleBluetooth(requireContext())
                 }
-
+                loader.visibility = View.VISIBLE
+                handleBluetooth!!.scanLeDevices(this)
+            }
+        }
             nextButton.setOnClickListener {
                 loader.visibility = View.GONE
                 // Publish the scanned data to the MQTT topic
@@ -94,7 +94,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
                     .navigate(R.id.action_searchLocationFragment_to_selectRoomFragment)
                 }, 2000)
             }
-        }
+
 
     }
 
@@ -124,12 +124,14 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             if (result.device.name == null) {
                 foundDevice.text = "UnknownDevice"
                 selectedRoom = result.device.address
-                scannedResult = "UnknownDevice " + result.device.address
+//                scannedResult = "BT-Beacon_room1 " + result.device.address
+                scannedResult = "BT-Beacon_room1"
                 Log.d("SearchLocation","scanCompleted $scannedResult")
             } else {
                 foundDevice.text = result.device.name
                 selectedRoom = result.device.address
-                scannedResult = result.device.name+ " " + result.device.address
+                scannedResult = "BT-Beacon_room1"
+//                scannedResult = result.device.name+ " " + result.device.address
 //                scannedResult = result.device.name
             }
 

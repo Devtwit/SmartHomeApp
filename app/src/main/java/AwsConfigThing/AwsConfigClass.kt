@@ -95,6 +95,9 @@ class AwsConfigClass() {
                             if (topic.equals("sdk/Falcon/setconfig_ack", ignoreCase = true)) {
                                 handleAcknowledgment(jsonData, context)
                             }
+                            if (topic.equals("sdk/Falcon/getconfig_ack", ignoreCase = true)) {
+                                handleAcknowledgment(jsonData, context)
+                            }
                         } catch (e: UnsupportedEncodingException) {
                             Log.e(TAG, "Message encoding error.", e)
                         }
@@ -159,6 +162,7 @@ class AwsConfigClass() {
 
         val topic = SET_CONFIG
         publishData(json, topic)
+        publishData(json, GET_CONFIG)
     }
 
     private fun parseResponseJson(json: String): ResponseData {

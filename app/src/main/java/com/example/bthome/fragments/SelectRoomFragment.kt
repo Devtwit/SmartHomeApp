@@ -47,7 +47,7 @@ class SelectRoomFragment : Fragment() {
                 .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
         }
 
-        setupRoomClickListener(kitchen, "kitchen")
+        setupRoomClickListener(kitchen, "BT-Beacon_room1")
         setupRoomClickListener(bedRoom, "Bed Room")
         setupRoomClickListener(hall, "Hall")
         setupRoomClickListener(store, "Store Room")
@@ -96,7 +96,7 @@ class SelectRoomFragment : Fragment() {
 
     private fun updateRoomSelection(room: LinearLayout, roomName: String) {
         val oldName = SearchLocationFragment.selectedRoom
-        DatabaseHelper(requireContext()).updateLocationName(oldName, roomName)
+        DatabaseHelper(requireContext()).updateLocationName(oldName, "BT-Beacon_room1")
         room.setBackgroundColor(Color.parseColor("#eaf2ee"))
         room.setBackgroundResource(R.drawable.select_device_selected_bg)
     }

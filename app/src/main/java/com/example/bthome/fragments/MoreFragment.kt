@@ -13,6 +13,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.GridView
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.navigation.Navigation
 import com.example.bthome.R
 
@@ -35,6 +37,8 @@ class MoreFragment : Fragment(), ItemClickListener {
     }
     //    grid layout
     private lateinit var gridView: GridView
+    lateinit var addRoom :TextView
+    lateinit var addImg :ImageView
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,6 +52,8 @@ class MoreFragment : Fragment(), ItemClickListener {
         awsConfig!!.startAwsConfigurations(requireContext())
 
 
+        addRoom = view.findViewById(R.id.room_number_id)
+        addImg = view.findViewById(R.id.imgView)
         gridView = view.findViewById(R.id.ghost_view)
 
         val dbHelper = DatabaseHelper(requireContext())
@@ -76,4 +82,13 @@ class MoreFragment : Fragment(), ItemClickListener {
         TODO("Not yet implemented")
     }
 
+    override fun onResume() {
+        super.onResume()
+        addRoom.setOnClickListener {
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_moreFragment_to_searchLocationFragment)
+        }
+        addImg.setOnClickListener {
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_moreFragment_to_searchLocationFragment)
+        }
+    }
 }

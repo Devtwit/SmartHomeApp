@@ -1,14 +1,12 @@
 package com.example.bthome.fragments
 
+//import Database.DatabaseHelper
 import Adapter.ItemClickListener
 import Adapter.ResponseAdapter
 import AwsConfigThing.AwsConfigClass
-import AwsConfigThing.AwsConfigConstants
 import Bluetooth.HandleBluetooth
 import Bluetooth.LeScanCallback
-import Data.ResponseData
 import DatabaseHelper
-//import Database.DatabaseHelper
 import android.Manifest
 import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProvider
@@ -16,25 +14,17 @@ import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
 import android.widget.GridView
-import android.widget.ImageButton
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
 import com.example.bthome.viewModels.AddBleDeviceViewModel
-import com.example.bthome.viewModels.BleScanResultViewModel
-import java.util.ArrayList
 
 
 class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickListener {
@@ -48,6 +38,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         lateinit var responseAdapter: ResponseAdapter
         var receivedNearestDeviceName = ""
         var processedScanResultIndex = 0
+        var publishStatus : String = "status"
         lateinit var apkContext :Context
         @SuppressLint("StaticFieldLeak")
         lateinit var dialog: CustomDialog
@@ -56,7 +47,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         val view = inflater.inflate(R.layout.fragment_add_ble_device, container, false)
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(

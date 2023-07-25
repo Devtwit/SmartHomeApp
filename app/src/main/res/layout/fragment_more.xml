@@ -53,6 +53,7 @@
             android:textSize="20sp" />
 
         <ImageView
+            android:id="@+id/imgView"
             android:layout_width="0dp"
             android:background="@color/white"
             android:layout_height="match_parent"

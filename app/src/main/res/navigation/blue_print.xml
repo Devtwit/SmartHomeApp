@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_moreFragment_to_dataBaseUpdateFragment"
             app:destination="@id/dataBaseUpdateFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
     </fragment>
     <fragment
         android:id="@+id/dataBaseUpdateFragment"

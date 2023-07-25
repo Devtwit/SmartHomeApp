@@ -118,9 +118,9 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                "Store Room" ->{selectedImg.setBackgroundResource(R.drawable.storeroom)}
                "Study" ->{selectedImg.setBackgroundResource(R.drawable.study)}
                "Bed Room" ->{selectedImg.setBackgroundResource(R.drawable.bedroom)}
-               "Pooja Room" ->{selectedImg.setBackgroundResource(R.drawable.kitchen)}
-               "kitchen" ->{selectedImg.setBackgroundResource(R.drawable.kitchen)}
-               else ->{}
+               "Pooja Room" ->{selectedImg.setBackgroundResource(R.drawable.poojadiya)}
+               "BT-Beacon_room1" ->{selectedImg.setBackgroundResource(R.drawable.kitchen)}
+               else ->{selectedImg.setBackgroundResource(R.drawable.other)}
            }
 
         }

@@ -34,6 +34,7 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
         val fanStatus = item.devices["fan"]?.get("status")
 
         if (lightStatus == "on") {
+            holder.menuButton.setImageResource(R.drawable.glowbulb)
             // Light is on, show different animation
             val lightAnimation = AlphaAnimation(0f, 1f)
             lightAnimation.duration = 1000
@@ -44,6 +45,7 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
         } else {
             // Light is off, clear animation
             holder.menuButton.clearAnimation()
+            holder.menuButton.setImageResource(R.drawable.bulb)
         }
 
         if (fanStatus == "on") {
@@ -101,8 +103,12 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
                 lightAnimation.duration = 1000
                 lightAnimation.repeatCount = Animation.INFINITE
                 lightAnimation.repeatMode = Animation.REVERSE
-
-                holder.menuButton.startAnimation(lightAnimation)
+                holder.menuButton.setImageResource(R.drawable.gbulb)
+                holder.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
+//                holder.menuButton.startAnimation(lightAnimation)
+            }
+            else{
+                holder.menuButton.setBackgroundResource(R.drawable.white_background)
             }
 
             if (fanStatus == "on") {
@@ -118,10 +124,12 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
                 fanAnimation.duration = 1000
                 fanAnimation.interpolator = LinearInterpolator()
                 fanAnimation.repeatCount = Animation.INFINITE
-
+                holder.menuButton2.setImageResource(R.drawable.fan_on)
+                holder.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
                 holder.menuButton2.startAnimation(fanAnimation)
             } else {
                 holder.menuButton2.setImageResource(R.drawable.baseline_toys_24)
+                holder.menuButton2.setBackgroundResource(R.drawable.white_round_background)
             }
         }
     }

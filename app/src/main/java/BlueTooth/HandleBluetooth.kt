@@ -76,6 +76,8 @@ class HandleBluetooth( val cont: Context) {
 ////                                    bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback);
 //            }
         })
+
+
     }
 
     companion object {

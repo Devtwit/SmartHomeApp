@@ -16,18 +16,28 @@
 
         <TextView
             android:id="@+id/textView"
-            android:ellipsize="end"
-            android:maxLines="1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="20dp"
-            android:gravity="center"
-            android:text="Item Text"
-            android:textSize="30dp" />
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            android:lineHeight="40dp"
+            android:lineSpacingExtra="4sp"
+            android:maxLines="3"
+            android:minLines="1"
+          android:textAlignment="center"
+            android:singleLine="false"
+            android:text="Room Name"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
-        android:weightSum="6"
+
+        android:weightSum="2"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_weight="2"
         android:orientation="horizontal"
@@ -43,17 +53,18 @@
             android:id="@+id/menuButton"
             android:layout_width="100dp"
             android:layout_weight="1"
-            android:layout_marginStart="50dp"
-            android:layout_height="match_parent"
-
+            android:padding="40dp"
+            android:layout_margin="10dp"
+            android:layout_height="180dp"
             android:src="@drawable/baseline_online_prediction_24" />
 
 
         <ImageView
+            android:background="@color/gray_transparent"
             android:id="@+id/menuButton2"
             android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
+            android:layout_height="180dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:src="@drawable/baseline_toys_24" />
     </LinearLayout>

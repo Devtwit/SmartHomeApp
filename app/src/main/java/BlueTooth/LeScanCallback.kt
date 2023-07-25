@@ -50,7 +50,7 @@ class LeScanCallback(private val deviceFound: DeviceFound) : ScanCallback() {
                     receivedNearestDeviceName = result.device.name
 
                 } else {
-                    receivedNearestDeviceName = "result.device.name"
+                    receivedNearestDeviceName = "BT-Beacon_room1"
                 }
                 Log.d(
                     TAG,
