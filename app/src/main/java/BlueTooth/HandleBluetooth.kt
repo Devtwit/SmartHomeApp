@@ -1,23 +1,22 @@
 package Bluetooth
 
-import AwsConfigThing.AwsConfigClass.Companion.TAG
+import AwsConfigThing.AwsConfigClass
 import AwsConfigThing.AwsConfigConstants.Companion.UUID_FILTER
 import android.Manifest
-import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.le.BluetoothLeScanner
 import android.bluetooth.le.ScanFilter
 import android.bluetooth.le.ScanSettings
 import android.content.Context
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Handler
+import android.os.Looper
 import android.os.ParcelUuid
 import android.support.v4.app.ActivityCompat
 import android.util.Log
 import java.util.UUID
 
-class HandleBluetooth( val cont: Context) {
+class HandleBluetooth(val cont: Context,val awsConfig: AwsConfigClass?) {
 
     var leScanCallback: LeScanCallback? = null
     var bluetoothLeScanner: BluetoothLeScanner? = null
@@ -77,12 +76,19 @@ class HandleBluetooth( val cont: Context) {
 //            }
         })
 
-
+// Set a timeout to stop scanning if no matching device is found within the specified time
+//        timeoutHandler.postDelayed({
+//            Log.d(TAG,"Scan stopped called")
+//            awsConfig!!.publishDeviceName("No device found")
+//        }, scanTimeout)
     }
 
     companion object {
         private val TAG = HandleBluetooth::class.java.simpleName
         var bluetoothAdapter: BluetoothAdapter? = null
         var scanning = false
+   val timeoutHandler = Handler(Looper.getMainLooper())
+        private val scanTimeout: Long = 10000 // 10 seconds (adjust as needed)
+
     }
 }

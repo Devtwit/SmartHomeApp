@@ -90,7 +90,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         permissionHandler.checkStatuses()
         if (permissionHandler.isAllPermissionsEnabled()) {
             if (handleBluetooth == null) {
-                handleBluetooth = HandleBluetooth(requireContext())
+                handleBluetooth = HandleBluetooth(requireContext(),awsConfig!!)
             }
             handleBluetooth!!.scanLeDevices(this)
         }

@@ -1,5 +1,6 @@
 package Bluetooth
 
+import Bluetooth.HandleBluetooth.Companion.timeoutHandler
 import android.Manifest
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
@@ -35,6 +36,7 @@ class LeScanCallback(private val deviceFound: DeviceFound) : ScanCallback() {
             isScanStarted = true
             Log.d(TAG, "Scanning Started")
         }
+        timeoutHandler.removeCallbacksAndMessages(null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             Log.d(
                 TAG,

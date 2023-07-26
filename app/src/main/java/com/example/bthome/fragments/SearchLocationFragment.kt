@@ -74,7 +74,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             permissionHandler.checkStatuses()
             if (permissionHandler.isAllPermissionsEnabled()) {
                 if (handleBluetooth == null) {
-                    handleBluetooth = HandleBluetooth(requireContext())
+                    handleBluetooth = HandleBluetooth(requireContext(), awsConfig!!)
                 }
                 loader.visibility = View.VISIBLE
                 handleBluetooth!!.scanLeDevices(this)

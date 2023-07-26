@@ -3,6 +3,7 @@ package com.example.bthome.viewModels
 import AwsConfigThing.AwsConfigClass
 import Data.ResponseData
 import DatabaseHelper
+import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModel
 import android.bluetooth.le.ScanResult
 import android.content.Context
@@ -13,13 +14,14 @@ import com.example.bthome.fragments.AddBleDeviceFragment.Companion.publishStatus
 
 class AddBleDeviceViewModel :ViewModel(){
     var nearestDevice: ScanResult? = null
+    @SuppressLint("SuspiciousIndentation")
     fun precessScanResult(
         mScanResult: java.util.ArrayList<ScanResult>,
         result: ScanResult,
         aws: AwsConfigClass?,
         context: Context,
     ): Int {
-//        val responseDataList = mutableListOf<ResponseData>()
+        val responseDataList = mutableListOf<ResponseData>()
         var nearestDeviceIndex = 0
         var hasDeviceInRange = false
         //last nearest device
@@ -27,10 +29,10 @@ class AddBleDeviceViewModel :ViewModel(){
         //if different update device
         val dbHelper = DatabaseHelper(context)
         val initialData = dbHelper.getAllResponseData()
-//        Log.d("Response Data list"," $responseDataList")
-//        Log.d("Response Data list initialData"," ${initialData} ${initialData.isNotEmpty()}")
-//        if(initialData.isNotEmpty())
-//        Log.d("Response Data list initialData"," ${initialData.get(0).location}")
+        Log.d("Response Data list"," $responseDataList")
+        Log.d("Response Data list initialData"," ${initialData} ${initialData.isNotEmpty()}")
+        if(initialData.isNotEmpty())
+        Log.d("Response Data list initialData"," ${initialData.get(0).location}")
 
         for (i in mScanResult.indices) {
 
@@ -59,6 +61,7 @@ class AddBleDeviceViewModel :ViewModel(){
         }
         else if(initialData.isNotEmpty()){
 //          else{
+
               if(initialData.get(0).location.equals("BT-Beacon_room1")) {
                 Log.d("Range has device ", "" + result.rssi + " " + publishStatus)
 //            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
