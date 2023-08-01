@@ -110,10 +110,8 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     private val permissions = arrayOf(
         Manifest.permission.BLUETOOTH,
         Manifest.permission.BLUETOOTH_ADMIN,
-        Manifest.permission.BLUETOOTH_SCAN,
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.BLUETOOTH_CONNECT,
-        Manifest.permission.BLUETOOTH_ADVERTISE,
+
     )
 
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {

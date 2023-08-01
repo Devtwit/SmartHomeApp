@@ -134,14 +134,10 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     private val permissions = arrayOf(
         Manifest.permission.BLUETOOTH,
         Manifest.permission.BLUETOOTH_ADMIN,
-        Manifest.permission.BLUETOOTH_SCAN,
         Manifest.permission.ACCESS_FINE_LOCATION,
-        Manifest.permission.BLUETOOTH_CONNECT,
-        Manifest.permission.BLUETOOTH_ADVERTISE,
     )
 
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
-//        TODO("Not yet implemented")
         setupGridView()
         processedScanResultIndex = viewModel.precessScanResult(mScanResult!!, result!!,awsConfig,requireContext())
         Log.d("POSITION ", "" + processedScanResultIndex)
