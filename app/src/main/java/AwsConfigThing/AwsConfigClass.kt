@@ -16,6 +16,7 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
 import com.example.bthome.SmartActivity
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.responseAdapter
+import org.json.JSONException
 import org.json.JSONObject
 import java.io.UnsupportedEncodingException
 import java.util.UUID
@@ -89,6 +90,7 @@ class AwsConfigClass() {
                             val message = String(data!!, Charsets.UTF_8)
                             val jsonData = message.trim()
 
+                            jsonDataLightFan = jsonData
                             Log.d(TAG, "Message arrived: Handle AKN")
                             Log.d(TAG, "   Topic tag: $topic")
                             Log.d(TAG, " Message json data: $jsonData")
@@ -166,22 +168,56 @@ class AwsConfigClass() {
 //        publishData(json, GET_CONFIG)
     }
 
-    private fun parseResponseJson(json: String): ResponseData {
-        val jsonObject = JSONObject(json)
-        val location = jsonObject.getString("location")
-        val devicesObject = jsonObject.getJSONObject("devices")
-        val devices = mutableMapOf<String, Map<String, Any>>()
-        Log.d(TAG,"RESP LOCATION $location")
-        Log.d(TAG,"RESP devicesObject $devicesObject")
-        val keysIterator = devicesObject.keys()
-        while (keysIterator.hasNext()) {
-            val deviceName = keysIterator.next() as String
-            val deviceData = devicesObject.getJSONObject(deviceName).toMap()
-            devices[deviceName] = deviceData
-            Log.d(TAG,"RESP devicesObject $deviceName $deviceData")
+//    fun parseResponseJson(json: String): ResponseData {
+//        val jsonObject = JSONObject(json)
+//        val location = jsonObject.getString("location")
+//        val devicesObject = jsonObject.getJSONObject("devices")
+//        val devices = mutableMapOf<String, Map<String, Any>>()
+//        Log.d(TAG,"RESP LOCATION $location")
+//        Log.d(TAG,"RESP devicesObject $devicesObject")
+//        val keysIterator = devicesObject.keys()
+//        while (keysIterator.hasNext()) {
+//            val deviceName = keysIterator.next() as String
+//            val deviceData = devicesObject.getJSONObject(deviceName).toMap()
+//            devices[deviceName] = deviceData
+//            Log.d(TAG,"RESP devicesObject $deviceName $deviceData")
+//        }
+////        jsonData = json
+//        return ResponseData(location, devices, "add")
+//    }
+
+    fun parseResponseJson(json: String): ResponseData {
+        return try {
+            val jsonObject = JSONObject(json)
+            val location = jsonObject.getString("location")
+            val devicesJson = jsonObject.getJSONObject("devices")
+
+            val devices = mutableMapOf<String, Map<String, Any>>()
+
+            val keys = devicesJson.keys()
+            while (keys.hasNext()) {
+                val deviceName = keys.next()
+                val deviceData = devicesJson.getJSONObject(deviceName)
+                val status = deviceData.getString("status")
+                val ack = deviceData.getString("ack")
+                val errMsg = deviceData.getString("err_msg")
+
+                val deviceMap = mapOf(
+                    "status" to status,
+                    "ack" to ack,
+                    "err_msg" to errMsg
+                )
+
+                devices[deviceName] = deviceMap
+            }
+
+            ResponseData(location, devices,location)
+        } catch (e: JSONException) {
+            // Handle the JSON parsing error here
+            e.printStackTrace()
+            // Return a default or error ResponseData object
+            ResponseData("", emptyMap(),"Jsonerror $e")
         }
-//        jsonData = json
-        return ResponseData(location, devices, "add")
     }
 
     private fun JSONObject.toMap(): Map<String, Any> {
@@ -197,6 +233,6 @@ class AwsConfigClass() {
 
     companion object {
         val TAG = AwsConfigClass::class.java.simpleName
-        lateinit var jsonData : String
+        var jsonDataLightFan : String = ""
     }
 }

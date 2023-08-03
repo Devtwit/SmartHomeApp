@@ -1,10 +1,13 @@
 package Service
 
 import AwsConfigThing.AwsConfigClass
+import AwsConfigThing.AwsConfigConstants
+
 import AwsConfigThing.AwsConfigConstants.Companion.UUID_FILTER
 import Bluetooth.LeScanCallback
 import Data.ResponseData
 import DatabaseHelper
+import Reciever.NotificationButtonReceiver
 import android.annotation.SuppressLint
 import android.app.*
 import android.app.job.JobParameters
@@ -16,6 +19,7 @@ import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import android.os.Handler
 import android.os.IBinder
@@ -23,6 +27,7 @@ import android.os.ParcelUuid
 import android.os.PowerManager
 import android.support.v4.app.NotificationCompat
 import android.util.Log
+import android.widget.RemoteViews
 import android.widget.Toast
 import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
@@ -53,6 +58,7 @@ class BleScanService : JobService() {
 
     // Use lateinit var for wakeLock
     private lateinit var wakeLock: PowerManager.WakeLock
+    @SuppressLint("UnspecifiedRegisterReceiverFlag")
     override fun onCreate() {
         super.onCreate()
         startForeground(NOTIFICATION_ID, createNotification())
@@ -70,6 +76,11 @@ class BleScanService : JobService() {
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
         wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BleScanService::WakeLock")
 
+        val filter = IntentFilter().apply {
+            addAction(NotificationButtonReceiver.ACTION_BUTTON_1)
+            addAction(NotificationButtonReceiver.ACTION_BUTTON_2)
+        }
+        registerReceiver(NotificationButtonReceiver(), filter)
     }
 
 //    private var wakeLock: PowerManager.WakeLock by lazy {
@@ -84,6 +95,10 @@ class BleScanService : JobService() {
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(applicationContext)
         startForegroundService()
+        awsConfig!!.subscribeToTopic(AwsConfigConstants.SET_CONFIG, applicationContext)
+        awsConfig!!.subscribeToTopic(AwsConfigConstants.GET_CONFIG, applicationContext)
+        awsConfig!!.subscribeToTopic("sdk/Falcon/setconfig_ack", applicationContext)
+
         return START_STICKY
     }
 
@@ -185,29 +200,142 @@ class BleScanService : JobService() {
                 }
 
             }
+            val deviceName = result?.device?.name ?: ""
+            handleAcknowledgment(AwsConfigClass.jsonDataLightFan, applicationContext)
+            Log.d(TAG,"Inside if call back ")
 
         }
     })
 
+    private fun handleAcknowledgment(deviceName: String, context: Context?) {
+//        val jsonDataString =
+        val jsonData = awsConfig!!.parseResponseJson(deviceName)
+        val devices = jsonData.devices
+        val notificationStringBuilder = StringBuilder()
+        for ((deviceName, deviceData) in devices) {
+            val status = deviceData["status"] as? String
+            val ack = deviceData["ack"] as? String
+            val errMsg = deviceData["err_msg"] as? String
+
+            if (ack == "true") {
+                Log.d(TAG,"Inside if handleAcknowledgment ")
+                // Append device information to the notification string
+                notificationStringBuilder.append("$deviceName: $status\n")
+
+                // Acknowledgment received, update notification with device status
+//                updateNotification(deviceName, status ?: "Unknown", context)
+                Log.d(TAG, "$deviceName: Acknowledgment received")
+                Log.d(TAG, "$deviceName Status: $status")
+            } else {
+                // Acknowledgment not received, handle the error message
+                notificationStringBuilder.append("$deviceName: Error - $errMsg\n")
+                Log.d(TAG,"Inside else handleAcknowledgment ")
+                Log.d(TAG, "$deviceName: Error - $errMsg")
+            }
+            // Update the notification with the accumulated information
+//            updateNotification(notificationStringBuilder.toString(), context)
+            updateNotificationWithButtons(notificationStringBuilder.toString(), context)
+        }
+    }
+
+
     private fun createNotification(): Notification {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        // Create a notification channel for Android Oreo and above
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                NOTIFICATION_CHANNEL_ID,
-                "BLE Scanning Service",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            notificationManager.createNotificationChannel(channel)
-        }
+        // Create a PendingIntent for the button clicks
+        val actionIntent1 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        actionIntent1.action = "ACTION_BUTTON_1"
+        val pendingIntent1 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent1, PendingIntent.FLAG_IMMUTABLE)
+
+        val actionIntent2 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        actionIntent2.action = "ACTION_BUTTON_2"
+        val pendingIntent2 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent2, PendingIntent.FLAG_IMMUTABLE)
+
+        // Create a custom notification layout with RemoteViews
+        val notificationLayout = RemoteViews(packageName, R.layout.custom_notification_layout)
+        notificationLayout.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
+        notificationLayout.setTextViewText(R.id.notificationText, "Scanning for BLE devices")
+        notificationLayout.setOnClickPendingIntent(R.id.button1, pendingIntent1)
+        notificationLayout.setOnClickPendingIntent(R.id.button2, pendingIntent2)
 
         // Create the notification
         return NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
-            .setContentTitle("BLE Scanning Service")
-            .setContentText("Scanning for BLE devices")
             .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+            .setCustomContentView(notificationLayout)
             .build()
+    }
+
+
+    //    private fun createNotification(): Notification {
+//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//
+//        // Create a notification channel for Android Oreo and above
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val channel = NotificationChannel(
+//                NOTIFICATION_CHANNEL_ID,
+//                "BLE Scanning Service",
+//                NotificationManager.IMPORTANCE_DEFAULT
+//            )
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//
+//        // Create the notification
+//        return NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+//            .setContentTitle("BLE Scanning Service")
+//            .setContentText("Scanning for BLE devices")
+//            .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+//            .addAction(R.drawable.rounded_button, "Button 1", createButtonIntent(NotificationButtonReceiver.ACTION_BUTTON_1))
+//            .addAction(R.drawable.rounded_button, "Button 2", createButtonIntent(NotificationButtonReceiver.ACTION_BUTTON_2))
+//            .build()
+//    }
+    private fun createButtonIntent(action: String): PendingIntent {
+        val intent = Intent(this, NotificationButtonReceiver::class.java).apply {
+            this.action = action
+        }
+        return PendingIntent.getBroadcast(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+    }
+
+//    private fun updateNotification(notificationContent: String, context: Context?) {
+//        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+//
+//        val notification = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+//            .setContentTitle("BLE Scanning Service")
+//            .setContentText(notificationContent)
+//            .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+//            .build()
+//
+//        notificationManager.notify(NOTIFICATION_ID, notification)
+//    }
+
+    private fun updateNotificationWithButtons(notificationContent: String, context: Context?) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+
+        // Create a custom notification layout
+        val contentView = RemoteViews(packageName, R.layout.custom_notification_layout)
+        contentView.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
+        contentView.setTextViewText(R.id.notificationText, notificationContent)
+
+        // Create a PendingIntent for the button clicks
+        val actionIntent1 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        actionIntent1.action = "ACTION_BUTTON_1"
+        val pendingIntent1 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent1, PendingIntent.FLAG_IMMUTABLE)
+
+        val actionIntent2 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        actionIntent2.action = "ACTION_BUTTON_2"
+        val pendingIntent2 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent2, PendingIntent.FLAG_IMMUTABLE)
+
+        contentView.setOnClickPendingIntent(R.id.button1, pendingIntent1)
+
+        contentView.setOnClickPendingIntent(R.id.button2, pendingIntent2)
+
+        // Create the notification
+        val notification = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+            .setCustomContentView(contentView) // Set the custom layout
+            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+            .build()
+
+        notificationManager.notify(NOTIFICATION_ID, notification)
     }
 
 }
