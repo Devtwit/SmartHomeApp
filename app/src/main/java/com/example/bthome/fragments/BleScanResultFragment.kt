@@ -1,6 +1,7 @@
 package com.example.bthome.fragments
 
 import Adapter.RoomAdapter
+import AwsConfigThing.AwsConfigClass
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
@@ -23,6 +24,7 @@ class BleScanResultFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RoomAdapter
+    var awsConfig: AwsConfigClass? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -32,14 +34,16 @@ class BleScanResultFragment : Fragment() {
 //            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
 //            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
 
-
+        awsConfig = AwsConfigClass()
+        awsConfig!!.startAwsConfigurations(requireContext())
         recyclerView = view.findViewById(R.id.scanResultRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         val dbHelper = DatabaseHelper(requireContext())
         val responseDataList = dbHelper.getAllResponseData()
         Log.d("Responce", "${responseDataList}")
-        adapter = RoomAdapter(responseDataList)
+        adapter = RoomAdapter(responseDataList, awsConfig!!)
         recyclerView.adapter = adapter
         return  view
     }
+
 }

@@ -1,20 +1,16 @@
 package com.example.bthome.fragments
 
 
-import Data.ResponseData
+
 import DatabaseHelper
-//import Database.DatabaseHelper
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
 import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog

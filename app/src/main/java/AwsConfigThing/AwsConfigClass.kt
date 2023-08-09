@@ -4,15 +4,30 @@ import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import AwsConfigThing.AwsConfigConstants.Companion.SET_CONFIG
 import Data.ResponseData
 import DatabaseHelper
+import Reciever.NotificationButtonReceiver
+import Service.BleScanService
+import Service.BleScanService.Companion.NOTIFICATION_ID
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.app.job.JobService
+import android.content.BroadcastReceiver
 //import Database.DatabaseHelper
 import android.content.ContentValues
 import android.content.Context
+import android.content.Context.NOTIFICATION_SERVICE
+import android.content.Intent
+import android.content.IntentFilter
+import android.graphics.Color
+import android.support.v4.app.NotificationCompat
+import android.support.v4.content.ContextCompat.getSystemService
 import android.util.Log
+import android.widget.RemoteViews
 import com.amazonaws.auth.CognitoCachingCredentialsProvider
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttClientStatusCallback
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttNewMessageCallback
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
+import com.example.bthome.R
 import com.example.bthome.SmartActivity
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.responseAdapter
@@ -30,6 +45,7 @@ class AwsConfigClass() {
     var credentialsProvider: CognitoCachingCredentialsProvider? = null
     var databaseHelper: DatabaseHelper? = null
     fun startAwsConfigurations(context: Context?) {
+        cx= context!!
         databaseHelper = DatabaseHelper(context)
         credentialsProvider = CognitoCachingCredentialsProvider(
             context,
@@ -114,14 +130,14 @@ class AwsConfigClass() {
     private fun handleAcknowledgment(json: String, context: Context?) {
         Log.d(TAG, "$json: Acknowledgment received")
         val responseData = parseResponseJson(json)
-
+         cx= context!!
         // Handle the acknowledgment status
         val devices = responseData.devices
         val location = responseData.location
 
         val dbHelper = DatabaseHelper(context)
         dbHelper.insertData(location, devices)
-
+        val notificationStringBuilder = StringBuilder()
         // Handle the acknowledgment status and error message as desired
         for ((deviceName, deviceData) in devices) {
             val status = deviceData["status"] as? String
@@ -131,12 +147,26 @@ class AwsConfigClass() {
             if (ack == "true") {
                 // Acknowledgment received
                 Log.d(TAG, "$deviceName: Acknowledgment received")
+                if(deviceName.equals("light")){
+
+                    light_status = status!!
+                    Log.d(TAG, "$deviceName Status: $status light_status $light_status")
+                } else {
+                    Log.d(TAG, "$deviceName Status: $status")
+                    fan_status = status!!
+                    Log.d(TAG, "$deviceName Status: $status fan_status $fan_status")
+                }
+                notificationStringBuilder.append("\n $deviceName : $status")
                 Log.d(TAG, "$deviceName Status: $status")
             } else {
                 // Acknowledgment not received, handle the error message
                 Log.d(TAG, "$deviceName: Error - $errMsg")
             }
+
+            Log.d(TAG,"notificationContent ${notificationStringBuilder.toString()}")
+           updateNotificationWithButtons(notificationStringBuilder.toString(), context)
         }
+
     }
 
 
@@ -144,6 +174,7 @@ class AwsConfigClass() {
         try {
             mqttManager!!.publishString(msg, topic, AWSIotMqttQos.QOS0)
         } catch (e: Exception) {
+            updateNotificationWithButtons("\n  Something went wrong, Please wait", cx)
             Log.e(TAG, "Publish error.", e)
         }
     }
@@ -186,6 +217,8 @@ class AwsConfigClass() {
 //        return ResponseData(location, devices, "add")
 //    }
 
+
+
     fun parseResponseJson(json: String): ResponseData {
         return try {
             val jsonObject = JSONObject(json)
@@ -220,6 +253,84 @@ class AwsConfigClass() {
         }
     }
 
+    fun publishDeviceNameLightOff(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "off"
+                },
+                "fan": {
+                    "status": "$fan_status"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
+    fun publishDeviceNameLightOn(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "on"
+                },
+                "fan": {
+                    "status": "$fan_status"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
+
+    fun publishDeviceNameFanOn(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "$light_status"
+                },
+                "fan": {
+                    "status": "on"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
+    fun publishDeviceNameFanOff(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "$light_status"
+                },
+                "fan": {
+                    "status": "off"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
+
     private fun JSONObject.toMap(): Map<String, Any> {
         val map = mutableMapOf<String, Any>()
         val keysIterator = keys()
@@ -231,8 +342,127 @@ class AwsConfigClass() {
         return map
     }
 
+
+    fun updateNotificationWithButtons(notificationContent: String, context: Context?) {
+        val notificationManager = context!!.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        val capString = capitalizeWords(notificationContent)
+        Log.d(TAG,"notificationContent $capString")
+
+        // Create a custom notification layout
+        val contentView = RemoteViews(context!!.packageName, R.layout.custom_notification_layout)
+        contentView.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
+        contentView.setTextViewText(R.id.notificationText, capString)
+
+        // Create a PendingIntent for the button clicks
+        val actionIntent1 = Intent(context, NotificationButtonReceiver::class.java)
+        val actionIntent2 = Intent(context, NotificationButtonReceiver::class.java)
+        val actionIntent3 = Intent(context, NotificationButtonReceiver::class.java)
+        val actionIntent4 = Intent(context, NotificationButtonReceiver::class.java)
+        actionIntent1.action = "ACTION_BUTTON_1"
+        actionIntent2.action = "ACTION_BUTTON_2"
+        actionIntent3.action = "ACTION_BUTTON_3"
+        actionIntent4.action = "ACTION_BUTTON_4"
+
+        // Update the button text based on the device status
+        val (lightStatus, fanStatus) = parseDeviceStatus(capString)
+        contentView.setTextViewText(
+            R.id.button1,
+            if (lightStatus) "Light Off" else "Light On"
+        )
+        contentView.setTextColor(R.id.button1, Color.BLACK)
+        contentView.setTextViewText(
+            R.id.button2,
+            if (fanStatus) "Fan Off" else "Fan On"
+        )
+        contentView.setTextColor(R.id.button2, Color.BLACK)
+
+//        val lightButtonTextColor = if (lightStatus) Color.RED else Color.GREEN
+//        contentView.setTextColor(R.id.button1, lightButtonTextColor)
+//
+//        val fanButtonTextColor = if (fanStatus) Color.RED else Color.GREEN
+//        contentView.setTextColor(R.id.button2, fanButtonTextColor)
+
+
+        val dStatus = capString
+        val (light_Status, fan_Status) = parseDeviceStatus(dStatus)
+
+
+        println("Light is ${if (light_Status) "on" else "off"}")
+        println("Fan is ${if (fan_Status) "on" else "off"}")
+        if(light_Status){
+            Log.d(TAG,"Light is on")
+//            contentView.setTextViewText(R.id.button1,"Light_off")
+            val pendingIntent2 = PendingIntent.getBroadcast(context, 0, actionIntent2, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button1, pendingIntent2)
+            contentView.setTextColor(R.id.button1, Color.BLACK)
+
+        } else {
+            Log.d(TAG,"Light is off")
+//            contentView.setTextViewText(R.id.button1,"Light_on")
+            val pendingIntent1 = PendingIntent.getBroadcast(context, 0, actionIntent1, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button1, pendingIntent1)
+            contentView.setTextColor(R.id.button1, Color.BLACK)
+
+        }
+        if(fan_Status){
+            Log.d(TAG,"Fan is on")
+//            contentView.setTextViewText(R.id.button2,"Fan_off")
+            val pendingIntent4 = PendingIntent.getBroadcast(context, 0, actionIntent4, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button2, pendingIntent4)
+            contentView.setTextColor(R.id.button2, Color.BLACK)
+        } else {
+//            contentView.setTextViewText(R.id.button2,"Fan_on")
+            val pendingIntent3 = PendingIntent.getBroadcast(context, 0, actionIntent3, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button2, pendingIntent3)
+            contentView.setTextColor(R.id.button2, Color.BLACK)
+            Log.d(TAG,"Fan is off")
+        }
+        // Create the notification
+        val notification = NotificationCompat.Builder(context!!, BleScanService.NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+            .setCustomContentView(contentView) // Set the custom layout
+            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+            .setOngoing(true)
+            .build()
+        notificationManager.notify(NOTIFICATION_ID, notification)
+//        startForeground(NOTIFICATION_ID, notification)
+    }
+
+    fun parseDeviceStatus(deviceStatus: String): Pair<Boolean, Boolean> {
+        val lines = deviceStatus.split("\n")
+        var lStatus = false
+        var fStatus = false
+
+        for (line in lines) {
+            val parts = line.split(": ")
+            if (parts.size == 2) {
+                val deviceName = parts[0].trim()
+                val status = parts[1].trim()
+
+                if (deviceName.equals("light", ignoreCase = true)) {
+                    lStatus = status.equals("On", ignoreCase = true)
+                } else if (deviceName.equals("fan", ignoreCase = true)) {
+                    fStatus = status.equals("On", ignoreCase = true)
+                }
+            }
+        }
+
+        return Pair(lStatus, fStatus)
+    }
+
+    fun capitalizeWords(input: String): String {
+        val words = input.split(" ")
+        val capitalizedWords = words.map { it.capitalize() }
+        return capitalizedWords.joinToString(" ")
+    }
+
+
     companion object {
         val TAG = AwsConfigClass::class.java.simpleName
         var jsonDataLightFan : String = ""
+        lateinit var jsonData : String
+         var light_status : String = ""
+       var fan_status : String = ""
+        lateinit var cx:Context
     }
 }

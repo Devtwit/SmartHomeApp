@@ -17,6 +17,7 @@
             android:id="@+id/notificationText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
             android:textAppearance="@style/TextAppearance.Compat.Notification.Line2"
             android:text="Text" />
     <LinearLayout
@@ -27,12 +28,18 @@
 
         <Button
             android:id="@+id/button1"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button 1" />
 
     <Button
         android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button 2" />

@@ -53,7 +53,7 @@ class AddBleDeviceViewModel :ViewModel(){
 //            aws!!.publishData("No device found", AwsConfigConstants.SET_CONFIG)
             if(initialData.isNotEmpty()) {
                 if (publishStatus.equals("BT-Beacon_room1") || publishStatus.equals("status")) {
-                    aws!!.publishDeviceName("No device found")
+//                    aws!!.publishDeviceName("No device found")
                     publishStatus = "No device found"
                 }
             }
@@ -66,7 +66,7 @@ class AddBleDeviceViewModel :ViewModel(){
                 Log.d("Range has device ", "" + result.rssi + " " + publishStatus)
 //            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
                 if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
-                    aws!!.publishDeviceName("BT-Beacon_room1")
+//                    aws!!.publishDeviceName("BT-Beacon_room1")
                     publishStatus = "BT-Beacon_room1"
                 }
             }

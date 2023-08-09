@@ -1,5 +1,6 @@
 package Adapter
 
+import AwsConfigThing.AwsConfigClass
 import Data.ResponseData
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,10 +14,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.example.bthome.R
 
-class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
+class RoomAdapter(private val itemList: List<ResponseData>,val awsConfig: AwsConfigClass) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     // Keep track of the positions of the items that have been animated
     private val animatedPositions = HashSet<Int>()
-
+companion object{
+    var isFanclicked = false
+    var isLightclicked = false
+}
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_list, parent, false)
         return ViewHolder(view)
@@ -25,6 +29,7 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
+
 
         // Bind data to views
         holder.textView.text = item.location
@@ -35,6 +40,9 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
 
         if (lightStatus == "on") {
             holder.menuButton.setImageResource(R.drawable.glowbulb)
+            if(isLightclicked) {
+                awsConfig.publishDeviceNameLightOn("BT-Beacon_room1")
+            }
             // Light is on, show different animation
             val lightAnimation = AlphaAnimation(0f, 1f)
             lightAnimation.duration = 1000
@@ -43,12 +51,19 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
 
             holder.menuButton.startAnimation(lightAnimation)
         } else {
+            if(isLightclicked) {
+                awsConfig.publishDeviceNameLightOff("BT-Beacon_room1")
+            }
             // Light is off, clear animation
             holder.menuButton.clearAnimation()
             holder.menuButton.setImageResource(R.drawable.bulb)
         }
 
         if (fanStatus == "on") {
+//            awsConfig.publishDeviceName("BT-Beacon_room1")
+            if(isFanclicked) {
+                awsConfig.publishDeviceNameFanOn("BT-Beacon_room1")
+            }
             // Fan is on, show different animation
             val fanAnimation = RotateAnimation(
                 0f,
@@ -63,8 +78,12 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
             fanAnimation.repeatCount = Animation.INFINITE
 
             holder.menuButton2.startAnimation(fanAnimation)
+
         } else {
             // Fan is off, clear animation
+            if(isFanclicked) {
+                awsConfig.publishDeviceNameFanOff("BT-Beacon_room1")
+            }
             holder.menuButton2.clearAnimation()
         }
 
@@ -98,6 +117,7 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
             val fanStatus = item.devices["fan"]?.get("status")
 
             if (lightStatus == "on") {
+//                            awsConfig.publishDeviceNameLightOn("BT-Beacon_room1")
                 // Light is on, show different animation
                 val lightAnimation = AlphaAnimation(0f, 1f)
                 lightAnimation.duration = 1000
@@ -108,10 +128,12 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
 //                holder.menuButton.startAnimation(lightAnimation)
             }
             else{
+//                awsConfig.publishDeviceNameLightOff("BT-Beacon_room1")
                 holder.menuButton.setBackgroundResource(R.drawable.white_background)
             }
 
             if (fanStatus == "on") {
+//                awsConfig.publishDeviceNameFanOn("BT-Beacon_room1")
                 // Fan is on, show different animation
                 val fanAnimation = RotateAnimation(
                     0f,
@@ -128,6 +150,7 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
                 holder.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
                 holder.menuButton2.startAnimation(fanAnimation)
             } else {
+//                awsConfig.publishDeviceNameFanOff("BT-Beacon_room1")
                 holder.menuButton2.setImageResource(R.drawable.baseline_toys_24)
                 holder.menuButton2.setBackgroundResource(R.drawable.white_round_background)
             }
@@ -137,10 +160,52 @@ class RoomAdapter(private val itemList: List<ResponseData>) : RecyclerView.Adapt
     override fun getItemCount(): Int {
         return itemList.size
     }
-
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView: TextView = itemView.findViewById(R.id.textView)
         val menuButton: ImageView = itemView.findViewById(R.id.menuButton)
         val menuButton2: ImageView = itemView.findViewById(R.id.menuButton2)
+
+        // ... other ViewHolder code ...
+
+        init {
+            // Add a click listener to menuButton1
+            menuButton.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    // Get the corresponding item
+                    val item = itemList[position]
+                    isFanclicked= false
+                    isLightclicked = true
+                    // Toggle the status of menuButton1
+                    val lightMap = item.devices["light"] as? MutableMap<String, String>
+                    val updatedLightStatus = if (lightMap?.get("status") == "on") "off" else "on"
+                    lightMap?.put("status", updatedLightStatus)
+
+                    // Notify the adapter that the data has changed to update the UI
+                    notifyItemChanged(position)
+                }
+            }
+
+
+            menuButton2.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    // Get the corresponding item
+                    val item = itemList[position]
+                    isFanclicked= true
+                    isLightclicked = false
+                    // Toggle the status of menuButton1
+                    val lightMap = item.devices["fan"] as? MutableMap<String, String>
+                    val updatedLightStatus = if (lightMap?.get("status") == "on") "off" else "on"
+                    lightMap?.put("status", updatedLightStatus)
+
+
+
+                    // Notify the adapter that the data has changed to update the UI
+                    notifyItemChanged(position)
+                }
+            }
+        }
     }
+
 }
