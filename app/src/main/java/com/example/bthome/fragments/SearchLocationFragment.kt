@@ -6,6 +6,7 @@ import Bluetooth.HandleBluetooth
 import Bluetooth.LeScanCallback
 import android.Manifest
 import android.annotation.SuppressLint
+import android.arch.lifecycle.ViewModelProvider
 import android.bluetooth.le.ScanResult
 import android.os.Bundle
 import android.os.Handler
@@ -17,10 +18,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
+import com.example.bthome.databinding.FragmentAddBleDeviceBinding
+import com.example.bthome.databinding.FragmentSearchLocationBinding
+import com.example.bthome.viewModels.AddBleDeviceViewModel
+import com.example.bthome.viewModels.SearchLocationViewModel
 
 class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
 
@@ -30,58 +36,64 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         fun newInstance() = SearchLocationFragment()
     }
 
-//    private lateinit var viewModel: SearchLocationViewModel
+    private lateinit var binding: FragmentSearchLocationBinding
+    private lateinit var viewModel: SearchLocationViewModel
+
 
     var awsConfig: AwsConfigClass? = null
-    lateinit var loader : ProgressBar
-    lateinit var foundDevice : TextView
-    lateinit var nextButton : Button
-    lateinit var skipButton : Button
-    lateinit var startButton : Button
+//    lateinit var loader : ProgressBar
+//    lateinit var foundDevice : TextView
+//    lateinit var nextButton : Button
+//    lateinit var skipButton : Button
+//    lateinit var startButton : Button
 //    lateinit var scannedResult : String
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_search_location, container, false)
-         skipButton = view.findViewById(R.id.skipButton)
-         nextButton = view.findViewById(R.id.next_button)
-         startButton = view.findViewById(R.id.start_button)
-
-         loader  = view.findViewById(R.id.loading_container)
-         foundDevice = view.findViewById(R.id.foundDevice)
+    // Data binding is used to inflate the layout and set up the ViewModel
+    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search_location, container, false)
+    viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+        SearchLocationViewModel::class.java)
+    binding.viewModel = viewModel
+//         skipButton = view.findViewById(R.id.skipButton)
+//         nextButton = view.findViewById(R.id.next_button)
+//         startButton = view.findViewById(R.id.start_button)
+//
+//         loader  = view.findViewById(R.id.loading_container)
+//         foundDevice = view.findViewById(R.id.foundDevice)
 
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
 
 //        nextButton.visibility= View.VISIBLE
-        loader.visibility= View.GONE
-        nextButton.visibility = View.GONE
-        return view
+        binding.loadingContainer.visibility= View.GONE
+        binding.nextButton.visibility = View.GONE
+        return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        startButton.visibility= View.VISIBLE
-        skipButton.setOnClickListener {
+        binding.startButton.visibility= View.VISIBLE
+        binding.skipButton.setOnClickListener {
            findNavController().popBackStack()
         }
 
-        startButton.setOnClickListener {
-            startButton.visibility = View.GONE
+        binding.startButton.setOnClickListener {
+            binding.startButton.visibility = View.GONE
             permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
             permissionHandler.checkStatuses()
             if (permissionHandler.isAllPermissionsEnabled()) {
                 if (handleBluetooth == null) {
                     handleBluetooth = HandleBluetooth(requireContext(), awsConfig!!)
                 }
-                loader.visibility = View.VISIBLE
+                binding.loadingContainer.visibility = View.VISIBLE
                 handleBluetooth!!.scanLeDevices(this)
             }
         }
-            nextButton.setOnClickListener {
-                loader.visibility = View.GONE
+            binding.nextButton.setOnClickListener {
+                binding.loadingContainer.visibility = View.GONE
                 // Publish the scanned data to the MQTT topic
                 val topic = AwsConfigConstants.SET_CONFIG // Replace with your desired MQTT topic
                 Log.d("SearchLocation", "else on button click")
@@ -115,18 +127,18 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     )
 
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
-        loader.visibility = View.GONE
+        binding.loadingContainer.visibility = View.GONE
         Log.d("SearchLocation","scanCompleted")
         if (result != null) {
             Log.d("SearchLocation","scanCompleted null")
             if (result.device.name == null) {
-                foundDevice.text = "UnknownDevice"
+                binding.foundDevice.text = "UnknownDevice"
                 selectedRoom = result.device.address
 //                scannedResult = "BT-Beacon_room1 " + result.device.address
                 scannedResult = "BT-Beacon_room1"
                 Log.d("SearchLocation","scanCompleted $scannedResult")
             } else {
-                foundDevice.text = result.device.name
+                binding.foundDevice.text = result.device.name
                 selectedRoom = result.device.address
                 scannedResult = "BT-Beacon_room1"
 //                scannedResult = result.device.name+ " " + result.device.address
@@ -136,9 +148,9 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         }
         Log.d("SearchLocation","scanCompleted null found")
 //        scannedResult= ""
-        foundDevice.visibility = View.VISIBLE
-        nextButton.visibility = View.VISIBLE
-        startButton.visibility = View.GONE
+        binding.foundDevice.visibility = View.VISIBLE
+        binding.nextButton.visibility = View.VISIBLE
+        binding.startButton.visibility = View.GONE
     }
 
 }

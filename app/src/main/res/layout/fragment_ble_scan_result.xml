@@ -1,30 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.bthome.viewModels.BleScanResultViewModel" />
+    </data>
+<android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="25dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<!--    <TextView-->
-<!--        android:id="@+id/header_title"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/monotype_plantin_mt_pro_regular"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:background="@color/white"-->
-<!--        android:lineHeight="40dp"-->
-<!--        android:lineSpacingExtra="4sp"-->
-<!--        android:maxLines="3"-->
-<!--        android:minLines="1"-->
-<!--        android:paddingTop="55dp"-->
-<!--        android:paddingBottom="15dp"-->
-<!--        android:paddingStart="45dp"-->
-<!--        android:singleLine="false"-->
-<!--        android:text="Room Name"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="30sp"-->
-<!--        app:flow_horizontalAlign="center"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    android:layout_marginTop="25dp">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/scanResultRecyclerView"
@@ -35,3 +22,4 @@
          />
 
 </android.support.constraint.ConstraintLayout>
+</layout>

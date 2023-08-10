@@ -23,10 +23,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.GridView
 import android.widget.ImageView
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
+import com.example.bthome.databinding.FragmentAddBleDeviceBinding
 import com.example.bthome.viewModels.AddBleDeviceViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -35,6 +37,8 @@ import com.google.gson.reflect.TypeToken
 class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickListener {
 
     var awsConfig: AwsConfigClass? = null
+
+    private lateinit var binding: FragmentAddBleDeviceBinding
     private lateinit var viewModel: AddBleDeviceViewModel
     // Add this property to your fragment
     private val selectedDevices = mutableListOf<DeviceSelection>()
@@ -60,18 +64,21 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_ble_device, container, false)
+        // Data binding is used to inflate the layout and set up the ViewModel
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_ble_device, container, false)
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             AddBleDeviceViewModel::class.java)
-        apkContext=activity!!.applicationContext
+        binding.viewModel = viewModel
+
+        apkContext = activity!!.applicationContext
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
         dialog = CustomDialog(requireContext())
 
 //        val scanButton: ImageButton = view.findViewById(R.id.addBleDeviceBtn)
-        val moreButton: Button = view.findViewById(R.id.moreButton)
-        val addButton: Button = view.findViewById(R.id.addButton)
-        val dotButton: ImageView = view.findViewById(R.id.dotbutton)
+//        val moreButton: Button = view.findViewById(R.id.moreButton)
+//        val addButton: Button = view.findViewById(R.id.addButton)
+//        val dotButton: ImageView = view.findViewById(R.id.dotbutton)
 
 
         // Check and apply preferences for fan and light devices
@@ -91,7 +98,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         } else {
             Log.d("StoredDevices", "No devices stored.")
         }
-        dotButton.setOnClickListener {
+        binding.dotbutton.setOnClickListener {
             Log.d("selectedDevices", "Button Clicked")
             showLocationDialog()
         }
@@ -101,20 +108,20 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 //            Log.d("selectedDevices", "Button Clicked")
 //        }
         Log.d("selectedDevices","$selectedDevices")
-        moreButton.setOnClickListener {
+        binding.moreButton.setOnClickListener {
             Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_addBleDeviceFragment_to_moreFragment)
 
         }
-        addButton.setOnClickListener {
+        binding.addButton.setOnClickListener {
 //            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_addBleDeviceFragment_to_selectRoomFragment)
             Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_addBleDeviceFragment_to_searchLocationFragment)
         }
-        gridView = view.findViewById(R.id.gridView)
+//        gridView = view.findViewById(R.id.gridView)
 
         val dbHelper = DatabaseHelper(requireContext())
         // Initialize the adapter
         responseAdapter = ResponseAdapter(emptyList(),this, awsConfig!! )
-        gridView.adapter = responseAdapter
+        binding.gridView.adapter = responseAdapter
 
         // Fetch the initial data from the database and update the adapter
 
@@ -122,7 +129,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         responseAdapter.updateData(initialData)
 //        blueTooth()
         setupGridView()
-        return  view
+        return  binding.root
     }
     fun blueTooth(){
         Log.d("Permission", "Required Permission : ${permissions.size}")
@@ -248,12 +255,12 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
          }
     }
     fun setupGridView() {
-        val dbHelper = DatabaseHelper(requireContext())
+        val dbHelper = DatabaseHelper(activity!!.applicationContext)
         val responseDataList = dbHelper.getAllResponseData()
         responseAdapter = ResponseAdapter(responseDataList, this, awsConfig!!)
 //        responseAdapter = ResponseAdapter(responseDataList,this)
         Log.d("responseDataList","$responseDataList")
-        gridView.adapter = responseAdapter
+        binding.gridView.adapter = responseAdapter
 
     }
 

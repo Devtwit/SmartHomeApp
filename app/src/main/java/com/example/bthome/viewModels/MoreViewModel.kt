@@ -1,7 +1,5 @@
 package com.example.bthome.viewModels
-
-//import androidx.lifecycle.ViewModel
-//
-//class MoreViewModel : ViewModel() {
+import android.arch.lifecycle.ViewModel
+class MoreViewModel :ViewModel(){
 //    // TODO: Implement the ViewModel
-//}
+}

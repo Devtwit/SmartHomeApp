@@ -1,6 +1,7 @@
 package com.example.bthome.fragments
 
 import DatabaseHelper
+import android.arch.lifecycle.ViewModelProvider
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,8 +10,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.LinearLayout
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.bthome.R
+import com.example.bthome.databinding.FragmentAddBleDeviceBinding
+import com.example.bthome.databinding.FragmentSelectRoomBinding
+import com.example.bthome.viewModels.AddBleDeviceViewModel
+import com.example.bthome.viewModels.SelectRoomViewModel
 
 class SelectRoomFragment : Fragment() {
 
@@ -18,50 +24,41 @@ class SelectRoomFragment : Fragment() {
         fun newInstance() = SelectRoomFragment()
     }
 
-    private lateinit var kitchen: LinearLayout
-    private lateinit var bedRoom: LinearLayout
-    private lateinit var poojaRoom: LinearLayout
-    private lateinit var hall: LinearLayout
-    private lateinit var store: LinearLayout
-    private lateinit var study: LinearLayout
-    private lateinit var nextButton: Button
+    private lateinit var binding: FragmentSelectRoomBinding
+    private lateinit var viewModel: SelectRoomViewModel
+    
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_select_room, container, false)
+        // Data binding is used to inflate the layout and set up the ViewModel
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_select_room, container, false)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            SelectRoomViewModel::class.java)
+        binding.viewModel = viewModel
 
-        val skipButton: Button = view.findViewById(R.id.skipButton)
-        nextButton = view.findViewById(R.id.next_button)
 
-        kitchen = view.findViewById(R.id.kitchenlayout)
-        bedRoom = view.findViewById(R.id.bedroomlayout)
-        hall = view.findViewById(R.id.halllayout)
-        study = view.findViewById(R.id.studylayout)
-        store = view.findViewById(R.id.storeRoom)
-        poojaRoom = view.findViewById(R.id.poojaLayout)
-
-        skipButton.setOnClickListener {
+        binding.skipButton.setOnClickListener {
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
         }
 
-        setupRoomClickListener(kitchen, "BT-Beacon_room1")
-        setupRoomClickListener(bedRoom, "Bed Room")
-        setupRoomClickListener(hall, "Hall")
-        setupRoomClickListener(store, "Store Room")
-        setupRoomClickListener(study, "Study")
-        setupRoomClickListener(poojaRoom, "Pooja Room")
+        setupRoomClickListener(binding.kitchenlayout, "BT-Beacon_room1")
+        setupRoomClickListener(binding.bedroomlayout, "Bed Room")
+        setupRoomClickListener(binding.halllayout, "Hall")
+        setupRoomClickListener(binding.storeRoom, "Store Room")
+        setupRoomClickListener(binding.studylayout, "Study")
+        setupRoomClickListener(binding.poojaLayout, "Pooja Room")
 
-        nextButton.setOnClickListener {
+        binding.nextButton.setOnClickListener {
             val selectedRooms = listOf(
-                kitchen.isSelected,
-                bedRoom.isSelected,
-                hall.isSelected,
-                store.isSelected,
-                study.isSelected,
-                poojaRoom.isSelected
+                binding.kitchenlayout.isSelected,
+                binding.bedroomlayout.isSelected,
+                binding.halllayout.isSelected,
+                binding.storeRoom.isSelected,
+                binding.studylayout.isSelected,
+                binding.poojaLayout.isSelected
             )
 
             if (selectedRooms.any { it }) {
@@ -72,21 +69,21 @@ class SelectRoomFragment : Fragment() {
             }
         }
 
-        return view
+        return binding.root
     }
 
     private fun setupRoomClickListener(room: LinearLayout, roomName: String) {
         room.setOnClickListener {
             resetRoomSelection()
             room.isSelected = true
-            nextButton.isClickable = true
-            nextButton.setBackgroundColor(Color.WHITE)
+            binding.nextButton.isClickable = true
+            binding.nextButton.setBackgroundColor(Color.WHITE)
             updateRoomSelection(room, roomName)
         }
     }
 
     private fun resetRoomSelection() {
-        val rooms = listOf(kitchen, bedRoom, hall, store, study, poojaRoom)
+        val rooms = listOf(binding.kitchenlayout, binding.bedroomlayout, binding.halllayout, binding.storeRoom, binding.studylayout, binding.poojaLayout)
         rooms.forEach { room ->
             room.isSelected = false
             room.setBackgroundColor(Color.WHITE)

@@ -1,9 +1,12 @@
 package com.example.bthome.viewModels
 
 import AwsConfigThing.AwsConfigClass
+import Bluetooth.LeScanCallback
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.bluetooth.le.ScanResult
 import android.content.Context
@@ -15,7 +18,7 @@ import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isLightPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.publishStatus
 
 class AddBleDeviceViewModel :ViewModel(){
-    var nearestDevice: ScanResult? = null
+
     @SuppressLint("SuspiciousIndentation")
     fun precessScanResult(
         mScanResult: java.util.ArrayList<ScanResult>,
@@ -86,81 +89,11 @@ class AddBleDeviceViewModel :ViewModel(){
                         aws!!.publishDeviceName("BT-Beacon_room1")
                     }
                     publishStatus = "BT-Beacon_room1"
+
                 }
 //            }
         }
-
-
-
-//        return if (mScanResult.size == 1) {
-////            Log.d("Inside if", "" + result.rssi)
-////            Log.d("ANDRD_DEV 4", "" + result.rssi)
-//            nearestDevice = result
-////            receivedNearestDeviceName = result.device.address
-////            Log.d("ANDRD_DEV 1", " ${result.rssi}")
-////            Log.d("ANDRD_DEV 2", " ${result.device.address}")
-////            Log.d("ANDRD_DEV 3", " ${result.scanRecord}")
-////            Log.d("ANDRD_DEV 5", " ${nearestDevice}")
-////            Log.d("ANDRD_DEV 6", " ${result}")
-//            if (Math.abs(mScanResult[0].rssi) > 100) {
-//                nearestDeviceIndex = 404
-//            }
-//            nearestDeviceIndex
-//        } else {
-////            Log.d("Nearest Device ", "$nearestDevice")
-//            nearestDevice = result
-////            receivedNearestDeviceName = result.device.address
-//            Log.d("Nearest Device ", "$nearestDevice")
-//            Log.d("Nearest Device ", "$nearestDevice")
-//            Log.d(
-//                "MATH",
-//                "" + Math.abs(result.rssi) + " ABC " + Math.abs(nearestDevice!!.getRssi())
-//            )
-//            if (Math.abs(result.rssi) < Math.abs(nearestDevice!!.getRssi()) && Math.abs(result.rssi) <= 100) {
-//                Log.d("Inside else if", "" + result.rssi)
-//                nearestDevice = result
-////                receivedNearestDeviceName = result.device.address
-//                for (i in mScanResult.indices) {
-//                    if (mScanResult[i].device.address.equals(
-//                            result.device.address,
-//                            ignoreCase = true
-//                        )
-//                    ) {
-//                        nearestDeviceIndex = i
-////                        receivedNearestDeviceName = nearestDevice!!.device.address
-//                        Log.d("Matched", "" + nearestDeviceIndex)
-//                        break
-//                    }
-//                }
-//                if (nearestDeviceIndex == 0) {
-//                    nearestDeviceIndex = 404
-//                }
-//                nearestDeviceIndex
-//            } else {
-//                for (i in mScanResult.indices) {
-//                    if (Math.abs(mScanResult[i].rssi) <= 100) {
-//                        nearestDevice = mScanResult[i]
-////                        receivedNearestDeviceName = nearestDevice!!.device.address
-//                    }
-//                    if (mScanResult[i].device.address.equals(
-//                            nearestDevice!!.getDevice().getAddress(),
-//                            ignoreCase = true
-//                        ) && Math.abs(
-//                            mScanResult[i].rssi
-//                        ) <= 100
-//                    ) {
-//                        nearestDeviceIndex = i
-////                        receivedNearestDeviceName = nearestDevice!!.device.address
-//                        Log.d("Matched", "" + nearestDeviceIndex)
-//                        break
-//                    }
-//                }
-//                if (nearestDeviceIndex == 0) {
-//                    nearestDeviceIndex = 404
-//                }
-//                nearestDeviceIndex
-//            }
-//        }
+        // Update nearestDevice
         return 0
     }
 

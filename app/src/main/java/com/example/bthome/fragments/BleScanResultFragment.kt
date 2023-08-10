@@ -5,6 +5,7 @@ import AwsConfigThing.AwsConfigClass
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
+import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -13,7 +14,11 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.example.bthome.R
+import com.example.bthome.databinding.FragmentBleScanResultBinding
+import com.example.bthome.viewModels.AddBleDeviceViewModel
+import com.example.bthome.viewModels.BleScanResultViewModel
 
 
 class BleScanResultFragment : Fragment() {
@@ -22,30 +27,33 @@ class BleScanResultFragment : Fragment() {
         fun newInstance() = BleScanResultFragment()
     }
 
+    private lateinit var binding: FragmentBleScanResultBinding
+    private lateinit var viewModel: BleScanResultViewModel
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: RoomAdapter
     var awsConfig: AwsConfigClass? = null
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view= inflater.inflate(R.layout.fragment_ble_scan_result, container, false)
+        binding = FragmentBleScanResultBinding.inflate(inflater, container, false)
 
-//        getWindow().setFlags(
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
+            BleScanResultViewModel::class.java)
+        binding.viewModel = viewModel
 
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
-        recyclerView = view.findViewById(R.id.scanResultRecyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        recyclerView = view.findViewById(R.id.scanResultRecyclerView)
+        binding.scanResultRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         val dbHelper = DatabaseHelper(requireContext())
         val responseDataList = dbHelper.getAllResponseData()
         Log.d("Responce", "${responseDataList}")
         adapter = RoomAdapter(responseDataList, awsConfig!!)
-        recyclerView.adapter = adapter
-        return  view
-    }
+        binding.scanResultRecyclerView.adapter = adapter
+        return binding.root
 
+    }
 
     override fun onResume() {
         super.onResume()
@@ -53,7 +61,7 @@ class BleScanResultFragment : Fragment() {
         val responseDataList = dbHelper.getAllResponseData()
         Log.d("Responce on Resume ", "${responseDataList}")
         adapter = RoomAdapter(responseDataList, awsConfig!!)
-        recyclerView.adapter = adapter
+        binding.scanResultRecyclerView.adapter = adapter
     }
 
 }
