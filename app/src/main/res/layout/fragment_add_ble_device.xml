@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:id="@+id/header_title"
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -34,6 +33,21 @@
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/header_title"-->
     <!--        app:spanCount="2" />-->
+
+    <ImageView
+        android:id="@+id/dotbutton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="95dp"
+        android:layout_height="74dp"
+
+        android:layout_marginTop="45dp"
+        android:layout_weight="1"
+        android:src="@drawable/baseline_developer_board_24"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="@+id/header_title"
+        app:layout_constraintEnd_toEndOf="@+id/gridView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <GridView
         android:id="@+id/gridView"

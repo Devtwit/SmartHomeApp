@@ -124,10 +124,6 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
            }
 
         }
-        private fun Int.dpToPx(): Float {
-            val scale = Resources.getSystem().displayMetrics.density
-            return (this * scale + 0.5f)
-        }
     }
 
 

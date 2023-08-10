@@ -178,6 +178,44 @@ class AwsConfigClass() {
             Log.e(TAG, "Publish error.", e)
         }
     }
+    fun publishDeviceTurnOnLight(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "on"
+                },
+                "fan": {
+                    "status": "off"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
+    fun publishDeviceTurnOnFan(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "off"
+                },
+                "fan": {
+                    "status": "on"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
 
     fun publishDeviceName(deviceName: String) {
         val json = """
@@ -189,6 +227,25 @@ class AwsConfigClass() {
                 },
                 "fan": {
                     "status": "on/off"
+                }
+            }
+        }
+    """.trimIndent()
+
+        val topic = SET_CONFIG
+        publishData(json, topic)
+//        publishData(json, GET_CONFIG)
+    }
+    fun publishDeviceNameOff(deviceName: String) {
+        val json = """
+        {
+            "location": "$deviceName",
+            "devices": {
+                "light": {
+                    "status": "off"
+                },
+                "fan": {
+                    "status": "off"
                 }
             }
         }

@@ -46,4 +46,14 @@ class BleScanResultFragment : Fragment() {
         return  view
     }
 
+
+    override fun onResume() {
+        super.onResume()
+        val dbHelper = DatabaseHelper(requireContext())
+        val responseDataList = dbHelper.getAllResponseData()
+        Log.d("Responce on Resume ", "${responseDataList}")
+        adapter = RoomAdapter(responseDataList, awsConfig!!)
+        recyclerView.adapter = adapter
+    }
+
 }
