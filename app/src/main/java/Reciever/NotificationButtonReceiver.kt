@@ -22,21 +22,21 @@ class NotificationButtonReceiver : BroadcastReceiver() {
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(context)
         val action = intent?.action
+        val updatedRemoteViews =
+            RemoteViews(context?.packageName, R.layout.custom_notification_layout)
+        updatedRemoteViews.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
         when (action) {
+
             ACTION_BUTTON_1 -> {
                 Log.d("NotificationButtonReceiver", "Button1")
-                val button1ClickedIntent = Intent("BUTTON_1_CLICKED")
-                context?.sendBroadcast(button1ClickedIntent)
-                val updatedRemoteViews = RemoteViews(context?.packageName, R.layout.custom_notification_layout)
                 updatedRemoteViews.setInt(R.id.button1, "setTextColor", Color.GRAY)
-                updatedRemoteViews.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
-                updatedRemoteViews.setTextViewText(R.id.notificationText, "\n Light : Off \n Fan : ${AwsConfigClass.fan_status.capitalize()}")
+                updatedRemoteViews.setTextViewText(
+                    R.id.notificationText,
+                    "\n Light : Off \n Fan : ${AwsConfigClass.fan_status.capitalize()}"
+                )
                 var button_Status = AwsConfigClass.fan_status
-                if(button_Status.capitalize().equals("On")){
-                    button_Status = "Off"
-                } else {
-                    button_Status = "On"
-                }
+                button_Status = if (button_Status.capitalize().equals("On")) "Off" else "On"
+
 
                 updatedRemoteViews.setTextViewText(
                     R.id.button1,
@@ -47,14 +47,6 @@ class NotificationButtonReceiver : BroadcastReceiver() {
                     "Fan $button_Status"
                 )
 
-                // Update the notification with the modified RemoteViews
-                val notificationManager = NotificationManagerCompat.from(context!!)
-                val notificationBuilder = NotificationCompat.Builder(context!!, BleScanService.NOTIFICATION_CHANNEL_ID)
-                    .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
-                    .setCustomContentView(updatedRemoteViews) // Set the custom layout
-                    .setStyle(NotificationCompat.DecoratedCustomViewStyle())
-                    .setOngoing(true)
-                notificationManager.notify(NOTIFICATION_ID, notificationBuilder.setCustomContentView(updatedRemoteViews).build())
                 Handler().postDelayed({
                     awsConfig!!.publishDeviceNameLightOn("BT-Beacon_room1")
                 }, DELAY_TIME_IN_MILLIS.toLong())
@@ -63,19 +55,14 @@ class NotificationButtonReceiver : BroadcastReceiver() {
 
             ACTION_BUTTON_2 -> {
                 Log.d("NotificationButtonReceiver", "Button2")
-                val button2ClickedIntent = Intent("BUTTON_2_CLICKED")
-                context?.sendBroadcast(button2ClickedIntent)
 
-                val updatedRemoteViews = RemoteViews(context?.packageName, R.layout.custom_notification_layout)
                 updatedRemoteViews.setInt(R.id.button1, "setTextColor", Color.GRAY)
-                updatedRemoteViews.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
-                updatedRemoteViews.setTextViewText(R.id.notificationText, "\n Light : On \n Fan : ${AwsConfigClass.fan_status.capitalize()}")
+                updatedRemoteViews.setTextViewText(
+                    R.id.notificationText,
+                    "\n Light : On \n Fan : ${AwsConfigClass.fan_status.capitalize()}"
+                )
                 var button_Status = AwsConfigClass.fan_status
-                if(button_Status.capitalize().equals("On")){
-                    button_Status = "Off"
-                } else {
-                    button_Status = "On"
-                }
+                button_Status = if (button_Status.capitalize().equals("On")) "Off" else "On"
 
 
                 updatedRemoteViews.setTextViewText(
@@ -86,17 +73,6 @@ class NotificationButtonReceiver : BroadcastReceiver() {
                     R.id.button2,
                     "Fan $button_Status"
                 )
-                // Update the notification with the modified RemoteViews
-
-
-                val notificationManager = NotificationManagerCompat.from(context!!)
-                val notificationBuilder = NotificationCompat.Builder(context!!, BleScanService.NOTIFICATION_CHANNEL_ID)
-                    .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
-                    .setCustomContentView(updatedRemoteViews) // Set the custom layout
-                    .setStyle(NotificationCompat.DecoratedCustomViewStyle())
-                    .setOngoing(true)
-                notificationManager.notify(NOTIFICATION_ID, notificationBuilder.setCustomContentView(updatedRemoteViews).build())
-
                 Handler().postDelayed({
                     awsConfig!!.publishDeviceNameLightOff("BT-Beacon_room1")
                 }, DELAY_TIME_IN_MILLIS.toLong())
@@ -105,20 +81,14 @@ class NotificationButtonReceiver : BroadcastReceiver() {
 
             ACTION_BUTTON_3 -> {
                 Log.d("NotificationButtonReceiver", "Button3")
-                val button3ClickedIntent = Intent("BUTTON_3_CLICKED")
-                context?.sendBroadcast(button3ClickedIntent)
-
-                val updatedRemoteViews = RemoteViews(context?.packageName, R.layout.custom_notification_layout)
                 updatedRemoteViews.setInt(R.id.button2, "setTextColor", Color.GRAY)
-                updatedRemoteViews.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
-                updatedRemoteViews.setTextViewText(R.id.notificationText, "\n Light : ${AwsConfigClass.light_status.capitalize()} \n Fan : Off")
+                updatedRemoteViews.setTextViewText(
+                    R.id.notificationText,
+                    "\n Light : ${AwsConfigClass.light_status.capitalize()} \n Fan : Off"
+                )
 
                 var button_Status = AwsConfigClass.light_status
-                if(button_Status.capitalize().equals("On")){
-                    button_Status = "Off"
-                } else {
-                    button_Status = "On"
-                }
+                button_Status = if (button_Status.capitalize().equals("On")) "Off" else "On"
                 updatedRemoteViews.setTextViewText(
                     R.id.button1,
                     "Light $button_Status"
@@ -129,17 +99,6 @@ class NotificationButtonReceiver : BroadcastReceiver() {
                     "Fan On"
                 )
 
-                // Update the notification with the modified RemoteViews
-                val notificationManager = NotificationManagerCompat.from(context!!)
-                val notificationBuilder = NotificationCompat.Builder(context!!, BleScanService.NOTIFICATION_CHANNEL_ID)
-                    .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
-                    .setCustomContentView(updatedRemoteViews) // Set the custom layout
-                    .setStyle(NotificationCompat.DecoratedCustomViewStyle())
-                    .setOngoing(true)
-
-                notificationManager.notify(NOTIFICATION_ID, notificationBuilder.setCustomContentView(updatedRemoteViews).build())
-
-
                 Handler().postDelayed({
                     awsConfig!!.publishDeviceNameFanOn("BT-Beacon_room1")
                 }, DELAY_TIME_IN_MILLIS.toLong())
@@ -148,19 +107,13 @@ class NotificationButtonReceiver : BroadcastReceiver() {
 
             ACTION_BUTTON_4 -> {
                 Log.d("NotificationButtonReceiver", "Button4")
-                val button4ClickedIntent = Intent("BUTTON_4_CLICKED")
-                context?.sendBroadcast(button4ClickedIntent)
-
-                val updatedRemoteViews = RemoteViews(context?.packageName, R.layout.custom_notification_layout)
                 updatedRemoteViews.setInt(R.id.button2, "setTextColor", Color.GRAY)
-                updatedRemoteViews.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
-                updatedRemoteViews.setTextViewText(R.id.notificationText, "\n Light : ${AwsConfigClass.light_status.capitalize()} \n Fan : On")
+                updatedRemoteViews.setTextViewText(
+                    R.id.notificationText,
+                    "\n Light : ${AwsConfigClass.light_status.capitalize()} \n Fan : On"
+                )
                 var button_Status = AwsConfigClass.light_status
-                if(button_Status.capitalize().equals("On")){
-                    button_Status = "Off"
-                } else {
-                    button_Status = "On"
-                }
+                button_Status = if (button_Status.capitalize().equals("On")) "Off" else "On"
                 updatedRemoteViews.setTextViewText(
                     R.id.button1,
                     "Light $button_Status"
@@ -170,16 +123,6 @@ class NotificationButtonReceiver : BroadcastReceiver() {
                     "Fan Off"
                 )
 
-                // Update the notification with the modified RemoteViews
-                val notificationManager = NotificationManagerCompat.from(context!!)
-                val notificationBuilder = NotificationCompat.Builder(context!!, BleScanService.NOTIFICATION_CHANNEL_ID)
-                    .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
-                    .setCustomContentView(updatedRemoteViews) // Set the custom layout
-                    .setStyle(NotificationCompat.DecoratedCustomViewStyle())
-                    .setOngoing(true)
-                notificationManager.notify(NOTIFICATION_ID, notificationBuilder.setCustomContentView(updatedRemoteViews).build())
-
-
                 Handler().postDelayed({
                     awsConfig!!.publishDeviceNameFanOff("BT-Beacon_room1")
                 }, DELAY_TIME_IN_MILLIS.toLong())
@@ -187,6 +130,18 @@ class NotificationButtonReceiver : BroadcastReceiver() {
             }
 
         }
+        // Update the notification with the modified RemoteViews
+        val notificationManager = NotificationManagerCompat.from(context!!)
+        val notificationBuilder =
+            NotificationCompat.Builder(context!!, BleScanService.NOTIFICATION_CHANNEL_ID)
+                .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+                .setCustomContentView(updatedRemoteViews) // Set the custom layout
+                .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+                .setOngoing(true)
+        notificationManager.notify(
+            NOTIFICATION_ID,
+            notificationBuilder.setCustomContentView(updatedRemoteViews).build()
+        )
 
     }
 

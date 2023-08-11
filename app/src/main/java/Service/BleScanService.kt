@@ -212,7 +212,9 @@ class BleScanService : JobService() {
 
     private fun handleAcknowledgment(deviceName: String, context: Context?) {
 //        val jsonDataString =
+
         val jsonData = awsConfig!!.parseResponseJson(deviceName)
+        Log.d(TAG,"Inside if handleAcknowledgment $jsonData")
         val devices = jsonData.devices
         val notificationStringBuilder = StringBuilder()
         for ((deviceName, deviceData) in devices) {
@@ -331,14 +333,6 @@ class BleScanService : JobService() {
         )
          contentView.setTextColor(R.id.button1,Color.BLACK)
          contentView.setTextColor(R.id.button2,Color.BLACK)
-
-
-//         val lightButtonTextColor = if (lightStatus) Color.RED else Color.GREEN
-//         contentView.setTextColor(R.id.button1, lightButtonTextColor)
-//
-//         val fanButtonTextColor = if (fanStatus) Color.RED else Color.GREEN
-//         contentView.setTextColor(R.id.button2, fanButtonTextColor)
-
 
         val dStatus = notificationContent
         val (light_Status, fan_Status) = parseDeviceStatus(dStatus)

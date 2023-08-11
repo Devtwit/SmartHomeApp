@@ -16,7 +16,7 @@ import android.support.v4.app.ActivityCompat
 import android.util.Log
 import java.util.UUID
 
-class HandleBluetooth(val cont: Context,val awsConfig: AwsConfigClass?) {
+class HandleBluetooth(val cont: Context, val awsConfig: AwsConfigClass?) {
 
     var leScanCallback: LeScanCallback? = null
     var bluetoothLeScanner: BluetoothLeScanner? = null
@@ -55,40 +55,24 @@ class HandleBluetooth(val cont: Context,val awsConfig: AwsConfigClass?) {
         handler.post(Runnable {
 
 //            if (!isScanning) {
-                if (ActivityCompat.checkSelfPermission(
-                        cont,
-                        Manifest.permission.BLUETOOTH_SCAN
-                    ) != PackageManager.PERMISSION_GRANTED
-                ) {
-                    Log.d(TAG, "No access to scan")
-                    return@Runnable
-                }
-                bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback)
-                isScanning = true
-//            }
-//            Stop Scanning
-//            else {
-//                bluetoothLeScanner!!.stopScan(leScanCallback)
-//                Log.d(TAG, "Scanning Stopped")
-//                isScanning = false
-//                leScanCallback!!.mScanResult = ArrayList()
-////                                    bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback);
-//            }
+            if (ActivityCompat.checkSelfPermission(
+                    cont,
+                    Manifest.permission.BLUETOOTH_SCAN
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                Log.d(TAG, "No access to scan")
+                return@Runnable
+            }
+            bluetoothLeScanner!!.startScan(scanFilters, scanSettings, leScanCallback)
+            isScanning = true
         })
-
-// Set a timeout to stop scanning if no matching device is found within the specified time
-//        timeoutHandler.postDelayed({
-//            Log.d(TAG,"Scan stopped called")
-//            awsConfig!!.publishDeviceName("No device found")
-//        }, scanTimeout)
     }
 
     companion object {
         private val TAG = HandleBluetooth::class.java.simpleName
         var bluetoothAdapter: BluetoothAdapter? = null
         var scanning = false
-   val timeoutHandler = Handler(Looper.getMainLooper())
-        private val scanTimeout: Long = 10000 // 10 seconds (adjust as needed)
+        val timeoutHandler = Handler(Looper.getMainLooper())
 
     }
 }
