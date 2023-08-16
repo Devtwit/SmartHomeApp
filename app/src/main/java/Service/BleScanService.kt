@@ -115,6 +115,7 @@ class BleScanService : JobService() {
 //        stopForegroundService()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun startForegroundService() {
         // Start the foreground service and show a notification to keep it running
         startForeground(NOTIFICATION_ID, createNotification())

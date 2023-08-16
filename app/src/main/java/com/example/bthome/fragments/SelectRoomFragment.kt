@@ -61,9 +61,17 @@ class SelectRoomFragment : Fragment() {
                 binding.poojaLayout.isSelected
             )
 
+
             if (selectedRooms.any { it }) {
-                Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                    .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
+                val dbHelper = DatabaseHelper(requireContext())
+                val initialData = dbHelper.getAllResponseData()
+                if(initialData.isEmpty()){
+                    Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                        .navigate(R.id.action_splashScreenFragment_to_informationFragment)
+                } else {
+                    Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                        .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
+                }
             } else {
                 // Handle the case when no room is selected
             }

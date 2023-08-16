@@ -1,5 +1,7 @@
 package com.example.bthome.fragments
 
+import Adapter.ResponseAdapter
+import DatabaseHelper
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -36,9 +38,14 @@ class SplashScreenFragment : Fragment() {
 
         // Start the animation
         imageView.startAnimation(animation)
-
+        val dbHelper = DatabaseHelper(requireContext())
+        val initialData = dbHelper.getAllResponseData()
         Handler(Looper.myLooper()!!).postDelayed({
-            findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
+            if(initialData.isEmpty()){
+                findNavController().navigate(R.id.action_splashScreenFragment_to_informationFragment)
+            } else {
+                findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
+            }
         },2000)
 
         return  view

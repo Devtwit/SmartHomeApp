@@ -63,9 +63,20 @@ class DataBaseUpdateFragment : Fragment() {
             customPopUp = CustomDialog(requireContext()).buildTurnOffAlertPopup(requireContext(), object :
                 ThreeButtonsListener {
                 override fun onOkButtonClicked() {
-                    DatabaseHelper(requireContext()).deleteLocation(AddBleDeviceFragment.responseAdapter.getString(
-                idValue.toInt()).toString())
-                    Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_dataBaseUpdateFragment_to_addBleDeviceFragment)
+                    DatabaseHelper(requireContext()).deleteLocation(
+                        AddBleDeviceFragment.responseAdapter.getString(
+                            idValue.toInt()
+                        ).toString()
+                    )
+                    val dbHelper = DatabaseHelper(requireContext())
+                    val initialData = dbHelper.getAllResponseData()
+                    if (initialData.isEmpty()) {
+                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                            .navigate(R.id.action_dataBaseUpdateFragment_to_informationFragment)
+                    } else {
+                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                            .navigate(R.id.action_dataBaseUpdateFragment_to_addBleDeviceFragment)
+                    }
                 }
 
                 override fun onCancelButtonClicked() {

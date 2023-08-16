@@ -18,6 +18,7 @@ import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
+import android.os.Handler
 import android.support.v4.app.NotificationCompat
 import android.support.v4.content.ContextCompat.getSystemService
 import android.util.Log
@@ -172,7 +173,9 @@ class AwsConfigClass() {
 
     fun publishData(msg: String?, topic: String?) {
         try {
-            mqttManager!!.publishString(msg, topic, AWSIotMqttQos.QOS0)
+            Handler().postDelayed({
+                mqttManager!!.publishString(msg, topic, AWSIotMqttQos.QOS0)
+            }, 2000)
         } catch (e: Exception) {
             updateNotificationWithButtons("\n  Something went wrong, Please wait", cx)
             Log.e(TAG, "Publish error.", e)

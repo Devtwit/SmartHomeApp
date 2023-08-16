@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_addBleDeviceFragment"
             app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
@@ -63,6 +66,9 @@
         <action
             android:id="@+id/action_dataBaseUpdateFragment_to_changeNameFragment"
             app:destination="@id/changeNameFragment" />
+        <action
+            android:id="@+id/action_dataBaseUpdateFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeNameFragment"
@@ -84,6 +90,9 @@
         <action
             android:id="@+id/action_selectRoomFragment_to_addBleDeviceFragment"
             app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_informationFragment"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchLocationFragment"
@@ -93,5 +102,13 @@
         <action
             android:id="@+id/action_searchLocationFragment_to_selectRoomFragment"
             app:destination="@id/selectRoomFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/informationFragment"
+        android:name="com.example.bthome.fragments.InformationFragment"
+        android:label="InformationFragment" >
+        <action
+            android:id="@+id/action_informationFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
     </fragment>
 </navigation>
