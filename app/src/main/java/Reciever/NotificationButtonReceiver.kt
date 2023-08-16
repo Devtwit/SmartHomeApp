@@ -20,7 +20,7 @@ class NotificationButtonReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context?, intent: Intent?) {
         awsConfig = AwsConfigClass()
-        awsConfig!!.startAwsConfigurations(context)
+        awsConfig!!.startAwsConfigurations(context!!)
         val action = intent?.action
         val updatedRemoteViews =
             RemoteViews(context?.packageName, R.layout.custom_notification_layout)

@@ -4,6 +4,7 @@ import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import AwsConfigThing.AwsConfigConstants.Companion.SET_CONFIG
 import Data.ResponseData
 import DatabaseHelper
+import DatabaseHelper.Companion.TAG
 import Reciever.NotificationButtonReceiver
 import Service.BleScanService
 import Service.BleScanService.Companion.NOTIFICATION_ID
@@ -45,29 +46,32 @@ class AwsConfigClass() {
     var clientId = UUID.randomUUID().toString()
     var credentialsProvider: CognitoCachingCredentialsProvider? = null
     var databaseHelper: DatabaseHelper? = null
-    fun startAwsConfigurations(context: Context?) {
-        cx= context!!
-        databaseHelper = DatabaseHelper(context)
+
+    fun startAwsConfigurations(context: Context) {
         credentialsProvider = CognitoCachingCredentialsProvider(
             context,
             AwsConfigConstants.COGNITO_POOL_ID,
             AwsConfigConstants.MY_REGION
         )
+
         mqttManager = AWSIotMqttManager(clientId, AwsConfigConstants.CUSTOMER_SPECIFIC_ENDPOINT)
         mqttManager!!.setMaxAutoReconnectAttempts(4)
         mqttManager!!.setKeepAlive(10)
+
         try {
             mqttManager!!.connect(credentialsProvider, object : AWSIotMqttClientStatusCallback {
                 override fun onStatusChanged(
                     status: AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus,
                     throwable: Throwable?
                 ) {
-                    Log.d(TAG, "Status = $status")
                     when (status) {
                         AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting -> {
                             Log.d(TAG, "Connecting...")
                         }
                         AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected -> {
+                            Log.d(TAG, "Connected")
+                            // Subscribe to topics here
+
                             Log.d(TAG, "Connected")
                             subscribeToTopic(SET_CONFIG, context)
                             subscribeToTopic(GET_CONFIG, context)
@@ -96,6 +100,61 @@ class AwsConfigClass() {
             Log.e(TAG, "Connection error...", e)
         }
     }
+
+
+
+
+//    fun startAwsConfigurations(context: Context?) {
+//        cx= context!!
+//        databaseHelper = DatabaseHelper(context)
+//        credentialsProvider = CognitoCachingCredentialsProvider(
+//            context,
+//            AwsConfigConstants.COGNITO_POOL_ID,
+//            AwsConfigConstants.MY_REGION
+//        )
+//        mqttManager = AWSIotMqttManager(clientId, AwsConfigConstants.CUSTOMER_SPECIFIC_ENDPOINT)
+//        mqttManager!!.setMaxAutoReconnectAttempts(4)
+//        mqttManager!!.setKeepAlive(10)
+//        try {
+//            mqttManager!!.connect(credentialsProvider, object : AWSIotMqttClientStatusCallback {
+//                override fun onStatusChanged(
+//                    status: AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus,
+//                    throwable: Throwable?
+//                ) {
+//                    Log.d(TAG, "Status = $status")
+//                    when (status) {
+//                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connecting -> {
+//                            Log.d(TAG, "Connecting...")
+//                        }
+//                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Connected -> {
+//                            Log.d(TAG, "Connected")
+//                            subscribeToTopic(SET_CONFIG, context)
+//                            subscribeToTopic(GET_CONFIG, context)
+//                            subscribeToTopic("sdk/Falcon/setconfig_ack", context)
+////                            subscribeToTopic("sdk/Falcon/getconfig_ack", context)
+//                            Log.d(TAG, "Subscribed on: $SET_CONFIG")
+//                        }
+//                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.Reconnecting -> {
+//                            if (throwable != null) {
+//                                Log.d(TAG, "Connection error.", throwable)
+//                            }
+//                        }
+//                        AWSIotMqttClientStatusCallback.AWSIotMqttClientStatus.ConnectionLost -> {
+//                            if (throwable != null) {
+//                                Log.e(TAG, "Connection error.", throwable)
+//                            }
+//                            Log.d(TAG, "Disconnected")
+//                        }
+//                        else -> {
+//                            Log.d(TAG, "Disconnected")
+//                        }
+//                    }
+//                }
+//            })
+//        } catch (e: Exception) {
+//            Log.e(TAG, "Connection error...", e)
+//        }
+//    }
 
     fun subscribeToTopic(topic: String?, context: Context?) {
         try {
