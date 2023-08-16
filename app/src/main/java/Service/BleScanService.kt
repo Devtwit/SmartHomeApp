@@ -31,6 +31,7 @@ import android.support.v4.app.NotificationCompat
 import android.util.Log
 import android.widget.RemoteViews
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
 import java.util.*
@@ -253,9 +254,13 @@ class BleScanService : JobService() {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun createNotification(): Notification {
         val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
+        val channelName = "BLE Scan Service Channel"
+        val importance = NotificationManager.IMPORTANCE_LOW
+        val channel = NotificationChannel(NOTIFICATION_CHANNEL_ID, channelName, importance)
+        notificationManager.createNotificationChannel(channel)
         // Create a PendingIntent for the button clicks
         val actionIntent1 = Intent(applicationContext, NotificationButtonReceiver::class.java)
         actionIntent1.action = "ACTION_BUTTON_1"
