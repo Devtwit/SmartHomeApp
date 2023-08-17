@@ -22,12 +22,12 @@
         android:lineSpacingExtra="4sp"
         android:maxLines="3"
         android:minLines="1"
-        android:paddingTop="55dp"
-        android:paddingBottom="15dp"
-        android:paddingStart="45dp"
+        android:paddingTop="@dimen/_55dp"
+        android:paddingBottom="@dimen/_15dp"
+        android:paddingStart="@dimen/_45dp"
         android:singleLine="false"
 
-        android:text="More "
+        android:text="@string/more"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:flow_horizontalAlign="center"
@@ -52,10 +52,10 @@
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-medium"
             android:background="@color/white"
-            android:paddingLeft="45dp"
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:text="Add new Room"
+            android:paddingLeft="@dimen/_45dp"
+            android:paddingTop="@dimen/_20dp"
+            android:paddingBottom="@dimen/_20dp"
+            android:text="@string/add_new_room"
             android:textSize="20sp" />
 
         <ImageView
@@ -63,9 +63,9 @@
             android:layout_width="0dp"
             android:background="@color/white"
             android:layout_height="match_parent"
-            android:paddingEnd="17dp"
-            android:paddingTop="17dp"
-            android:paddingBottom="17dp"
+            android:paddingEnd="@dimen/_17dp"
+            android:paddingTop="@dimen/_17dp"
+            android:paddingBottom="@dimen/_17dp"
             android:layout_weight="1"
             android:src="@drawable/baseline_keyboard_arrow_right_24" />
 

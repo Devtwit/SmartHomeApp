@@ -1,18 +1,10 @@
 package Bluetooth
 
 import Bluetooth.HandleBluetooth.Companion.timeoutHandler
-import android.Manifest
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanResult
-import android.content.Context
-import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.os.Build
-import android.support.v4.app.ActivityCompat
 import android.util.Log
-import android.widget.Toast
-import com.example.bthome.fragments.AddBleDeviceFragment
-import com.example.bthome.fragments.AddBleDeviceFragment.Companion.newInstance
-
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 
 

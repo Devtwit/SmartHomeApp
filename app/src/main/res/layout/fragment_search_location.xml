@@ -24,11 +24,11 @@
         android:lineSpacingExtra="4sp"
         android:maxLines="3"
         android:minLines="1"
-        android:paddingTop="55dp"
-        android:paddingBottom="15dp"
-        android:paddingStart="45dp"
+        android:paddingTop="@dimen/_55dp"
+        android:paddingBottom="@dimen/_15dp"
+        android:paddingStart="@dimen/_45dp"
         android:singleLine="false"
-        android:text="Start Searching "
+        android:text="@string/start_searching"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:flow_horizontalAlign="center"
@@ -41,13 +41,13 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/monotype_plantin_mt_pro_regular"
         android:gravity="start"
-        android:padding="20dp"
-        android:layout_marginStart="35sp"
+        android:padding="@dimen/_20dp"
+        android:layout_marginStart="@dimen/_35dp"
         android:textColor="#000000"
         android:textSize="32sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_title"
-        tools:text="Room" />
+        tools:text="@string/room" />
 
     <ProgressBar
         android:id="@+id/loading_container"
@@ -66,12 +66,12 @@
     <Button
         android:id="@+id/next_button"
         style="@style/PrimaryButton"
-        android:layout_width="210dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/_210dp"
+        android:layout_height="@dimen/_53dp"
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginBottom="@dimen/_10dp"
         android:background="@drawable/primary_button_background_selector"
-        android:text="Next"
+        android:text="@string/next"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/skipButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -79,12 +79,12 @@
     <Button
         android:id="@+id/start_button"
         style="@style/PrimaryButton"
-        android:layout_width="210dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="@dimen/_210dp"
+        android:layout_height="@dimen/_53dp"
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginBottom="@dimen/_10dp"
         android:background="@drawable/primary_button_background_selector"
-        android:text="Start"
+        android:text="@string/start"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/skipButton"
         app:layout_constraintStart_toStartOf="parent" />
@@ -93,14 +93,14 @@
     <Button
         android:id="@+id/skipButton"
         style="@style/PrimaryWhiteButton"
-        android:layout_width="210dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="100dp"
-        android:layout_marginBottom="16dp"
-        android:text="Cancel"
+        android:layout_width="@dimen/_210dp"
+        android:layout_height="@dimen/_53dp"
+        android:layout_marginStart="@dimen/_100dp"
+        android:layout_marginBottom="@dimen/_16dp"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="Skip" />
+        tools:text="@string/skip" />
 
 </android.support.constraint.ConstraintLayout>
 </layout>

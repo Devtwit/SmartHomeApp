@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/_16dp">
 
 
 
@@ -19,17 +19,17 @@
         <RadioButton
             android:id="@+id/radioUpdate"
 
-            android:padding="10dp"
+            android:padding="@dimen/_10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update" />
+            android:text="@string/update" />
 
         <RadioButton
             android:id="@+id/radioDelete"
-            android:padding="10dp"
+            android:padding="@dimen/_10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Delete" />
+            android:text="@string/delete" />
 
     </RadioGroup>
 </LinearLayout>

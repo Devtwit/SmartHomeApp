@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:layout_gravity="center"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools">
+    android:layout_gravity="center">
 
     <LinearLayout
         android:id="@+id/layout_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="@dimen/_16dp"
+        android:layout_marginTop="@dimen/_16dp"
         android:background="@drawable/select_device_unselected_bg"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,8 +20,8 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/card"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_width="@dimen/_160dp"
+            android:layout_height="@dimen/_160dp"
             android:layout_gravity="center"
             android:background="@drawable/select_device_unselected_bg"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,22 +31,21 @@
                 android:id="@+id/room_number_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/_10dp"
                 android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                 android:gravity="center"
+                android:text="@string/kitchen"
                 android:textColor="#000000"
-                android:textSize="16dp"
-                android:text="Kitchen" />
+                android:textSize="16sp" />
 
             <ImageView
 
                 android:id="@+id/selectedImg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:scaleType="center"
                 android:layout_gravity="center"
-                 />
+                android:layout_marginBottom="@dimen/_1dp"
+                android:scaleType="center" />
 
         </android.support.v7.widget.CardView>
     </LinearLayout>

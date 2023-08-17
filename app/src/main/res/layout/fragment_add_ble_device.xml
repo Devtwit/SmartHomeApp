@@ -15,9 +15,9 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         app:flow_horizontalAlign="center"
-        android:paddingTop="55dp"
-        android:paddingBottom="15dp"
-        android:paddingStart="95dp"
+        android:paddingTop="@dimen/_55dp"
+        android:paddingBottom="@dimen/_15dp"
+        android:paddingStart="@dimen/_95dp"
         android:lineSpacingExtra="4sp"
         android:maxLines="3"
         android:minLines="1"
@@ -25,27 +25,20 @@
         android:textColor="@color/black"
         android:fontFamily="@font/monotype_plantin_mt_pro_regular"
         android:textSize="30sp"
-        android:text="Smart Home"
+        android:text="@string/smart_home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
 
-    <!--    <android.support.v7.widget.RecyclerView-->
-    <!--        android:id="@+id/recyclerView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/header_title"-->
-    <!--        app:spanCount="2" />-->
+
 
     <ImageView
         android:id="@+id/dotbutton"
         style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="95dp"
-        android:layout_height="74dp"
+        android:layout_height="@dimen/_74dp"
 
-        android:layout_marginTop="45dp"
+        android:layout_marginTop="@dimen/_45dp"
         android:layout_weight="1"
         android:src="@drawable/baseline_developer_board_24"
         android:textAlignment="center"
@@ -60,7 +53,7 @@
         android:layout_height="0dp"
         android:layout_marginBottom="100dp"
         android:layout_weight=".55"
-        android:horizontalSpacing="6dp"
+        android:horizontalSpacing="@dimen/_6dp"
         android:numColumns="2"
         android:verticalSpacing="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -105,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="Add"
+            android:text="@string/add"
             android:textAlignment="center" />
         <Button
             android:id="@+id/moreButton"
@@ -113,7 +106,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="More"
+            android:text="@string/more"
             android:textAlignment="center" />
 
 

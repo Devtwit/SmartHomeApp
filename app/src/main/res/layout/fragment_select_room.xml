@@ -23,11 +23,11 @@
         android:lineSpacingExtra="4sp"
         android:maxLines="3"
         android:minLines="1"
-        android:paddingTop="55dp"
-        android:paddingBottom="15dp"
-        android:paddingStart="45dp"
+        android:paddingTop="@dimen/_55dp"
+        android:paddingBottom="@dimen/_15dp"
+        android:paddingStart="@dimen/_45dp"
         android:singleLine="false"
-        android:text="Select Room "
+        android:text="@string/select_room"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:flow_horizontalAlign="center"
@@ -38,7 +38,7 @@
         android:id="@+id/linearLayout3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/header_title">
@@ -46,14 +46,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="@dimen/_22dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/kitchenlayout"
-                android:layout_width="160dp"
+                android:layout_width="@dimen/_160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_10dp"
                 android:background="@drawable/select_device_unselected_bg"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -62,17 +62,17 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:text="Kitchen" />
+                    android:text="@string/kitchen" />
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:layout_marginBottom="1dp"
                     android:paddingBottom="35dp"
                     android:scaleType="center"
@@ -81,9 +81,9 @@
 
             <LinearLayout
                 android:id="@+id/poojaLayout"
-                android:layout_width="160dp"
+                android:layout_width="@dimen/_160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_10dp"
                 android:background="@drawable/select_device_unselected_bg"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -92,20 +92,20 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:text="Pooja Room " />
+                    android:text="@string/pooja_room" />
 
                 <ImageView
                     android:id="@+id/pooja"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="20dp"
-                    android:paddingBottom="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_20dp"
+                    android:paddingBottom="@dimen/_16dp"
 
                     android:scaleType="center"
                     android:src="@drawable/poojadiya" />
@@ -115,14 +115,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="@dimen/_22dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/bedroomlayout"
-                android:layout_width="160dp"
+                android:layout_width="@dimen/_160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_10dp"
                 android:background="@drawable/select_device_unselected_bg"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -131,29 +131,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:text="Bed Room" />
+                    android:text="@string/bed_room" />
 
                 <ImageView
                     android:id="@+id/bedroom"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="1dp"
-                    android:paddingBottom="35dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_1dp"
+                    android:paddingBottom="@dimen/_35dp"
                     android:scaleType="center"
                     android:src="@drawable/bedroom" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/studylayout"
-                android:layout_width="160dp"
+                android:layout_width="@dimen/_160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_10dp"
                 android:background="@drawable/select_device_unselected_bg"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -162,20 +162,20 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:text="Study Room " />
+                    android:textSize="16sp"
+                    android:text="@string/study_room" />
 
                 <ImageView
                     android:id="@+id/study"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="1dp"
-                    android:paddingBottom="20dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_1dp"
+                    android:paddingBottom="@dimen/_20dp"
                     android:scaleType="center"
                     android:src="@drawable/study" />
             </LinearLayout>
@@ -184,14 +184,14 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="@dimen/_22dp"
             android:orientation="horizontal">
 
             <LinearLayout
                 android:id="@+id/halllayout"
-                android:layout_width="160dp"
+                android:layout_width="@dimen/_160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_10dp"
                 android:background="@drawable/select_device_unselected_bg"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -200,29 +200,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:text="Hall" />
+                    android:text="@string/hall" />
 
                 <ImageView
                     android:id="@+id/hall"
-                    android:paddingBottom="12dp"
+                    android:paddingBottom="@dimen/_12dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="1dp"
+                    android:layout_marginTop="@dimen/_16dp"
+                    android:layout_marginBottom="@dimen/_1dp"
                     android:scaleType="center"
                     android:src="@drawable/hall" />
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/storeRoom"
-                android:layout_width="160dp"
+                android:layout_width="@dimen/_160dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="@dimen/_10dp"
                 android:background="@drawable/select_device_unselected_bg"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
@@ -231,18 +231,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:fontFamily="@font/monotype_plantin_mt_pro_regular"
                     android:gravity="center"
                     android:textColor="#000000"
                     android:textSize="16dp"
-                    android:text="Store Room " />
+                    android:text="@string/store_room" />
 
                 <ImageView
                     android:id="@+id/store"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/_16dp"
                     android:layout_marginBottom="1dp"
                     android:scaleType="center"
                     android:src="@drawable/storeroom" />
@@ -253,39 +253,39 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="@dimen/_20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <Button
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_5dp"
             android:id="@+id/next_button"
             style="@style/PrimaryGrayButton"
-            android:padding="15dp"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
+            android:padding="@dimen/_15dp"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="@dimen/_50dp"
+            android:layout_marginBottom="@dimen/_5dp"
             android:clickable="false"
-            android:text="Next"
+            android:text="@string/next"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
 
         <Button
-            android:layout_margin="5dp"
+            android:layout_margin="@dimen/_5dp"
             android:id="@+id/skipButton"
             style="@style/PrimaryButton"
-            android:padding="15dp"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:padding="@dimen/_15dp"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Skip"
+            android:text="@string/skip"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:text="Skip" />
+            tools:text="@string/skip" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
 </layout>

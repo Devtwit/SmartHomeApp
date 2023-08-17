@@ -9,7 +9,7 @@
         android:weightSum="6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,7 +27,7 @@
             android:minLines="1"
           android:textAlignment="center"
             android:singleLine="false"
-            android:text="Room Name"
+            android:text="@string/room_name"
             android:textColor="@color/black"
             android:textSize="30sp"
             app:flow_horizontalAlign="center"
@@ -38,7 +38,7 @@
         android:weightSum="2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/_10dp"
         android:layout_weight="2"
         android:orientation="horizontal"
       >
@@ -51,20 +51,20 @@
 
         <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/_100dp"
             android:layout_weight="1"
-            android:padding="40dp"
-            android:layout_margin="10dp"
-            android:layout_height="180dp"
+            android:padding="@dimen/_40dp"
+            android:layout_margin="@dimen/_10dp"
+            android:layout_height="@dimen/_180dp"
             android:src="@drawable/baseline_online_prediction_24" />
 
 
         <ImageView
             android:background="@color/gray_transparent"
             android:id="@+id/menuButton2"
-            android:layout_width="100dp"
-            android:layout_height="180dp"
-            android:layout_margin="10dp"
+            android:layout_width="@dimen/_100dp"
+            android:layout_height="@dimen/_180dp"
+            android:layout_margin="@dimen/_10dp"
             android:layout_weight="1"
             android:src="@drawable/baseline_toys_24" />
     </LinearLayout>
