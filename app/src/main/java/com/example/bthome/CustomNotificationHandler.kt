@@ -1,5 +1,6 @@
 package com.example.bthome
 
+import AwsConfigThing.AwsConfigClass.Companion.isFromAws
 import Reciever.NotificationButtonReceiver
 import Service.BleScanService
 import android.annotation.SuppressLint
@@ -105,8 +106,11 @@ class CustomNotificationHandler {
             notificationManager.notify(BleScanService.NOTIFICATION_ID, notification)
 
 //            Started fore ground service
+            if(!isFromAws)
             BleScanService().startForeground(BleScanService.NOTIFICATION_ID, notification)
         }
+
+
        private fun parseDeviceStatus(deviceStatus: String): Pair<Boolean, Boolean> {
             val lines = deviceStatus.split("\n")
             var lStatus = false

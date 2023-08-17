@@ -1,11 +1,13 @@
 package Service
 
 import AwsConfigThing.AwsConfigClass
+import AwsConfigThing.AwsConfigClass.Companion.isFromAws
 import AwsConfigThing.AwsConfigConstants
 
 import AwsConfigThing.AwsConfigConstants.Companion.UUID_FILTER
 import Bluetooth.LeScanCallback
-
+import Data.ResponseData
+import DatabaseHelper
 import Reciever.NotificationButtonReceiver
 import android.annotation.SuppressLint
 import android.app.*
@@ -39,8 +41,7 @@ class BleScanService : JobService() {
     private lateinit var bluetoothLeScanner: BluetoothLeScanner
     private val parcelUuid: ParcelUuid = ParcelUuid(UUID.fromString(UUID_FILTER))
     private val scanFilters: MutableList<ScanFilter> = ArrayList()
-    private val scanSettings: ScanSettings =
-        ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_POWER).build()
+    private val scanSettings: ScanSettings = ScanSettings.Builder().setScanMode(ScanSettings.SCAN_MODE_LOW_POWER).build()
     var awsConfig: AwsConfigClass? = null
 
     companion object {
@@ -76,8 +77,7 @@ class BleScanService : JobService() {
 
         // Initialize wakeLock
         val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
-        wakeLock =
-            powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BleScanService::WakeLock")
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "BleScanService::WakeLock")
 
         val filter = IntentFilter().apply {
             addAction(NotificationButtonReceiver.ACTION_BUTTON_1)
@@ -247,10 +247,8 @@ class BleScanService : JobService() {
                 Log.d(TAG, "$deviceName: Error - $errMsg")
             }
             // Update the notification with the accumulated information
-            CustomNotificationHandler.updateNotificationWithButtons(
-                notificationStringBuilder.toString(),
-                context
-            )
+//            updateNotification(notificationStringBuilder.toString(), context)
+            updateNotificationWithButtons(notificationStringBuilder.toString(), context)
         }
     }
 
@@ -317,5 +315,114 @@ class BleScanService : JobService() {
             .build()
     }
 
+    fun capitalizeWords(input: String): String {
+        val words = input.split(" ")
+        val capitalizedWords = words.map { it.capitalize() }
+        return capitalizedWords.joinToString(" ")
+    }
 
+     @SuppressLint("UnspecifiedRegisterReceiverFlag")
+     fun updateNotificationWithButtons(notificationContent: String, context: Context?) {
+        val notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+         val capString = capitalizeWords(notificationContent)
+
+        Log.d(TAG,"notificationContent $capString")
+
+        // Create a custom notification layout
+        val contentView = RemoteViews(packageName, R.layout.custom_notification_layout)
+        contentView.setTextViewText(R.id.notificationTitle, "BLE Scanning Service")
+        contentView.setTextViewText(R.id.notificationText, capString)
+
+        // Create a PendingIntent for the button clicks
+        val actionIntent1 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        val actionIntent2 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        val actionIntent3 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        val actionIntent4 = Intent(applicationContext, NotificationButtonReceiver::class.java)
+        actionIntent1.action = "ACTION_BUTTON_1"
+        actionIntent2.action = "ACTION_BUTTON_2"
+        actionIntent3.action = "ACTION_BUTTON_3"
+        actionIntent4.action = "ACTION_BUTTON_4"
+
+
+
+        // Update the button text based on the device status
+        val (lightStatus, fanStatus) = parseDeviceStatus(capString)
+        contentView.setTextViewText(
+            R.id.button1,
+            if (lightStatus) "Light Off" else "Light On"
+        )
+        contentView.setTextViewText(
+            R.id.button2,
+            if (fanStatus) "Fan Off" else "Fan On"
+        )
+         contentView.setTextColor(R.id.button1,Color.BLACK)
+         contentView.setTextColor(R.id.button2,Color.BLACK)
+
+        val dStatus = notificationContent
+        val (light_Status, fan_Status) = parseDeviceStatus(dStatus)
+
+        println("Light is ${if (light_Status) "on" else "off"}")
+        println("Fan is ${if (fan_Status) "on" else "off"}")
+        if(light_Status){
+            Log.d(TAG,"Light is on")
+//            contentView.setTextViewText(R.id.button1,"Light_off")
+            val pendingIntent2 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent2, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button1, pendingIntent2)
+            contentView.setTextColor(R.id.button1, Color.BLACK)
+
+        } else {
+            Log.d(TAG,"Light is off")
+//            contentView.setTextViewText(R.id.button1,"Light_on")
+            val pendingIntent1 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent1, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button1, pendingIntent1)
+            contentView.setTextColor(R.id.button1, Color.BLACK)
+
+        }
+        if(fan_Status){
+            Log.d(TAG,"Fan is on")
+//            contentView.setTextViewText(R.id.button2,"Fan_off")
+            val pendingIntent4 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent4, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button2, pendingIntent4)
+            contentView.setTextColor(R.id.button2, Color.BLACK)
+        } else {
+//            contentView.setTextViewText(R.id.button2,"Fan_on")
+            val pendingIntent3 = PendingIntent.getBroadcast(applicationContext, 0, actionIntent3, PendingIntent.FLAG_IMMUTABLE)
+            contentView.setOnClickPendingIntent(R.id.button2, pendingIntent3)
+            contentView.setTextColor(R.id.button2, Color.BLACK)
+            Log.d(TAG,"Fan is off")
+        }
+        // Create the notification
+        val notification = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+            .setSmallIcon(R.drawable.baseline_bluetooth_searching_24)
+            .setCustomContentView(contentView) // Set the custom layout
+            .setStyle(NotificationCompat.DecoratedCustomViewStyle())
+            .setOngoing(true)
+            .build()
+
+
+
+        notificationManager.notify(NOTIFICATION_ID, notification)
+        startForeground(NOTIFICATION_ID, notification)
+    }
+    fun parseDeviceStatus(deviceStatus: String): Pair<Boolean, Boolean> {
+        val lines = deviceStatus.split("\n")
+        var lStatus = false
+        var fStatus = false
+
+        for (line in lines) {
+            val parts = line.split(": ")
+            if (parts.size == 2) {
+                val deviceName = parts[0].trim()
+                val status = parts[1].trim()
+
+                if (deviceName.equals("light", ignoreCase = true)) {
+                    lStatus = status.equals("on", ignoreCase = true)
+                } else if (deviceName.equals("fan", ignoreCase = true)) {
+                    fStatus = status.equals("on", ignoreCase = true)
+                }
+            }
+        }
+
+        return Pair(lStatus, fStatus)
+    }
 }
