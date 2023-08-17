@@ -2,6 +2,7 @@ package com.example.bthome.viewModels
 
 import AwsConfigThing.AwsConfigClass
 import Bluetooth.LeScanCallback
+import Data.DeviceSelection
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
@@ -10,15 +11,18 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.bluetooth.le.ScanResult
 import android.content.Context
+import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.widget.Toast
 import com.example.bthome.fragments.AddBleDeviceFragment
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isFanPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isLightPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.publishStatus
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class AddBleDeviceViewModel :ViewModel(){
-
+    private val selectedDevices = mutableListOf<DeviceSelection>()
     @SuppressLint("SuspiciousIndentation")
     fun precessScanResult(
         mScanResult: java.util.ArrayList<ScanResult>,
@@ -27,7 +31,6 @@ class AddBleDeviceViewModel :ViewModel(){
         context: Context,
     ): Int {
         val responseDataList = mutableListOf<ResponseData>()
-        var nearestDeviceIndex = 0
         var hasDeviceInRange = false
         //last nearest device
         //check rssi
@@ -43,9 +46,6 @@ class AddBleDeviceViewModel :ViewModel(){
 
             if (mScanResult[i].rssi >= -75) {
                 hasDeviceInRange = true
-//                Log.d("ANDRD_DEV 1", " ${mScanResult[i].rssi}")
-//                Log.d("ANDRD_DEV 2", " ${mScanResult[i].device.address}")
-//                Log.d("ANDRD_DEV 3", " ${mScanResult[i].scanRecord}")
                 Toast.makeText(context,"RSSI : ${mScanResult[i].rssi}", Toast.LENGTH_LONG).show()
             } else {
                 Toast.makeText(context,"RSSI : ${mScanResult[i].rssi}", Toast.LENGTH_LONG).show()
@@ -95,6 +95,120 @@ class AddBleDeviceViewModel :ViewModel(){
         }
         // Update nearestDevice
         return 0
+    }
+    fun showLocationDialog(context: Context) {
+        val dbHelper = DatabaseHelper(context)
+        val responseDataList = dbHelper.getAllResponseData()
+
+        val locationNames = responseDataList.map { it.location }
+
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setTitle("Select a Location")
+
+        dialogBuilder.setItems(locationNames.toTypedArray()) { _, position ->
+            val selectedLocation = locationNames[position]
+
+            handleLocationSelection(selectedLocation,context)
+            handleSelectedDevices(selectedLocation,context)
+        }
+
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+
+    private fun handleLocationSelection(selectedLocation: String,context: Context) {
+        val dialogBuilder = AlertDialog.Builder(context)
+        dialogBuilder.setTitle("Select Preferences")
+
+        val deviceNames = arrayOf("Fan", "Light") // List of device names
+        val storedDevices = loadStoredDevices(selectedLocation,context) // Load devices from shared preferences
+
+        val deviceSelections = deviceNames.map { deviceName ->
+            DeviceSelection(deviceName, storedDevices.any { it.deviceId == deviceName })
+        }
+
+        val initialSelections = deviceSelections.map { it.isSelected }.toBooleanArray()
+
+        dialogBuilder.setMultiChoiceItems(
+            deviceNames,
+            initialSelections
+        ) { _, position, isChecked ->
+            deviceSelections[position].isSelected = isChecked
+        }
+
+        dialogBuilder.setPositiveButton("OK") { _, _ ->
+            // Update the selectedDevices list with the new selections
+            selectedDevices.clear()
+            selectedDevices.addAll(deviceSelections)
+
+            // Save the selected preferences to persistent storage for the chosen location
+            saveSelectedDevices(selectedLocation, selectedDevices,context)
+        }
+
+        dialogBuilder.setNegativeButton("Cancel", null)
+
+        val dialog = dialogBuilder.create()
+        dialog.show()
+    }
+
+    private fun saveSelectedDevices(selectedLocation: String, selectedDevices: List<DeviceSelection>,context: Context) {
+        // Save the selected devices to persistent storage for the chosen location
+        val sharedPrefs = context.getSharedPreferences("DevicePrefs", Context.MODE_PRIVATE)
+        val editor = sharedPrefs.edit()
+
+        val gson = Gson()
+        val json = gson.toJson(selectedDevices)
+        editor.putString(selectedLocation, json)
+        editor.apply()
+    }
+
+
+    private fun loadStoredDevices(selectedLocation: String,context: Context): List<DeviceSelection> {
+        val sharedPrefs = context.getSharedPreferences("DevicePrefs", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPrefs.getString(selectedLocation, null)
+        if (json != null) {
+            val type = object : TypeToken<List<DeviceSelection>>() {}.type
+            return gson.fromJson(json, type)
+        }
+        return emptyList()
+    }
+    private fun handleSelectedDevices(selectedLocation: String,context: Context) {
+        val sharedPrefs = context.getSharedPreferences("DevicePrefs", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val json = sharedPrefs.getString(selectedLocation, null)
+        if (json != null) {
+            val type = object : TypeToken<List<DeviceSelection>>() {}.type
+            val storedDevices = gson.fromJson<List<DeviceSelection>>(json, type)
+
+            val fanSelected = storedDevices.any { it.deviceId == "Fan" && it.isSelected }
+            val lightSelected = storedDevices.any { it.deviceId == "Light" && it.isSelected }
+
+            when {
+                fanSelected && lightSelected -> {
+                    // Both Fan and Light are selected, perform specific action
+                    isLightPref = true
+                    isFanPref = true
+                }
+                fanSelected -> {
+                    // Only Fan is selected, perform Fan selected action
+                    isLightPref = false
+                    isFanPref = true
+                }
+                lightSelected -> {
+                    // Only Light is selected, perform Light selected action
+                    isFanPref = false
+                    isLightPref = true
+                }
+                else -> {
+                    isFanPref = false
+                    isLightPref = false
+                    // None selected or other cases, handle accordingly
+                }
+            }
+        } else {
+            // Handle the case when no preferences are stored for the selected location
+        }
     }
 
 }
