@@ -24,7 +24,7 @@ class InformationFragment : Fragment() {
         val rootView = inflater.inflate(R.layout.fragment_information, container, false)
         viewPager = rootView.findViewById(R.id.viewPager)
 
-        val pageTitles = arrayOf("Page 1", "Page 2", "Page 3", "Page 4")
+        val pageTitles = arrayOf("Welcome","Introduction", "Set Up Your Magical Zone", "Witness the True Magic","Shape the Magic Your Way")
         val pagerAdapter = PagerAdapter(pageTitles, childFragmentManager)
         viewPager.adapter = pagerAdapter
 

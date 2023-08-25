@@ -114,13 +114,28 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
         fun setImage(name : String){
            when(name){
-               "Hall" ->{selectedImg.setBackgroundResource(R.drawable.hall)}
-               "Store Room" ->{selectedImg.setBackgroundResource(R.drawable.storeroom)}
-               "Study" ->{selectedImg.setBackgroundResource(R.drawable.study)}
-               "Bed Room" ->{selectedImg.setBackgroundResource(R.drawable.bedroom)}
-               "Pooja Room" ->{selectedImg.setBackgroundResource(R.drawable.poojadiya)}
-               "BT-Beacon_room1" ->{selectedImg.setBackgroundResource(R.drawable.kitchen)}
-               else ->{selectedImg.setBackgroundResource(R.drawable.other)}
+               "Hall" ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.hall)
+               }
+               "Store Room" ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.storeroom)}
+               "Study Room" ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.study)}
+               "Bed Room" ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.bedroom)}
+               "Pooja Room" ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.poojadiya)}
+               "Kitchen" ->{
+                   messageTextView.text= "Kitchen"
+                   selectedImg.setBackgroundResource(R.drawable.kitchen)}
+               else ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.other)}
            }
 
         }

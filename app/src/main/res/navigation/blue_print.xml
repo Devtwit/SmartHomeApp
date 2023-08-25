@@ -93,6 +93,12 @@
         <action
             android:id="@+id/action_selectRoomFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_addBleDeviceFragment2"
+            app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_informationFragment2"
+            app:destination="@id/informationFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchLocationFragment"

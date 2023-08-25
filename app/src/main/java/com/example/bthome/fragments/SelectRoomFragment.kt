@@ -50,7 +50,7 @@ class SelectRoomFragment : Fragment() {
         setupRoomClickListener(binding.bedroomlayout, "Bed Room")
         setupRoomClickListener(binding.halllayout, "Hall")
         setupRoomClickListener(binding.storeRoom, "Store Room")
-        setupRoomClickListener(binding.studylayout, "Study")
+        setupRoomClickListener(binding.studylayout, "Study Room")
         setupRoomClickListener(binding.poojaLayout, "Pooja Room")
 
         binding.nextButton.setOnClickListener {
@@ -69,7 +69,7 @@ class SelectRoomFragment : Fragment() {
                 val initialData = dbHelper.getAllResponseData()
                 if (initialData.isEmpty()) {
                     Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                        .navigate(R.id.action_splashScreenFragment_to_informationFragment)
+                        .navigate(R.id.action_selectRoomFragment_to_informationFragment)
                 } else {
                     Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                         .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)

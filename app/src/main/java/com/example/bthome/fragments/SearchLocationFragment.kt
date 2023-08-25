@@ -128,7 +128,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         if (result != null) {
             Log.d("SearchLocation", "scanCompleted null")
             if (result.device.name == null) {
-                binding.foundDevice.text = "UnknownDevice"
+                binding.foundDevice.text = "BT_ER3C"
                 selectedRoom = result.device.address
 //                scannedResult = "BT-Beacon_room1 " + result.device.address
                 scannedResult = "BT-Beacon_room1"

@@ -6,33 +6,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/header_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-        android:gravity="center_vertical"
-        android:background="@color/white"
-        android:lineHeight="40dp"
-        android:lineSpacingExtra="4sp"
-        android:maxLines="3"
-        android:minLines="1"
-        android:paddingTop="@dimen/_55dp"
-        android:paddingBottom="@dimen/_15dp"
-        android:paddingStart="@dimen/_35dp"
-        android:singleLine="false"
-        android:text="@string/welcome_to_smart_home"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:flow_horizontalAlign="center"
+<!--    <TextView-->
+<!--        android:id="@+id/header_title"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:fontFamily="@font/monotype_plantin_mt_pro_regular"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:background="@color/white"-->
+<!--        android:lineHeight="40dp"-->
+<!--        android:lineSpacingExtra="4sp"-->
+<!--        android:maxLines="3"-->
+<!--        android:minLines="1"-->
+<!--        android:paddingTop="@dimen/_55dp"-->
+<!--        android:paddingBottom="@dimen/_15dp"-->
+<!--        android:paddingStart="@dimen/_74dp"-->
+<!--        android:singleLine="false"-->
+<!--        android:text="@string/smart_home"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="30sp"-->
+<!--        app:flow_horizontalAlign="center"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
+
+    <VideoView
+        android:id="@+id/image"
+        android:layout_width="347dp"
+        android:layout_height="569dp"
+        android:src="@drawable/baseline_bluetooth_searching_24"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="@dimen/_180dp"
-        android:layout_height="@dimen/_180dp"
-        android:src="@drawable/baseline_bluetooth_searching_24"
+    <TextView
+        android:id="@+id/introduction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10dp"
+        android:text="@string/default_info"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,16 +54,19 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_10dp"
+        android:padding="@dimen/_10dp"
         android:text="@string/default_info"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_marginStart="@dimen/_10dp"
-        android:padding="@dimen/_10dp"
+        app:layout_constraintBottom_toTopOf="@+id/infoTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image" />
     <TextView
         android:id="@+id/infoTextView"
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
         android:text="@string/default_info"
         android:layout_marginStart="10dp"
@@ -62,10 +77,11 @@
 
     <Button
         android:id="@+id/nextButton"
+        style="@style/PrimaryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:text="@string/next"
+        android:text="@string/start"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

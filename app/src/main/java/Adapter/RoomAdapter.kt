@@ -13,6 +13,8 @@ import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.bthome.R
+import com.example.bthome.fragments.MoreFragment
+import com.example.bthome.fragments.MoreFragment.Companion.idValue
 
 class RoomAdapter(private val itemList: List<ResponseData>,val awsConfig: AwsConfigClass) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     // Keep track of the positions of the items that have been animated
@@ -30,73 +32,78 @@ companion object{
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
 
+        if(item.location.equals(itemList[idValue.toInt()].location)) {
 
-        // Bind data to views
-        holder.textView.text = item.location
+            // Bind data to views
+            holder.textView.text = item.location
 
-        // Determine the status and set appropriate animations
-        val lightStatus = item.devices["light"]?.get("status")
-        val fanStatus = item.devices["fan"]?.get("status")
+            // Determine the status and set appropriate animations
+            val lightStatus = item.devices["light"]?.get("status")
+            val fanStatus = item.devices["fan"]?.get("status")
 
-        if (lightStatus == "on") {
-            holder.menuButton.setImageResource(R.drawable.glowbulb)
-            if(isLightclicked) {
-                awsConfig.publishDeviceNameLightOn("BT-Beacon_room1")
-            }
-            // Light is on, show different animation
-            val lightAnimation = AlphaAnimation(0f, 1f)
-            lightAnimation.duration = 1000
-            lightAnimation.repeatCount = Animation.INFINITE
-            lightAnimation.repeatMode = Animation.REVERSE
+            if (lightStatus == "on") {
+                holder.menuButton.setImageResource(R.drawable.glowbulb)
+                if (isLightclicked) {
+                    awsConfig.publishDeviceNameLightOn("BT-Beacon_room1")
+                }
+                // Light is on, show different animation
+                val lightAnimation = AlphaAnimation(0f, 1f)
+                lightAnimation.duration = 1000
+                lightAnimation.repeatCount = Animation.INFINITE
+                lightAnimation.repeatMode = Animation.REVERSE
 
 //            holder.menuButton.startAnimation(lightAnimation)
-        } else {
-            if(isLightclicked) {
-                awsConfig.publishDeviceNameLightOff("BT-Beacon_room1")
+            } else {
+                if (isLightclicked) {
+                    awsConfig.publishDeviceNameLightOff("BT-Beacon_room1")
+                }
+                // Light is off, clear animation
+                holder.menuButton.clearAnimation()
+                holder.menuButton.setImageResource(R.drawable.bulb)
             }
-            // Light is off, clear animation
-            holder.menuButton.clearAnimation()
-            holder.menuButton.setImageResource(R.drawable.bulb)
-        }
 
-        if (fanStatus == "on") {
+            if (fanStatus == "on") {
 //            awsConfig.publishDeviceName("BT-Beacon_room1")
-            if(isFanclicked) {
-                awsConfig.publishDeviceNameFanOn("BT-Beacon_room1")
-            }
-            // Fan is on, show different animation
-            val fanAnimation = RotateAnimation(
-                0f,
-                360f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f,
-                Animation.RELATIVE_TO_SELF,
-                0.5f
-            )
-            fanAnimation.duration = 1000
-            fanAnimation.interpolator = LinearInterpolator()
-            fanAnimation.repeatCount = Animation.INFINITE
+                if (isFanclicked) {
+                    awsConfig.publishDeviceNameFanOn("BT-Beacon_room1")
+                }
+                // Fan is on, show different animation
+                val fanAnimation = RotateAnimation(
+                    0f,
+                    360f,
+                    Animation.RELATIVE_TO_SELF,
+                    0.5f,
+                    Animation.RELATIVE_TO_SELF,
+                    0.5f
+                )
+                fanAnimation.duration = 1000
+                fanAnimation.interpolator = LinearInterpolator()
+                fanAnimation.repeatCount = Animation.INFINITE
 
-            holder.menuButton2.startAnimation(fanAnimation)
+                holder.menuButton2.startAnimation(fanAnimation)
 
-        } else {
-            // Fan is off, clear animation
-            if(isFanclicked) {
-                awsConfig.publishDeviceNameFanOff("BT-Beacon_room1")
+            } else {
+                // Fan is off, clear animation
+                if (isFanclicked) {
+                    awsConfig.publishDeviceNameFanOff("BT-Beacon_room1")
+                }
+                holder.menuButton2.clearAnimation()
             }
-            holder.menuButton2.clearAnimation()
+
+            // Create a fade-in animation
+            val fadeInAnimation = AlphaAnimation(0f, 1f)
+            fadeInAnimation.duration = 500
+
+            // Apply the fade-in animation to the view
+            holder.itemView.startAnimation(fadeInAnimation)
+
+            // Check if the position has been animated before
+            if (!animatedPositions.contains(position)) {
+                animatedPositions.add(position)
+            }
         }
-
-        // Create a fade-in animation
-        val fadeInAnimation = AlphaAnimation(0f, 1f)
-        fadeInAnimation.duration = 500
-
-        // Apply the fade-in animation to the view
-        holder.itemView.startAnimation(fadeInAnimation)
-
-        // Check if the position has been animated before
-        if (!animatedPositions.contains(position)) {
-            animatedPositions.add(position)
+        else{
+            holder.itemView.visibility = View.GONE
         }
     }
     override fun onViewAttachedToWindow(holder: ViewHolder) {

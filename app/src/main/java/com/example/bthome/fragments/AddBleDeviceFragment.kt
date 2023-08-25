@@ -153,6 +153,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     }
 
     override fun onItemClick(itemId: Long) {
+        MoreFragment.idValue = itemId
         // Handle the item click here
         Log.d("MainActivity", "Clicked item ID: $itemId")
         Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
