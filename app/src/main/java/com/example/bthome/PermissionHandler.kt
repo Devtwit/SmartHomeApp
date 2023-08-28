@@ -1,6 +1,7 @@
 package com.example.bthome
 
 //import Database.DatabaseHelper
+import android.Manifest
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
@@ -45,7 +46,12 @@ class PermissionHandler( private val context: Context,private val activity: Acti
             appSettingPopup = CustomDialog(context).openSystemSettingPopup(context,object :
                 ThreeButtonsListener {
                 override fun onOkButtonClicked() {
-                    CustomDialog(context).openAppSettings()
+                    if(permissionsToRequest.contains( Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)){
+                        CustomDialog(context).openBackgroundPermission()
+                    } else {
+                        CustomDialog(context).openAppSettings()
+                    }
+
                     appSettingPopup?.dismiss()
                 }
 

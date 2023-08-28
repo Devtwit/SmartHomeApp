@@ -30,6 +30,12 @@ class CustomDialog(private val context: Context) {
         intent.data = uri
         context.startActivity(intent)
     }
+    fun openBackgroundPermission() {
+        val intent = Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS)
+        val uri = Uri.fromParts("package", context.packageName, null)
+        intent.data = uri
+        context.startActivity(intent)
+    }
 
 
     fun buildTurnOffAlertPopup(context: Context, message: String, isAccess :Boolean,listener: ThreeButtonsListener) : BottomSheetDialog {

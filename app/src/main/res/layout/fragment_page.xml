@@ -32,7 +32,6 @@
         android:id="@+id/image"
         android:layout_width="347dp"
         android:layout_height="569dp"
-        android:src="@drawable/baseline_bluetooth_searching_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -56,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10dp"
         android:padding="@dimen/_10dp"
-        android:text="@string/default_info"
+        android:text="Welcome"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/infoTextView"
@@ -66,9 +65,8 @@
     <TextView
         android:id="@+id/infoTextView"
         android:layout_width="wrap_content"
-
         android:layout_height="wrap_content"
-        android:text="@string/default_info"
+        android:text="Experience seamless living with our smart home application, bringing automation and convenience to your fingertips."
         android:layout_marginStart="10dp"
         android:textSize="18sp"
         android:padding="@dimen/_10dp"

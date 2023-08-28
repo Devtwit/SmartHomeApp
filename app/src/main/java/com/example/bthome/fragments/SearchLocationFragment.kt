@@ -44,7 +44,9 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     private val permissions = arrayOf(
         Manifest.permission.BLUETOOTH,
         Manifest.permission.BLUETOOTH_ADMIN,
+        Manifest.permission.BLUETOOTH_SCAN,
         Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
 
         )
 

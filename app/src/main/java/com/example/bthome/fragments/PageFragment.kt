@@ -71,21 +71,11 @@ class PageFragment : Fragment() {
                 val videoUri = Uri.parse(videoPath)
                 videoView.setVideoURI(videoUri)
                 introduction.visibility= View.GONE
-//                val mediaController = MediaController(requireContext())
-//                videoView.setMediaController(mediaController)
 
                 videoView.setOnPreparedListener { mediaPlayer ->
                     mediaPlayer.isLooping = true  // Set the video to loop
                 }
-//                // Optional: Set an optional listener for video completion or errors
-//                videoView.setOnCompletionListener { mediaPlayer ->
-//                    // Do something when video playback completes
-//                }
-//
-//                videoView.setOnErrorListener { mediaPlayer, i, i1 ->
-//                    // Handle video playback error
-//                    true
-//                }
+
                 videoView.start()
                 infoTextView.text = "Experience seamless living with our smart home application, bringing automation and convenience to your fingertips."
             }"Introduction"->{
@@ -107,21 +97,10 @@ class PageFragment : Fragment() {
             val videoPath = "android.resource://" + requireActivity().packageName + "/" + raw.onboardinglocation
             val videoUri = Uri.parse(videoPath)
             videoView.setVideoURI(videoUri)
-//            val mediaController = MediaController(requireContext())
-//            videoView.setMediaController(mediaController)
 
             videoView.setOnPreparedListener { mediaPlayer ->
                 mediaPlayer.isLooping = true  // Set the video to loop
             }
-            // Optional: Set an optional listener for video completion or errors
-//            videoView.setOnCompletionListener { mediaPlayer ->
-//                // Do something when video playback completes
-//            }
-//
-//            videoView.setOnErrorListener { mediaPlayer, i, i1 ->
-//                // Handle video playback error
-//                true
-//            }
             videoView.start()
             infoTextView.text = "Step 1: click on the Start.\n" +
                     "Step 2: once you get the location click on the Next.\n" +
@@ -133,22 +112,10 @@ class PageFragment : Fragment() {
             val videoPath = "android.resource://" + requireActivity().packageName + "/" + raw.background
             val videoUri = Uri.parse(videoPath)
             videoView.setVideoURI(videoUri)
-//            val mediaController = MediaController(requireContext())
-//            videoView.setMediaController(mediaController)
 
             videoView.setOnPreparedListener { mediaPlayer ->
                 mediaPlayer.isLooping = true  // Set the video to loop
             }
-            // Optional: Set an optional listener for video completion or errors
-//            videoView.setOnCompletionListener { mediaPlayer ->
-//                // Do something when video playback completes
-//                videoView.start()
-//            }
-//
-//            videoView.setOnErrorListener { mediaPlayer, i, i1 ->
-//                // Handle video playback error
-//                true
-//            }
             videoView.start()
             infoTextView.text = "The app will do the work!\n" +
                     "When you get close to your Location, like Kitchen, the app will see you're almost there.\n" +
@@ -161,22 +128,11 @@ class PageFragment : Fragment() {
             val videoPath = "android.resource://" + requireActivity().packageName + "/" + raw.set_preferance
             val videoUri = Uri.parse(videoPath)
             videoView.setVideoURI(videoUri)
-//            val mediaController = MediaController(requireContext())
-//            videoView.setMediaController(mediaController)
 
             videoView.setOnPreparedListener { mediaPlayer ->
                 mediaPlayer.isLooping = true  // Set the video to loop
             }
-            // Optional: Set an optional listener for video completion or errors
-//            videoView.setOnCompletionListener { mediaPlayer ->
-//                // Do something when video playback completes
-//                videoView.start()
-//            }
-//
-//            videoView.setOnErrorListener { mediaPlayer, i, i1 ->
-//                // Handle video playback error
-//                true
-//            }
+
             videoView.start()
             infoTextView.text = "You can set light and fan status how you want once you are near to location, Ex: If you want only light should turn on then you can set light as preference.\n" +
                     "You are  one step behind to set your Smart home, Let's do it now, by clicking on Start.\n"

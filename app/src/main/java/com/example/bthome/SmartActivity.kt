@@ -1,6 +1,7 @@
 package com.example.bthome
 
 import Service.BleScanService
+import android.Manifest
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
@@ -23,6 +24,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 
 class SmartActivity : AppCompatActivity() {
+    private val permissionHandler: PermissionHandler by lazy {
+        PermissionHandler(this, this)
+    }
+    private val REQUEST_PERMISSION_CODE = 1
+    private val permissions = arrayOf(
+        Manifest.permission.BLUETOOTH,
+        Manifest.permission.BLUETOOTH_ADMIN,
+        Manifest.permission.BLUETOOTH_SCAN,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,14 +44,18 @@ class SmartActivity : AppCompatActivity() {
         getWindow().setFlags(
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
+        permissionHandler.checkStatuses()
+        if (permissionHandler.isAllPermissionsEnabled()) {
 
-        checkBatteryOptimization()
-        // Start the foreground service
-        val serviceIntent = Intent(this, BleScanService::class.java)
-        ContextCompat.startForegroundService(this, serviceIntent)
+//            checkBatteryOptimization()
+            // Start the foreground service
+            val serviceIntent = Intent(this, BleScanService::class.java)
+            ContextCompat.startForegroundService(this, serviceIntent)
 
-        // Schedule the initial repeating alarm to trigger the service after the specified interval
-        scheduleAlarm()
+            // Schedule the initial repeating alarm to trigger the service after the specified interval
+            scheduleAlarm()
+        }
 
     }
 

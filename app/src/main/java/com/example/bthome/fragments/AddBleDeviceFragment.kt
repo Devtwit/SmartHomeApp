@@ -51,6 +51,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         Manifest.permission.BLUETOOTH,
         Manifest.permission.BLUETOOTH_ADMIN,
         Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
     )
 
     companion object {
