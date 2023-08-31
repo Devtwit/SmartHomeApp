@@ -14,14 +14,10 @@ import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.GridView
-import android.widget.ImageView
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog
@@ -100,7 +96,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     private fun setUpListener() {
         binding.dotbutton.setOnClickListener {
             Log.d("selectedDevices", "Button Clicked")
-            viewModel.showLocationDialog(requireContext())
+            viewModel.showLocationDialog(requireContext(),awsConfig)
         }
         Log.d("selectedDevices", "$selectedDevices")
         binding.moreButton.setOnClickListener {

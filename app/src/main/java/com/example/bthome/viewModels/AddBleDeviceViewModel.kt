@@ -1,19 +1,20 @@
 package com.example.bthome.viewModels
 
 import AwsConfigThing.AwsConfigClass
-import Bluetooth.LeScanCallback
 import Data.DeviceSelection
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.bluetooth.le.ScanResult
 import android.content.Context
+import android.support.design.widget.BottomSheetDialog
 import android.support.v7.app.AlertDialog
 import android.util.Log
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.Toast
+import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isFanPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isLightPref
@@ -86,7 +87,8 @@ class AddBleDeviceViewModel :ViewModel(){
                         aws!!.publishDeviceTurnOnFan("BT-Beacon_room1")
                     } else{
                         Log.d("SelectedDevices", "Not selected")
-                        aws!!.publishDeviceName("BT-Beacon_room1")
+//                        aws!!.publishDeviceName("BT-Beacon_room1")
+                        aws!!.publishDeviceNameOff("BT-Beacon_room1")
                     }
                     publishStatus = "BT-Beacon_room1"
 
@@ -96,7 +98,7 @@ class AddBleDeviceViewModel :ViewModel(){
         // Update nearestDevice
         return 0
     }
-    fun showLocationDialog(context: Context) {
+    fun showLocationDialog(context: Context, awsConfig: AwsConfigClass?) {
         val dbHelper = DatabaseHelper(context)
         val responseDataList = dbHelper.getAllResponseData()
 
@@ -108,48 +110,57 @@ class AddBleDeviceViewModel :ViewModel(){
         dialogBuilder.setItems(locationNames.toTypedArray()) { _, position ->
             val selectedLocation = locationNames[position]
 
-            handleLocationSelection(selectedLocation,context)
-            handleSelectedDevices(selectedLocation,context)
+            handleLocationSelection(selectedLocation,context,awsConfig)
+            handleSelectedDevices(selectedLocation,context,awsConfig)
         }
 
         val dialog = dialogBuilder.create()
         dialog.show()
     }
 
-    private fun handleLocationSelection(selectedLocation: String,context: Context) {
-        val dialogBuilder = AlertDialog.Builder(context)
-        dialogBuilder.setTitle("Select Preferences")
+    private fun handleLocationSelection(
+        selectedLocation: String,
+        context: Context,
+        awsConfig: AwsConfigClass?
+    ) {
+        val dialog = BottomSheetDialog(context)
+        dialog.setContentView(R.layout.dialog_preferences)
+        dialog.setTitle("Select Preferences")
 
-        val deviceNames = arrayOf("Fan", "Light") // List of device names
-        val storedDevices = loadStoredDevices(selectedLocation,context) // Load devices from shared preferences
+        // Find UI elements from the custom dialog layout
+        val fanCheckbox = dialog.findViewById<CheckBox>(R.id.fanCheckbox)
+        val lightCheckbox = dialog.findViewById<CheckBox>(R.id.lightCheckbox)
 
-        val deviceSelections = deviceNames.map { deviceName ->
-            DeviceSelection(deviceName, storedDevices.any { it.deviceId == deviceName })
-        }
+        // Load stored devices from shared preferences
+        val storedDevices = loadStoredDevices(selectedLocation, context)
 
-        val initialSelections = deviceSelections.map { it.isSelected }.toBooleanArray()
+        // Initialize checkbox states based on stored devices
+        fanCheckbox!!.isChecked = storedDevices.any { it.deviceId == "Fan" }
+        lightCheckbox!!.isChecked = storedDevices.any { it.deviceId == "Light" }
 
-        dialogBuilder.setMultiChoiceItems(
-            deviceNames,
-            initialSelections
-        ) { _, position, isChecked ->
-            deviceSelections[position].isSelected = isChecked
-        }
-
-        dialogBuilder.setPositiveButton("OK") { _, _ ->
+        dialog.findViewById<Button>(R.id.okButton)!!.setOnClickListener {
             // Update the selectedDevices list with the new selections
             selectedDevices.clear()
-            selectedDevices.addAll(deviceSelections)
+            if (fanCheckbox.isChecked) {
+                selectedDevices.add(DeviceSelection("Fan", true))
+            }
+            if (lightCheckbox.isChecked) {
+                selectedDevices.add(DeviceSelection("Light", true))
+            }
 
             // Save the selected preferences to persistent storage for the chosen location
-            saveSelectedDevices(selectedLocation, selectedDevices,context)
+            saveSelectedDevices(selectedLocation, selectedDevices, context)
+            handleSelectedDevices(selectedLocation,context, awsConfig )
+            dialog.dismiss() // Close the dialog
         }
 
-        dialogBuilder.setNegativeButton("Cancel", null)
+        dialog.findViewById<Button>(R.id.cancelButton)!!.setOnClickListener {
+            dialog.dismiss() // Close the dialog
+        }
 
-        val dialog = dialogBuilder.create()
         dialog.show()
     }
+
 
     private fun saveSelectedDevices(selectedLocation: String, selectedDevices: List<DeviceSelection>,context: Context) {
         // Save the selected devices to persistent storage for the chosen location
@@ -173,7 +184,11 @@ class AddBleDeviceViewModel :ViewModel(){
         }
         return emptyList()
     }
-    private fun handleSelectedDevices(selectedLocation: String,context: Context) {
+    private fun handleSelectedDevices(
+        selectedLocation: String,
+        context: Context,
+        awsConfig: AwsConfigClass?
+    ) {
         val sharedPrefs = context.getSharedPreferences("DevicePrefs", Context.MODE_PRIVATE)
         val gson = Gson()
         val json = sharedPrefs.getString(selectedLocation, null)
@@ -189,20 +204,24 @@ class AddBleDeviceViewModel :ViewModel(){
                     // Both Fan and Light are selected, perform specific action
                     isLightPref = true
                     isFanPref = true
+                    awsConfig!!.publishDeviceName("BT-Beacon_room1")
                 }
                 fanSelected -> {
                     // Only Fan is selected, perform Fan selected action
                     isLightPref = false
                     isFanPref = true
+                    awsConfig!!.publishDeviceTurnOnFan("BT-Beacon_room1")
                 }
                 lightSelected -> {
                     // Only Light is selected, perform Light selected action
                     isFanPref = false
                     isLightPref = true
+                    awsConfig!!.publishDeviceTurnOnFan("BT-Beacon_room1")
                 }
                 else -> {
                     isFanPref = false
                     isLightPref = false
+                    awsConfig!!.publishDeviceNameOff("BT-Beacon_room1")
                     // None selected or other cases, handle accordingly
                 }
             }
