@@ -1,5 +1,6 @@
 package AwsConfigThing
 
+import Adapter.RoomAdapter
 import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import AwsConfigThing.AwsConfigConstants.Companion.SET_CONFIG
 import Data.ResponseData
@@ -129,6 +130,17 @@ class AwsConfigClass() {
 
         val dbHelper = DatabaseHelper(context)
         dbHelper.insertData(location, devices)
+
+        val initialData = dbHelper.getAllResponseData()
+
+        Log.d("Response dataUI"," ${initialData.toMutableList()}")
+        var adapter  = RoomAdapter(initialData.toMutableList(), this)
+        adapter.updateUI(initialData.toMutableList())
+        adapter.notifyDataSetChanged()
+
+
+
+
         val notificationStringBuilder = StringBuilder()
         // Handle the acknowledgment status and error message as desired
         for ((deviceName, deviceData) in devices) {
@@ -303,13 +315,6 @@ class AwsConfigClass() {
             if (fanStatus) "Fan Off" else "Fan On"
         )
         contentView.setTextColor(R.id.button2, Color.BLACK)
-
-//        val lightButtonTextColor = if (lightStatus) Color.RED else Color.GREEN
-//        contentView.setTextColor(R.id.button1, lightButtonTextColor)
-//
-//        val fanButtonTextColor = if (fanStatus) Color.RED else Color.GREEN
-//        contentView.setTextColor(R.id.button2, fanButtonTextColor)
-
 
         val dStatus = capString
         val (light_Status, fan_Status) = parseDeviceStatus(dStatus)
