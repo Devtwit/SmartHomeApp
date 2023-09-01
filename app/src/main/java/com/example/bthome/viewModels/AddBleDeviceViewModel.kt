@@ -8,12 +8,19 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModel
 import android.bluetooth.le.ScanResult
 import android.content.Context
+import android.graphics.Color
+import android.graphics.Typeface
 import android.support.design.widget.BottomSheetDialog
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
+import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
+import com.amazonaws.auth.policy.Resource
 import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isFanPref
@@ -58,17 +65,17 @@ class AddBleDeviceViewModel :ViewModel(){
             AddBleDeviceFragment.receivedNearestDeviceName = ""
 //            aws!!.publishData("No device found", AwsConfigConstants.SET_CONFIG)
             if(initialData.isNotEmpty()) {
-//                if (publishStatus.equals("BT-Beacon_room1") || publishStatus.equals("status")) {
+                if (publishStatus.equals("BT-Beacon_room1") || publishStatus.equals("status")) {
                     aws!!.publishDeviceNameOff("BT-Beacon_room1")
                     publishStatus = "No device found"
-//                }
+                }
             }
 
         }
         else if(initialData.isNotEmpty()){
 //          else{
-
-              if(initialData.get(0).location.equals("BT-Beacon_room1")) {
+                if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
+//              if(initialData.get(0).location.equals("BT-Beacon_room1")) {
                 Log.d("Range has device ", "" + result.rssi + " " + publishStatus)
 //            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
 //                if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
@@ -118,6 +125,7 @@ class AddBleDeviceViewModel :ViewModel(){
         dialog.show()
     }
 
+
     private fun handleLocationSelection(
         selectedLocation: String,
         context: Context,
@@ -127,26 +135,60 @@ class AddBleDeviceViewModel :ViewModel(){
         dialog.setContentView(R.layout.dialog_preferences)
         dialog.setTitle("Select Preferences")
 
-        // Find UI elements from the custom dialog layout
-        val fanCheckbox = dialog.findViewById<CheckBox>(R.id.fanCheckbox)
-        val lightCheckbox = dialog.findViewById<CheckBox>(R.id.lightCheckbox)
-
-        // Load stored devices from shared preferences
         val storedDevices = loadStoredDevices(selectedLocation, context)
+        val fanItemLayout = dialog.findViewById<LinearLayout>(R.id.fanLayout)
+        val fanImageButton = dialog.findViewById<ImageButton>(R.id.fanImageButton)
+        val fanTextView = dialog.findViewById<TextView>(R.id.fanTextView)
+        val lightItemLayout = dialog.findViewById<LinearLayout>(R.id.lightLayout)
+        val lightImageButton = dialog.findViewById<ImageButton>(R.id.lightImageButton)
+        val lightTextView = dialog.findViewById<TextView>(R.id.lightTextView)
+        var fanisSelected = false
+        var lightisSelected = false
 
-        // Initialize checkbox states based on stored devices
-        fanCheckbox!!.isChecked = storedDevices.any { it.deviceId == "Fan" }
-        lightCheckbox!!.isChecked = storedDevices.any { it.deviceId == "Light" }
+        fanItemLayout!!.setOnClickListener {
+            fanisSelected = !fanisSelected
+            if (fanisSelected) {
+                fanTextView!!.setTextColor(ContextCompat.getColor(context, R.color.black))
+                fanItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.selected_device_orange))
+                fanImageButton!!.setImageResource(R.drawable.fan_on)
+            } else {
+                fanItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.select_device_unselected_bg))
+                fanImageButton!!.setImageResource(R.drawable.baseline_toys_24)
+            }
+        }
+//
+        lightItemLayout!!.setOnClickListener {
+            lightisSelected = !lightisSelected
+            if (lightisSelected) {
+                lightTextView!!.setTextColor(ContextCompat.getColor(context, R.color.black))
+                lightItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.selected_device_orange))
+                lightImageButton!!.setImageResource(R.drawable.baseline_lightbulb_black)
+            } else {
+                lightItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.select_device_unselected_bg))
+                lightImageButton!!.setImageResource(R.drawable.custom_checkbox_light)
+
+            }
+
+        }
+//        if (lightisSelected) {
+//            lightItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.selected_device_orange))
+//            lightImageButton!!.setImageResource(R.drawable.baseline_lightbulb_black)
+//        } else {
+//            lightItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.select_device_unselected_bg))
+//            lightImageButton!!.setImageResource(R.drawable.custom_checkbox_light)
+//        }
 
         dialog.findViewById<Button>(R.id.okButton)!!.setOnClickListener {
             // Update the selectedDevices list with the new selections
             selectedDevices.clear()
-            if (fanCheckbox.isChecked) {
+            if (fanisSelected) {
                 selectedDevices.add(DeviceSelection("Fan", true))
             }
-            if (lightCheckbox.isChecked) {
+
+            if (lightisSelected) {
                 selectedDevices.add(DeviceSelection("Light", true))
             }
+
 
             // Save the selected preferences to persistent storage for the chosen location
             saveSelectedDevices(selectedLocation, selectedDevices, context)

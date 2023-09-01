@@ -35,29 +35,62 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <CheckBox
-            android:id="@+id/fanCheckbox"
+        <LinearLayout
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15dp"
-            android:layout_marginTop="@dimen/_15dp"
-            android:button="@drawable/custom_checkbox_selector"
-            android:fontFamily="@font/akkurat_pro_light"
-            android:padding="@dimen/_5dp"
-            android:text="    Fan"
-            android:textSize="22sp" />
+            android:orientation="horizontal"
+            android:paddingStart="26dp"
+            android:id="@+id/fanLayout"
+            android:clickable="true"
+            android:background="@drawable/select_device_unselected_bg">
 
-        <CheckBox
-            android:id="@+id/lightCheckbox"
+            <ImageButton
+                android:id="@+id/fanImageButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/baseline_toys_24" />
+
+            <TextView
+                android:id="@+id/fanTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Fan"
+                android:textSize="26sp"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15dp"
-            android:layout_marginTop="@dimen/_15dp"
-            android:button="@drawable/custom_checkbox_light"
-            android:fontFamily="@font/akkurat_pro_light"
-            android:padding="@dimen/_5dp"
-            android:text="    Light"
-            android:textSize="22sp" />
+            android:orientation="horizontal"
+            android:paddingStart="26dp"
+            android:id="@+id/lightLayout"
+            android:clickable="true"
+            android:background="@drawable/select_device_unselected_bg">
+
+            <ImageButton
+                android:id="@+id/lightImageButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/custom_checkbox_light" />
+
+            <TextView
+                android:id="@+id/lightTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Light"
+                android:textSize="26sp"
+                android:layout_marginStart="16dp" />
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/okButton"
@@ -68,6 +101,7 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="43dp"
+
             android:text="OK"
             android:textStyle="normal" />
 

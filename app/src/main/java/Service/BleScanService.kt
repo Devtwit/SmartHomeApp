@@ -183,10 +183,34 @@ class BleScanService : JobService() {
 
                         AddBleDeviceFragment.receivedNearestDeviceName = "BT-Beacon_room1"
                     }
-                    Log.d(
-                        TAG,
-                        "AWS CONFIG AWS CONFIG DEVICE FOUND"
-                    )
+                    if (AddBleDeviceFragment.publishStatus.equals("No device found") || AddBleDeviceFragment.publishStatus.equals("status")) {
+//              if(initialData.get(0).location.equals("BT-Beacon_room1")) {
+                        Log.d(
+                            "Range has device ",
+                            "" + result.rssi + " " + AddBleDeviceFragment.publishStatus
+                        )
+                        if (AddBleDeviceFragment.isFanPref && AddBleDeviceFragment.isLightPref) {
+                            Log.d("SelectedDevices", "Both Fan and Light selected")
+                            awsConfig!!.publishDeviceName("BT-Beacon_room1")
+                        } else if (AddBleDeviceFragment.isLightPref) {
+                            Log.d("SelectedDevices", "Only Light selected")
+//                        aws!!.publishDeviceNameLightOn("BT-Beacon_room1")
+                            awsConfig!!.publishDeviceTurnOnLight("BT-Beacon_room1")
+                        } else if (AddBleDeviceFragment.isFanPref) {
+                            Log.d("SelectedDevices", "Only Fan selected")
+//                        aws!!.publishDeviceNameFanOn("BT-Beacon_room1")
+                            awsConfig!!.publishDeviceTurnOnFan("BT-Beacon_room1")
+                        } else {
+                            Log.d("SelectedDevices", "Not selected")
+//                        aws!!.publishDeviceName("BT-Beacon_room1")
+                            awsConfig!!.publishDeviceNameOff("BT-Beacon_room1")
+                        }
+                        AddBleDeviceFragment.publishStatus = "BT-Beacon_room1"
+                        Log.d(
+                            TAG,
+                            "AWS CONFIG AWS CONFIG DEVICE FOUND"
+                        )
+                    }
 
                 } else {
                     Log.d(
@@ -195,6 +219,10 @@ class BleScanService : JobService() {
                     )
 //                    awsConfig!!.publishDeviceName("No device found")
                     AddBleDeviceFragment.receivedNearestDeviceName = ""
+                    if (AddBleDeviceFragment.publishStatus.equals("BT-Beacon_room1") || AddBleDeviceFragment.publishStatus.equals("status")) {
+                        awsConfig!!.publishDeviceNameOff("BT-Beacon_room1")
+                        AddBleDeviceFragment.publishStatus = "No device found"
+                    }
                 }
 
             }
