@@ -113,13 +113,17 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
                 handleBluetooth = HandleBluetooth(requireContext(), awsConfig!!)
             }
             binding.loadingContainer.visibility = View.VISIBLE
+            binding.startButton.visibility = View.GONE
             handleBluetooth!!.scanLeDevices(this)
+        }else{
+            binding.startButton.visibility = View.VISIBLE
         }
     }
 
     override fun onResume() {
         super.onResume()
-        binding.startButton.visibility = View.VISIBLE
+        handleBlueTooth()
+//        binding.startButton.visibility = View.VISIBLE
         setUpListener()
 
     }
