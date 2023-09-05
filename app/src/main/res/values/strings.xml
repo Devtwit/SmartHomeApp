@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BtHome</string>
+    <string name="app_name">Smart Home</string>
 
     <string-array name="options_array">
         <item>Update</item>
