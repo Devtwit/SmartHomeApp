@@ -39,10 +39,15 @@ class DatabaseHelper(context: Context?) :
             Log.d("locationData","$location")
             val locationData = location.split(" ")
             val name = locationData[0]
-            val address = "locationData[1]"
+            val address = locationData[0]
             Log.d("locationData"," : location $location name :  $name  address : $address" )
             // Insert or retrieve the location ID
-            val locationId = insertLocation(db, name, address)
+            var customName= getLocationNameByAddress(address)
+            Log.d("locationData"," : location $location name :  $name  address : $address customName : $customName"  )
+            if(customName.isNullOrBlank()){
+                customName="BT-Beacon_room1"
+            }
+            val locationId = insertLocation(db, customName!!, address)
             // Insert devices for the location
             for ((deviceName, deviceData) in devices) {
                 val status = deviceData["status"] as? String
@@ -66,6 +71,23 @@ class DatabaseHelper(context: Context?) :
             db.endTransaction()
             db.close()
         }
+    }
+    fun getLocationNameByAddress(address: String): String? {
+        val db = this.readableDatabase
+        val query = "SELECT $COLUMN_LOCATION_NAME FROM $TABLE_LOCATION WHERE $COLUMN_LOCATION_ADDRESS = ?"
+        val selectionArgs = arrayOf(address)
+        var locationName: String? = null
+
+        val cursor = db.rawQuery(query, selectionArgs)
+
+        if (cursor.moveToFirst()) {
+            locationName = cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION_NAME))
+        }
+
+//        cursor.close()
+//        db.close()
+
+        return locationName
     }
 
     @SuppressLint("Range")

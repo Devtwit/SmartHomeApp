@@ -77,7 +77,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         Log.d("TAG", responseData.address)
 
 
-        viewHolder.cardColor(responseData.location.equals(receivedNearestDeviceName))
+        viewHolder.cardColor(responseData.address.equals(receivedNearestDeviceName))
         viewHolder.setImage(responseData.location)
         return view
     }
@@ -88,12 +88,14 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
     private class ViewHolder(view: View) {
 //        private val topicTextView: TextView = view.findViewById(R.id.topicTextView)
         private val messageTextView: TextView = view.findViewById(R.id.room_number_id)
+        private val addressTextView: TextView = view.findViewById(R.id.address)
         private val cardView: CardView = view.findViewById(R.id.card)
         private val selectedImg: ImageView = view.findViewById(R.id.selectedImg)
 
 
         fun bind(responseData: ResponseData) {
             messageTextView.text = responseData.location
+            addressTextView.text = responseData.address
 
         }
 

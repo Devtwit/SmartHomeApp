@@ -105,4 +105,51 @@ class CustomDialog(private val context: Context) {
         mBottomSheetDialog.setCancelable(false)
         return mBottomSheetDialog
     }
+    fun buildNameChangeAlertPopup(context: Context, listener: ThreeButtonsListener) : BottomSheetDialog {
+        val mBottomSheetDialog = BottomSheetDialog(context)
+        val inflater = LayoutInflater.from(context)
+        val sheetView: View = inflater.inflate(R.layout.are_you_sure_popup, null)
+//        val sheetView = AreYouSurePopup.inflate(LayoutInflater.from(context))
+        var discription :TextView = sheetView.findViewById(R.id.descriptionView)
+        discription.text = "Are you sure you want to change the name of your room."
+        var yesButton :Button = sheetView.findViewById(R.id.yes_button)
+        var cancelButton :Button = sheetView.findViewById(R.id.cancel_button)
+        yesButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onOkButtonClicked()
+        }
+        cancelButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onCancelButtonClicked()
+        }
+        mBottomSheetDialog.setContentView(sheetView)
+        mBottomSheetDialog.setCancelable(false)
+        return mBottomSheetDialog
+    }
+    fun buildErrorAlertPopup(context: Context, listener: ThreeButtonsListener) : BottomSheetDialog {
+        val mBottomSheetDialog = BottomSheetDialog(context)
+        val inflater = LayoutInflater.from(context)
+        val sheetView: View = inflater.inflate(R.layout.are_you_sure_popup, null)
+//        val sheetView = AreYouSurePopup.inflate(LayoutInflater.from(context))
+
+        var yesButton :Button = sheetView.findViewById(R.id.yes_button)
+        var cancelButton :Button = sheetView.findViewById(R.id.cancel_button)
+        var discription :TextView = sheetView.findViewById(R.id.descriptionView)
+        var title :TextView = sheetView.findViewById(R.id.header_title)
+        cancelButton.visibility = View.GONE
+        discription.text = "Please Select at least one Room."
+        title.text = "Select Room"
+        yesButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onOkButtonClicked()
+        }
+        cancelButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onCancelButtonClicked()
+        }
+
+        mBottomSheetDialog.setContentView(sheetView)
+        mBottomSheetDialog.setCancelable(false)
+        return mBottomSheetDialog
+    }
 }

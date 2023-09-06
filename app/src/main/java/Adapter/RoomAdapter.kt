@@ -81,7 +81,7 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                     item = itemList[position]
                     updateFanLightStatusOnClick(position, fanStatus, lightStatus)
 
-                    if (item.location == responseData.location) {
+                    if (item.address == responseData.address) {
                         if (fsui == "on") {
                             Log.d("Response dataui fan room", "$fsui")
                             val fanAnimation = RotateAnimation(
@@ -153,7 +153,7 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         item = itemList[position]
         hold= holder
-        if(item.location.equals(itemList[idValue.toInt()].location)) {
+        if(item.address.equals(itemList[idValue.toInt()].address)) {
 
             // Bind data to views
             holder.textView.text = item.location

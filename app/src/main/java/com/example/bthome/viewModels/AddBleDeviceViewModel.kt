@@ -258,7 +258,7 @@ class AddBleDeviceViewModel :ViewModel(){
                     // Only Light is selected, perform Light selected action
                     isFanPref = false
                     isLightPref = true
-                    awsConfig!!.publishDeviceTurnOnFan("BT-Beacon_room1")
+                    awsConfig!!.publishDeviceTurnOnLight("BT-Beacon_room1")
                 }
                 else -> {
                     isFanPref = false

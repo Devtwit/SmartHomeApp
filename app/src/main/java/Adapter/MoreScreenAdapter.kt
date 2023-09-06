@@ -67,7 +67,7 @@ class MoreScreenAdapter(private var responseDataList: List<ResponseData>, privat
 
 
         Log.d("TAG", receivedNearestDeviceName)
-        viewHolder.cardColor(responseData.location.equals(receivedNearestDeviceName))
+        viewHolder.cardColor(responseData.address.equals(receivedNearestDeviceName))
 
         return view
     }

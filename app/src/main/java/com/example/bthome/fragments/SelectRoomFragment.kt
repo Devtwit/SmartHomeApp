@@ -4,6 +4,7 @@ import DatabaseHelper
 import android.arch.lifecycle.ViewModelProvider
 import android.graphics.Color
 import android.os.Bundle
+import android.support.design.widget.BottomSheetDialog
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,9 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import com.example.bthome.CustomDialog
 import com.example.bthome.R
+import com.example.bthome.ThreeButtonsListener
 import com.example.bthome.databinding.FragmentSelectRoomBinding
 import com.example.bthome.viewModels.SelectRoomViewModel
 
@@ -19,7 +22,7 @@ class SelectRoomFragment : Fragment() {
     private lateinit var binding: FragmentSelectRoomBinding
     private lateinit var viewModel: SelectRoomViewModel
 
-
+    private var customPopUp: BottomSheetDialog? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -37,7 +40,7 @@ class SelectRoomFragment : Fragment() {
             SelectRoomViewModel::class.java
         )
         binding.viewModel = viewModel
-
+        customPopUp = BottomSheetDialog(requireContext())
     }
 
     private fun setUplistener() {
@@ -46,7 +49,7 @@ class SelectRoomFragment : Fragment() {
                 .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
         }
 
-        setupRoomClickListener(binding.kitchenlayout, "BT-Beacon_room1")
+        setupRoomClickListener(binding.kitchenlayout, "Kitchen")
         setupRoomClickListener(binding.bedroomlayout, "Bed Room")
         setupRoomClickListener(binding.halllayout, "Hall")
         setupRoomClickListener(binding.storeRoom, "Store Room")
@@ -54,30 +57,104 @@ class SelectRoomFragment : Fragment() {
         setupRoomClickListener(binding.poojaLayout, "Pooja Room")
 
         binding.nextButton.setOnClickListener {
-            val selectedRooms = listOf(
-                binding.kitchenlayout.isSelected,
-                binding.bedroomlayout.isSelected,
-                binding.halllayout.isSelected,
-                binding.storeRoom.isSelected,
-                binding.studylayout.isSelected,
-                binding.poojaLayout.isSelected
-            )
-
-
-            if (selectedRooms.any { it }) {
-                val dbHelper = DatabaseHelper(requireContext())
-                val initialData = dbHelper.getAllResponseData()
-                if (initialData.isEmpty()) {
-                    Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                        .navigate(R.id.action_selectRoomFragment_to_informationFragment)
-                } else {
-                    Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                        .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
-                }
+            if(!(binding.kitchenlayout.isSelected ||
+            binding.bedroomlayout.isSelected ||
+            binding.halllayout.isSelected||
+            binding.storeRoom.isSelected ||
+            binding.studylayout.isSelected ||
+            binding.poojaLayout.isSelected)){
+                showErrorPopUp()
             } else {
-                // Handle the case when no room is selected
+                showPopUp()
             }
         }
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
+    }
+    private fun showErrorPopUp(){
+
+        customPopUp = CustomDialog(requireContext()).buildErrorAlertPopup(requireContext(), object :
+            ThreeButtonsListener {
+            override fun onOkButtonClicked() {
+                val selectedRooms = listOf(
+                    binding.kitchenlayout.isSelected,
+                    binding.bedroomlayout.isSelected,
+                    binding.halllayout.isSelected,
+                    binding.storeRoom.isSelected,
+                    binding.studylayout.isSelected,
+                    binding.poojaLayout.isSelected
+                )
+
+
+                if (selectedRooms.any { it }) {
+                    val dbHelper = DatabaseHelper(requireContext())
+                    val initialData = dbHelper.getAllResponseData()
+                    if (initialData.isEmpty()) {
+                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                            .navigate(R.id.action_selectRoomFragment_to_informationFragment)
+                    } else {
+                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                            .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
+                    }
+                } else {
+                    // Handle the case when no room is selected
+                }
+            }
+
+            override fun onCancelButtonClicked() {
+                super.onCancelButtonClicked()
+                customPopUp?.dismiss()
+            }
+        })
+        customPopUp?.show()
+    }
+
+    private fun showPopUp(){
+
+        customPopUp = CustomDialog(requireContext()).buildNameChangeAlertPopup(requireContext(), object :
+            ThreeButtonsListener {
+            override fun onOkButtonClicked() {
+                val selectedRooms = listOf(
+                    binding.kitchenlayout.isSelected,
+                    binding.bedroomlayout.isSelected,
+                    binding.halllayout.isSelected,
+                    binding.storeRoom.isSelected,
+                    binding.studylayout.isSelected,
+                    binding.poojaLayout.isSelected
+                )
+
+
+                if (selectedRooms.any { it }) {
+                    val dbHelper = DatabaseHelper(requireContext())
+                    val initialData = dbHelper.getAllResponseData()
+
+                    when{
+                        binding.kitchenlayout.isSelected ->{ DatabaseHelper(requireContext()).updateLocationName("BT-Beacon_room1", "Kitchen")}
+                        binding.bedroomlayout.isSelected-> { DatabaseHelper(requireContext()).updateLocationName("BT-Beacon_room1", "Bed Room")}
+                        binding.halllayout.isSelected->{ DatabaseHelper(requireContext()).updateLocationName("BT-Beacon_room1", "Hall")}
+                        binding.storeRoom.isSelected->{ DatabaseHelper(requireContext()).updateLocationName("BT-Beacon_room1", "Store Room")}
+                        binding.studylayout.isSelected->{ DatabaseHelper(requireContext()).updateLocationName("BT-Beacon_room1", "Study Room")}
+                        binding.poojaLayout.isSelected->{ DatabaseHelper(requireContext()).updateLocationName("BT-Beacon_room1", "Pooja Room")}
+                    }
+                    if (initialData.isEmpty()) {
+                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                            .navigate(R.id.action_selectRoomFragment_to_informationFragment)
+                    } else {
+                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                            .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
+                    }
+                } else {
+                    // Handle the case when no room is selected
+                }
+            }
+
+            override fun onCancelButtonClicked() {
+                super.onCancelButtonClicked()
+                customPopUp?.dismiss()
+            }
+        })
+        customPopUp?.show()
     }
 
     private fun setupRoomClickListener(room: LinearLayout, roomName: String) {

@@ -40,7 +40,81 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_36dp"
-        android:layout_marginTop="@dimen/_16dp"
+
+        android:layout_marginEnd="@dimen/_16dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="@+id/customName"
+        app:layout_constraintStart_toStartOf="@+id/customName"
+        app:layout_constraintTop_toBottomOf="@+id/customName">
+       <TextView
+        android:id="@+id/chooseName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Choose Name"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:padding="@dimen/_10dp"/>
+        <TextView
+            android:layout_margin="2dp"
+            android:background="@drawable/select_device_unselected_bg"
+            android:id="@+id/kitchen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kitchen"
+            android:textSize="24sp"
+            android:padding="@dimen/_10dp"/>
+        <TextView
+            android:layout_margin="2dp"
+            android:background="@drawable/select_device_unselected_bg"
+            android:id="@+id/study"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Study Room"
+            android:textSize="24sp"
+            android:padding="@dimen/_10dp"/>
+        <TextView
+            android:layout_margin="2dp"
+            android:background="@drawable/select_device_unselected_bg"
+            android:id="@+id/pooja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pooja Room"
+            android:textSize="24sp"
+            android:padding="@dimen/_10dp"/>
+        <TextView
+            android:layout_margin="2dp"
+            android:background="@drawable/select_device_unselected_bg"
+            android:id="@+id/store"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Store Room"
+            android:textSize="24sp"
+            android:padding="@dimen/_10dp"/>
+        <TextView
+            android:layout_margin="2dp"
+            android:background="@drawable/select_device_unselected_bg"
+            android:id="@+id/hall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hall"
+            android:textSize="24sp"
+            android:padding="@dimen/_10dp"/>
+        <TextView
+            android:layout_margin="2dp"
+            android:background="@drawable/select_device_unselected_bg"
+            android:id="@+id/bed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Bed Room"
+            android:textSize="24sp"
+            android:padding="@dimen/_10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/customName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_36dp"
+        android:layout_marginEnd="@dimen/_16dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="@+id/header_title"
         app:layout_constraintStart_toStartOf="@+id/header_title"

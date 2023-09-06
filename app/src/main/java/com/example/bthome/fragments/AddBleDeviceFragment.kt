@@ -20,6 +20,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.example.bthome.CustomDialog
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
@@ -203,5 +204,6 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         Log.d("POSITION ", "" + processedScanResultIndex)
 
     }
+
 
 }
