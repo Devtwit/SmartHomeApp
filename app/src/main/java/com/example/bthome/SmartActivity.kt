@@ -8,20 +8,15 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PowerManager
 import android.os.SystemClock
 import android.provider.Settings
-import android.support.design.widget.BottomNavigationView
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.View
 import android.view.WindowManager
 import androidx.annotation.RequiresApi
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
 
 class SmartActivity : AppCompatActivity() {
     private val permissionHandler: PermissionHandler by lazy {
@@ -39,6 +34,8 @@ class SmartActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_smart)
+
+
 
         // complete screen
         getWindow().setFlags(
@@ -110,12 +107,33 @@ class SmartActivity : AppCompatActivity() {
             pendingIntent
         )
     }
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onBackPressed() {
-        super.onBackPressed()
-        fragmentManager.fragments.get(0)
-        Log.d("Smart Activity on back pressed","fragmentManager.fragments.count() ${fragmentManager.fragments.count()} ${fragmentManager.fragments.size} ${fragmentManager.fragments.get(0)}" )
-//            if(fragmentManager.fragments.count())
-//        finish()
-    }
+//    @RequiresApi(Build.VERSION_CODES.O)
+//    override fun onBackPressed() {
+//        super.onBackPressed()
+//        fragmentManager.fragments.get(0)
+//
+//        val count = supportFragmentManager.backStackEntryCount
+//
+//        if (count == 2) {
+////            super.onBackPressed()
+//            Log.d("Smart Activity on back pressed","finish() ${fragmentManager.fragments.count()} ${fragmentManager.fragments.size} ${fragmentManager.fragments.get(0)}" )
+//            finish()
+//            //additional code
+//        } else {
+//            Log.d("Smart Activity on back pressed","pop backstack ${fragmentManager.fragments.count()} ${fragmentManager.fragments.size} ${fragmentManager.fragments.get(0)}" )
+//            supportFragmentManager.popBackStack()
+//        }
+//
+//        Log.d("Smart Activity on back pressed","fragmentManager.fragments.count() ${fragmentManager.fragments.count()} ${fragmentManager.fragments.size} ${fragmentManager.fragments.get(0)}" )
+////            if(fragmentManager.fragments.count())
+////        finish()
+//    }
+
+//    override fun onBackPressed() {
+//        val fragment =
+//            this.supportFragmentManager.findFragmentById(R.id.my_nav_host_fragment)
+//        (fragment as? IOnBackPressed)?.onBackPressed()?.not()?.let {
+//            super.onBackPressed()
+//        }
+//    }
 }

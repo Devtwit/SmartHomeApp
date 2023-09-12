@@ -44,28 +44,7 @@ class ChangeIconFragment : Fragment() {
         setUpListener()
     }
     private val SELECT_IMAGE_REQUEST_CODE = 101
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//        if (requestCode == SELECT_IMAGE_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
-//            // Handle the selected image here
-//            val selectedImageUri = data.data
-//            // You can use selectedImageUri to load and display the image or perform other actions.
-//            selectedImageUri?.let {
-//                val inputStream: InputStream? = requireContext().contentResolver.openInputStream(it)
-//                val bitmap = BitmapFactory.decodeStream(inputStream)
-//                binding.selectedImageView.setImageBitmap(bitmap)
-//                imageBitmap = bitmap
-//                // Save the image to your database or perform other actions here
-//                // To save the image to a database, you can convert the Bitmap to a byte array
-//                val imageByteArray = convertBitmapToByteArray(bitmap)
-//
-//                // Call a function to save the image to your database
-////                DatabaseHelper(requireContext()).updateLocationImage("BT-Beacon_room1", bitmap!! )
-////                saveImageToDatabase(imageByteArray)
-//            }
-//        }
-//    }
+
 
     private fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
         val stream = ByteArrayOutputStream()
@@ -116,7 +95,9 @@ class ChangeIconFragment : Fragment() {
 
     fun setUpListener() {
 
-
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
     binding.selectImageButton.setOnClickListener {
             // Open the image picker when the button is clicked
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)

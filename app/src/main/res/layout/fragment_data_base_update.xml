@@ -7,30 +7,41 @@
     </data>
 <android.support.constraint.ConstraintLayout
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.DataBaseUpdateFragment">
+    <ImageView
+        android:id="@+id/imageButton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="47dp"
+        android:src="@drawable/img"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/header_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:fontFamily="@font/monotype_plantin_mt_pro_regular"
         android:gravity="center_vertical"
-        android:background="@color/white"
         android:lineHeight="40dp"
         android:lineSpacingExtra="4sp"
         android:maxLines="3"
         android:minLines="1"
+        android:paddingStart="55dp"
         android:paddingTop="@dimen/_55dp"
         android:paddingBottom="@dimen/_15dp"
-        android:paddingStart="@dimen/_45dp"
         android:singleLine="false"
         android:text="@string/update_details"
         android:textColor="@color/black"
         android:textSize="30sp"
         app:flow_horizontalAlign="center"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
@@ -76,7 +87,7 @@
 
         android:weightSum="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout_bg">
+        app:layout_constraintTop_toBottomOf="@+id/layout_img">
 
 
         <TextView
@@ -109,12 +120,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-
         android:weightSum="3"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout">
-
-
+        app:layout_constraintTop_toBottomOf="@+id/layout_bg">
         <TextView
             android:id="@+id/img_name"
             android:layout_weight="2"

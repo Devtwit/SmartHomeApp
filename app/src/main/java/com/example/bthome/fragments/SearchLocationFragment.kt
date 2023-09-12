@@ -101,7 +101,9 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
                     .navigate(R.id.action_searchLocationFragment_to_selectRoomFragment)
             }, 2000)
         }
-
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
 
     }
 

@@ -13,6 +13,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import com.example.bthome.R
 import com.example.bthome.databinding.FragmentBleScanResultBinding
 import com.example.bthome.viewModels.BleScanResultViewModel
 
@@ -29,7 +31,7 @@ class BleScanResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding = FragmentBleScanResultBinding.inflate(inflater, container, false)
+        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_ble_scan_result, container, false)
         initialize()
         updateDataBase()
 

@@ -48,6 +48,9 @@ private  fun initialize(){
     customPopUp = BottomSheetDialog(requireContext())
 }
     private fun setUpListener(){
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
         binding.layoutBg.setOnClickListener{
             Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_dataBaseUpdateFragment_to_changeNameFragment)
         }

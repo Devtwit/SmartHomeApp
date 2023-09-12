@@ -15,6 +15,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.util.Log
+import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +29,7 @@ import com.example.bthome.databinding.FragmentAddBleDeviceBinding
 import com.example.bthome.viewModels.AddBleDeviceViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import kotlin.system.exitProcess
 
 
 class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickListener {
@@ -79,7 +81,31 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         checkPreferedData()
         updateDatabase()
         setupGridView()
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        view.isFocusableInTouchMode = true
+        view.requestFocus()
+        view.setOnKeyListener { _, keyCode, event ->
+            if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
+                if(fragmentManager!!.fragments.count() < 2){
+//                    exitProcess(0)
+                    requireActivity().finish()
+                }
+                // Handle the back button press here
+                // For example, you can perform some action or navigate back
+                // to another Fragment or Activity.
+                // If you want to navigate back, you can use the Navigation Component or
+                // the FragmentManager to pop the Fragment from the back stack.
+                true // Return true to indicate that the event was handled.
+            } else {
+                false // Return false if you want the default back button behavior.
+            }
+        }
     }
 
     private fun initialize() {
@@ -204,6 +230,5 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         Log.d("POSITION ", "" + processedScanResultIndex)
 
     }
-
 
 }

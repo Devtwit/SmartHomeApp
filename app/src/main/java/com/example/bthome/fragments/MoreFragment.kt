@@ -81,6 +81,9 @@ class MoreFragment : Fragment(), ItemClickListener {
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_moreFragment_to_searchLocationFragment)
         }
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
     }
 
     override fun onItemClick(itemId: Long) {

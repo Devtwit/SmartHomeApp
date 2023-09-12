@@ -56,7 +56,9 @@ class ChangeNameFragment : Fragment() {
         var newText = binding.deviceNameEditText.text.toString()
         var oldName = responseAdapter.getString(MoreFragment.idValue.toInt()).toString()
 
-
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
         binding.bed.setOnClickListener {
            newText = "Bed Room"
             binding.bed.setBackground(ContextCompat.getDrawable(context!!, R.drawable.selected_device_orange))
