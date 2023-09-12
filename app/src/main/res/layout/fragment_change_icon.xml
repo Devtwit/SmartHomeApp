@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.bthome.viewModels.ChangeIconViewModel" />
+    </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".fragments.ChangeNameFragment">
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center_vertical"
+            android:background="@color/white"
+            android:lineHeight="40dp"
+            android:lineSpacingExtra="4sp"
+            android:maxLines="3"
+            android:minLines="1"
+            android:paddingTop="@dimen/_55dp"
+            android:paddingBottom="@dimen/_15dp"
+            android:paddingStart="@dimen/_45dp"
+            android:singleLine="false"
+            android:text="Change Icon"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20dp"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/customName">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_22dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/kitchenlayout"
+                    android:layout_width="@dimen/_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10dp"
+                    android:background="@drawable/select_device_unselected_bg"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/kitchen"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginBottom="1dp"
+                        android:paddingBottom="35dp"
+                        android:scaleType="center"
+                        android:src="@drawable/kitchen" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/poojaLayout"
+                    android:layout_width="@dimen/_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10dp"
+                    android:background="@drawable/select_device_unselected_bg"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/pooja"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:paddingBottom="35dp"
+
+                        android:scaleType="center"
+                        android:src="@drawable/poojadiya" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_22dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/bedroomlayout"
+                    android:layout_width="@dimen/_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10dp"
+                    android:background="@drawable/select_device_unselected_bg"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/bedroom"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginBottom="@dimen/_1dp"
+                        android:paddingBottom="@dimen/_35dp"
+                        android:scaleType="center"
+                        android:src="@drawable/bedroom" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/studylayout"
+                    android:layout_width="@dimen/_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10dp"
+                    android:background="@drawable/select_device_unselected_bg"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/study"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:layout_marginBottom="@dimen/_1dp"
+                        android:paddingBottom="@dimen/_20dp"
+                        android:scaleType="center"
+                        android:src="@drawable/study" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_22dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/halllayout"
+                    android:layout_width="@dimen/_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10dp"
+                    android:background="@drawable/select_device_unselected_bg"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:id="@+id/hall"
+                        android:paddingBottom="@dimen/_12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:scaleType="center"
+                        android:src="@drawable/hall" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/storeRoom"
+                    android:layout_width="@dimen/_160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_10dp"
+                    android:background="@drawable/select_device_unselected_bg"
+                    android:orientation="vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <ImageView
+                        android:id="@+id/store"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+
+                        android:scaleType="center"
+                        android:src="@drawable/storeroom" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/customName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_36dp"
+            android:layout_marginEnd="@dimen/_16dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/header_title"
+            app:layout_constraintStart_toStartOf="@+id/header_title"
+            app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:id="@+id/selectImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Select Image from Gallery" />
+            <ImageView
+
+                android:id="@+id/selectedImageView"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
+                android:src="@drawable/baseline_image_search_24" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/next_button"
+            style="@style/PrimaryButton"
+            android:layout_width="@dimen/_222dp"
+            android:layout_height="@dimen/_44dp"
+            android:layout_marginStart="@dimen/_100dp"
+            android:layout_marginBottom="@dimen/_10dp"
+            android:background="@drawable/primary_button_background_selector"
+            android:text="@string/next"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/skipButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"/>
+
+
+        <Button
+            android:id="@+id/skipButton"
+            style="@style/PrimaryWhiteButton"
+            android:layout_width="@dimen/_210dp"
+            android:layout_height="@dimen/_53dp"
+            android:layout_marginBottom="@dimen/_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/next_button"
+            app:layout_constraintStart_toStartOf="@+id/next_button"
+            android:text="@string/cancel"
+            tools:text="@string/skip" />
+
+    </android.support.constraint.ConstraintLayout>
+    </ScrollView>
+</layout>

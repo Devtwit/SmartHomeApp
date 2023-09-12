@@ -1,13 +1,10 @@
 package Adapter
 
 import AwsConfigThing.AwsConfigClass
-import AwsConfigThing.AwsConfigConstants.Companion.GET_CONFIG
 import Data.ResponseData
 import DatabaseHelper
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.res.Resources
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.support.v7.widget.CardView
 import android.util.Log
@@ -78,7 +75,21 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
 
         viewHolder.cardColor(responseData.address.equals(receivedNearestDeviceName))
-        viewHolder.setImage(responseData.location)
+        val dbHelper = DatabaseHelper(parent.context)
+//        dbHelper.updateLocationImage(responseData.address,dbHelper.getImageByAddress(responseData.address)!!)
+        if(!dbHelper.isImageNullOrMissing(responseData.address)) {
+//            if (dbHelper.getImageByAddress(responseData.address).toString().equals(null)) {
+//                viewHolder.setImage(responseData.location)
+//            } else {
+                viewHolder.setImageBitMap(
+                    responseData.location,
+                    dbHelper.getImageByAddress(responseData.address)!!
+                )
+//            }
+        } else{
+//            dbHelper.updateLocationImageByAddress(responseData.address,R.drawable.poojadiya)
+            viewHolder.setImage(responseData.location)
+        }
         return view
     }
     fun updateData(newData: List<ResponseData>) {
@@ -125,6 +136,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                    selectedImg.setBackgroundResource(R.drawable.storeroom)}
                "Study Room" ->{
                    messageTextView.text= name
+//                   selectedImg.setBackgroundResource(R.drawable.study)}
                    selectedImg.setBackgroundResource(R.drawable.study)}
                "Bed Room" ->{
                    messageTextView.text= name
@@ -139,6 +151,35 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                    messageTextView.text= name
                    selectedImg.setBackgroundResource(R.drawable.other)}
            }
+
+        }
+        fun setImageBitMap(name: String,locationImg: Bitmap){
+            when(name){
+                "Hall" ->{
+                    messageTextView.text= name
+                    selectedImg.setImageBitmap(locationImg)
+                }
+                "Store Room" -> {
+                    messageTextView.text = name
+                    selectedImg.setImageBitmap(locationImg)
+                }
+                "Study Room" ->{
+                    messageTextView.text= name
+//                   selectedImg.setBackgroundResource(R.drawable.study)}
+                    selectedImg.setImageBitmap(locationImg)}
+                "Bed Room" ->{
+                    messageTextView.text= name
+                    selectedImg.setImageBitmap(locationImg)}
+                "Pooja Room" ->{
+                    messageTextView.text= name
+                    selectedImg.setImageBitmap(locationImg)}
+                "Kitchen" ->{
+                    messageTextView.text= "Kitchen"
+                    selectedImg.setImageBitmap(locationImg)}
+                else ->{
+                    messageTextView.text= name
+                    selectedImg.setImageBitmap(locationImg)}
+            }
 
         }
     }

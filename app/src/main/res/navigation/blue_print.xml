@@ -69,6 +69,9 @@
         <action
             android:id="@+id/action_dataBaseUpdateFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_dataBaseUpdateFragment_to_changeIconFragment"
+            app:destination="@id/changeIconFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeNameFragment"
@@ -116,5 +119,16 @@
         <action
             android:id="@+id/action_informationFragment_to_searchLocationFragment"
             app:destination="@id/searchLocationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeIconFragment"
+        android:name="com.example.bthome.fragments.ChangeIconFragment"
+        android:label="ChangeIconFragment" >
+        <action
+            android:id="@+id/action_changeIconFragment_to_dataBaseUpdateFragment"
+            app:destination="@id/dataBaseUpdateFragment" />
+        <action
+            android:id="@+id/action_changeIconFragment_to_addBleDeviceFragment"
+            app:destination="@id/addBleDeviceFragment" />
     </fragment>
 </navigation>

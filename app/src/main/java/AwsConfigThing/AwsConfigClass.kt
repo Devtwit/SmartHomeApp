@@ -13,6 +13,8 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Handler
 import android.support.v4.app.NotificationCompat
@@ -26,7 +28,10 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
 import com.example.bthome.R
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.IOException
 import java.io.UnsupportedEncodingException
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.UUID
 
 /*
@@ -119,7 +124,19 @@ class AwsConfigClass() {
             Log.e(TAG, "Subscription error.", e)
         }
     }
+    private fun loadImageFromUrl(imageUrl: String): Bitmap? {
+        try {
+            val url = URL(imageUrl)
+            val connection = url.openConnection() as HttpURLConnection
+            connection.connect()
 
+            val inputStream = connection.inputStream
+            return BitmapFactory.decodeStream(inputStream)
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+        return null
+    }
     private fun handleAcknowledgment(json: String, context: Context?) {
         Log.d(TAG, "$json: Acknowledgment received")
         val responseData = parseResponseJson(json)
@@ -130,6 +147,7 @@ class AwsConfigClass() {
 
         val dbHelper = DatabaseHelper(context)
         dbHelper.insertData(location, devices)
+//        dbHelper.insertDataWithImage(location,devices,loadImageFromUrl("C:\\Users\\deswami\\BtHome2\\app\\src\\main\\res\\drawable\\gbulb.webp")!!)
 
         val initialData = dbHelper.getAllResponseData()
 

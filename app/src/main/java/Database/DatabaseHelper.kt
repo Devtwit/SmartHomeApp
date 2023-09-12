@@ -4,7 +4,11 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.apkContext
+import java.io.ByteArrayOutputStream
 
 class DatabaseHelper(context: Context?) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -12,7 +16,7 @@ class DatabaseHelper(context: Context?) :
     override fun onCreate(db: SQLiteDatabase) {
         val createLocationTable =
             "CREATE TABLE $TABLE_LOCATION ($COLUMN_LOCATION_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                    "$COLUMN_LOCATION_NAME TEXT, $COLUMN_LOCATION_ADDRESS TEXT UNIQUE)"
+                    "$COLUMN_LOCATION_NAME TEXT, $COLUMN_LOCATION_ADDRESS TEXT UNIQUE, $COLUMN_IMAGE BLOB)"
 
         val createDeviceTable =
             "CREATE TABLE $TABLE_DEVICE ($COLUMN_DEVICE_ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -22,6 +26,85 @@ class DatabaseHelper(context: Context?) :
 
         db.execSQL(createLocationTable)
         db.execSQL(createDeviceTable)
+    }
+
+    fun insertDataWithImage(location: String, devices: Map<String, Map<String, Any>>, imageBitmap: Bitmap) {
+        val db = this.writableDatabase
+        db.beginTransaction()
+        try {
+            // Insert or retrieve the location ID
+            val locationData = location.split(" ")
+            val name = locationData[0]
+            val address = locationData[0]
+
+            // Convert the Bitmap image to a byte array
+            val imageByteArray = convertBitmapToByteArray(imageBitmap)
+
+            // Insert or retrieve the location ID
+            var customName = getLocationNameByAddress(address)
+
+            if (customName.isNullOrBlank()) {
+                customName = "BT-Beacon_room1"
+            }
+            val locationId = insertLocationWithImage(db, customName!!, address, imageByteArray)
+
+            // Insert devices for the location
+            for ((deviceName, deviceData) in devices) {
+                val status = deviceData["status"] as? String
+                val ack = deviceData["ack"] as? String
+                val errorMessage = deviceData["err_msg"] as? String
+
+                val contentValues = ContentValues()
+                contentValues.put(COLUMN_LOCATION_ID, locationId)
+                contentValues.put(COLUMN_DEVICE_NAME, deviceName)
+                contentValues.put(COLUMN_STATUS, status)
+                contentValues.put(COLUMN_ACK, ack)
+                contentValues.put(COLUMN_ERROR_MESSAGE, errorMessage)
+
+                db.insert(TABLE_DEVICE, null, contentValues)
+            }
+
+            db.setTransactionSuccessful()
+        } catch (e: Exception) {
+            Log.e(TAG, "Error inserting data.", e)
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
+    }
+    private fun convertBitmapToByteArray(bitmap: Bitmap): ByteArray {
+        val stream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+        return stream.toByteArray()
+    }
+
+    private fun insertLocationWithImage(db: SQLiteDatabase, name: String, address: String, image: ByteArray): Long {
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_LOCATION_NAME, name)
+        contentValues.put(COLUMN_LOCATION_ADDRESS, address)
+        contentValues.put(COLUMN_IMAGE, image)
+
+        val existingLocationId = db.query(
+            TABLE_LOCATION,
+            arrayOf(COLUMN_LOCATION_ID),
+            "$COLUMN_LOCATION_NAME=? AND $COLUMN_LOCATION_ADDRESS=?",
+            arrayOf(name, address),
+            null,
+            null,
+            null
+        )
+
+        return if (existingLocationId.moveToFirst()) {
+            // Location already exists, return its ID
+            val locationId = existingLocationId.getLong(existingLocationId.getColumnIndex(COLUMN_LOCATION_ID))
+            existingLocationId.close()
+            locationId
+        } else {
+            // Location doesn't exist, insert it and return the new ID
+            val newLocationId = db.insert(TABLE_LOCATION, null, contentValues)
+            existingLocationId.close()
+            newLocationId
+        }
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -114,6 +197,32 @@ class DatabaseHelper(context: Context?) :
 
         return responseDataList
     }
+    fun updateLocationImageByAddress(address: String, imageResource: Int): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        val imageBitmap = BitmapFactory.decodeResource(apkContext.resources, imageResource)
+        contentValues.put(COLUMN_IMAGE, convertBitmapToByteArray(imageBitmap))
+
+        val updatedRows = db.update(TABLE_LOCATION, contentValues, "$COLUMN_LOCATION_ADDRESS=?", arrayOf(address))
+
+//        db.close()
+
+        return updatedRows > 0
+    }
+    fun isImageNullOrMissing(address: String): Boolean {
+        val db = this.readableDatabase
+        val query = "SELECT $COLUMN_IMAGE FROM $TABLE_LOCATION WHERE $COLUMN_LOCATION_ADDRESS = ?"
+        val selectionArgs = arrayOf(address)
+
+        val cursor = db.rawQuery(query, selectionArgs)
+        val isNullOrMissing = !cursor.moveToFirst() || cursor.isNull(cursor.getColumnIndex(COLUMN_IMAGE))
+
+//        cursor.close()
+//        db.close()
+
+        return isNullOrMissing
+    }
+
 
     @SuppressLint("Range")
     private fun getDevicesForLocation(db: SQLiteDatabase, locationId: Long): Map<String, Map<String, Any>> {
@@ -187,6 +296,7 @@ class DatabaseHelper(context: Context?) :
         private const val COLUMN_STATUS = "status"
         private const val COLUMN_ACK = "ack"
         private const val COLUMN_ERROR_MESSAGE = "error_message"
+        private val COLUMN_IMAGE = "image"
         val TAG = DatabaseHelper::class.java.simpleName
     }
     fun updateLocationName(oldName: String, newName: String): Boolean {
@@ -199,6 +309,41 @@ class DatabaseHelper(context: Context?) :
 
         return updatedRows > 0
     }
+
+    fun updateLocationImage(address: String, newImageBitmap: Bitmap): Boolean {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+        contentValues.put(COLUMN_IMAGE, convertBitmapToByteArray(newImageBitmap))
+
+        val updatedRows = db.update(TABLE_LOCATION, contentValues, "$COLUMN_LOCATION_ADDRESS=?", arrayOf(address))
+
+        db.close()
+
+        return updatedRows > 0
+    }
+
+    fun getImageByAddress(address: String): Bitmap? {
+        val db = this.readableDatabase
+        val query = "SELECT $COLUMN_IMAGE FROM $TABLE_LOCATION WHERE $COLUMN_LOCATION_ADDRESS = ?"
+        val selectionArgs = arrayOf(address)
+        var imageBitmap: Bitmap? = null
+
+        val cursor = db.rawQuery(query, selectionArgs)
+
+        if (cursor.moveToFirst()) {
+            val imageByteArray = cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE))
+            if (imageByteArray.equals(null)) {
+                imageBitmap = null
+            } else {
+                imageBitmap = BitmapFactory.decodeByteArray(imageByteArray, 0, imageByteArray.size)
+            }
+        }
+//        cursor.close()
+//        db.close()
+
+        return imageBitmap
+    }
+
 
     fun deleteLocation(oldName: String): Boolean {
         val db = this.writableDatabase
