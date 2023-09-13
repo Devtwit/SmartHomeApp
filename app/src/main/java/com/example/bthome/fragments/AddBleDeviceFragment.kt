@@ -36,6 +36,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 
     var awsConfig: AwsConfigClass? = null
 
+
     private lateinit var binding: FragmentAddBleDeviceBinding
     private lateinit var viewModel: AddBleDeviceViewModel
 
@@ -61,7 +62,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         var processedScanResultIndex = 0
         var publishStatus: String = "status"
         lateinit var apkContext: Context
-
+        private val TAG = AddBleDeviceFragment::class.java.simpleName
 
         @SuppressLint("StaticFieldLeak")
         lateinit var dialog: CustomDialog
@@ -122,10 +123,10 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 
     private fun setUpListener() {
         binding.dotbutton.setOnClickListener {
-            Log.d("selectedDevices", "Button Clicked")
+            Log.d(TAG, "Button Clicked")
             viewModel.showLocationDialog(requireContext(),awsConfig)
         }
-        Log.d("selectedDevices", "$selectedDevices")
+        Log.d(TAG, "$selectedDevices")
         binding.moreButton.setOnClickListener {
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_addBleDeviceFragment_to_moreFragment)
@@ -160,12 +161,12 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
             // Check the stored devices
             checkStoredDevices()
         } else {
-            Log.d("StoredDevices", "No devices stored.")
+            Log.d(TAG, "No devices stored.")
         }
     }
 
     fun blueTooth() {
-        Log.d("Permission", "Required Permission : ${permissions.size}")
+        Log.d(TAG, "Required Permission : ${permissions.size}")
         permissionHandler.requestMultiplePermissions(permissions, REQUEST_PERMISSION_CODE)
         permissionHandler.checkStatuses()
         if (permissionHandler.isAllPermissionsEnabled()) {
@@ -179,7 +180,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     override fun onItemClick(itemId: Long) {
         MoreFragment.idValue = itemId
         // Handle the item click here
-        Log.d("MainActivity", "Clicked item ID: $itemId")
+        Log.d(TAG, "Clicked item ID: $itemId")
         Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
             .navigate(R.id.action_addBleDeviceFragment_to_bleScanResultFragment)
 
@@ -194,7 +195,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 
     override fun onResume() {
         super.onResume()
-        Log.d("Main activity", "on resume")
+        Log.d(TAG, "on resume")
         blueTooth()
         setupGridView()
         checkPreferedData()
@@ -205,7 +206,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         val responseDataList = dbHelper.getAllResponseData()
         responseAdapter = ResponseAdapter(responseDataList, this, awsConfig!!)
 //        responseAdapter = ResponseAdapter(responseDataList,this)
-        Log.d("responseDataList", "$responseDataList")
+        Log.d(TAG, "$responseDataList")
         binding.gridView.adapter = responseAdapter
 
     }
@@ -217,9 +218,9 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         if (json != null) {
             val type = object : TypeToken<List<DeviceSelection>>() {}.type
             val storedDevices = gson.fromJson<List<DeviceSelection>>(json, type)
-            Log.d("StoredDevices", storedDevices.toString())
+            Log.d(TAG, storedDevices.toString())
         } else {
-            Log.d("StoredDevices", "No devices stored.")
+            Log.d(TAG, "No devices stored.")
         }
     }
 
@@ -227,7 +228,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         setupGridView()
         processedScanResultIndex =
             viewModel.precessScanResult(mScanResult!!, result!!, awsConfig, requireContext())
-        Log.d("POSITION ", "" + processedScanResultIndex)
+        Log.d( TAG, "" + processedScanResultIndex)
 
     }
 

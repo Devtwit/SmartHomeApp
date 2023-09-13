@@ -151,7 +151,7 @@ class AwsConfigClass() {
 
         val initialData = dbHelper.getAllResponseData()
 
-        Log.d("Response dataUI"," ${initialData.toMutableList()}")
+        Log.d(TAG," ${initialData.toMutableList()}")
         var adapter  = RoomAdapter(initialData.toMutableList(), this)
         adapter.updateUI(initialData.toMutableList())
         adapter.notifyDataSetChanged()

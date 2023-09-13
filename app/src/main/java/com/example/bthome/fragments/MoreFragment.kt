@@ -9,6 +9,7 @@ import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,7 @@ class MoreFragment : Fragment(), ItemClickListener {
     var awsConfig: AwsConfigClass? = null
 
     companion object {
+        private val TAG = MoreFragment::class.java.simpleName
         lateinit var responseAdapter: MoreScreenAdapter
         var idValue: Long = 0
     }
@@ -98,6 +100,7 @@ class MoreFragment : Fragment(), ItemClickListener {
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "On Resume")
         setUpListener()
     }
 }

@@ -119,14 +119,14 @@ class DatabaseHelper(context: Context?) :
         try {
             // Insert or retrieve the location ID
 //            val locationId = insertLocation(db, location)
-            Log.d("locationData","$location")
+            Log.d(TAG,"$location")
             val locationData = location.split(" ")
             val name = locationData[0]
             val address = locationData[0]
-            Log.d("locationData"," : location $location name :  $name  address : $address" )
+            Log.d(TAG," : location $location name :  $name  address : $address" )
             // Insert or retrieve the location ID
             var customName= getLocationNameByAddress(address)
-            Log.d("locationData"," : location $location name :  $name  address : $address customName : $customName"  )
+            Log.d(TAG," : location $location name :  $name  address : $address customName : $customName"  )
             if(customName.isNullOrBlank()){
                 customName="BT-Beacon_room1"
             }
@@ -186,8 +186,8 @@ class DatabaseHelper(context: Context?) :
                 val locationId = cursor.getLong(cursor.getColumnIndex(COLUMN_LOCATION_ID))
                 val locationName = cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION_NAME))
                 val locationAddress = cursor.getString(cursor.getColumnIndex(COLUMN_LOCATION_ADDRESS))
-              Log.d("GETALL RESPONCE",locationName)
-              Log.d("GETALL RESPONCE",locationAddress)
+              Log.d(TAG,locationName)
+              Log.d(TAG,locationAddress)
                 val devices = getDevicesForLocation(db, locationId)
 
                 val responseData = ResponseData(locationName, devices,locationAddress)
@@ -303,7 +303,7 @@ class DatabaseHelper(context: Context?) :
         val db = this.writableDatabase
         val contentValues = ContentValues()
         contentValues.put(COLUMN_LOCATION_NAME, newName)
-        Log.d("GETALL RESPONCE POSITION",oldName)
+        Log.d(TAG,oldName)
         val updatedRows = db.update(TABLE_LOCATION, contentValues, "$COLUMN_LOCATION_ADDRESS=?", arrayOf(oldName))
 //        db.close()
 

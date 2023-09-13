@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,7 +21,7 @@ import com.example.bthome.viewModels.ChangeNameViewModel
 class ChangeNameFragment : Fragment() {
 
     companion object {
-        fun newInstance() = ChangeNameFragment()
+        private val TAG = ChangeNameFragment::class.java.simpleName
     }
 
     private lateinit var binding: FragmentChangeNameBinding
@@ -49,6 +50,7 @@ class ChangeNameFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "On Resume")
         setUpListener()
     }
 

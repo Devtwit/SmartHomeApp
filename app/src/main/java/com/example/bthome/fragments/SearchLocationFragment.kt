@@ -28,6 +28,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     companion object {
         lateinit var scannedResult: String
         lateinit var selectedRoom: String
+        private val TAG = SearchLocationFragment::class.java.simpleName
     }
 
     private lateinit var binding: FragmentSearchLocationBinding
@@ -91,7 +92,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             binding.loadingContainer.visibility = View.GONE
             // Publish the scanned data to the MQTT topic
             val topic = AwsConfigConstants.SET_CONFIG // Replace with your desired MQTT topic
-            Log.d("SearchLocation", "else on button click")
+            Log.d(TAG, "else on button click")
 //                awsConfig!!.publishData(scannedResult, topic)
             awsConfig!!.publishDeviceName(scannedResult)
 
@@ -125,22 +126,22 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     override fun onResume() {
         super.onResume()
         handleBlueTooth()
-//        binding.startButton.visibility = View.VISIBLE
+        Log.d(TAG, "On Resume")
         setUpListener()
 
     }
 
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
         binding.loadingContainer.visibility = View.GONE
-        Log.d("SearchLocation", "scanCompleted")
+        Log.d(TAG, "scanCompleted")
         if (result != null) {
-            Log.d("SearchLocation", "scanCompleted null")
+            Log.d(TAG, "scanCompleted null")
             if (result.device.name == null) {
                 binding.foundDevice.text = "BT_ER3C"
                 selectedRoom = result.device.address
 //                scannedResult = "BT-Beacon_room1 " + result.device.address
                 scannedResult = "BT-Beacon_room1"
-                Log.d("SearchLocation", "scanCompleted $scannedResult")
+                Log.d(TAG, "scanCompleted $scannedResult")
             } else {
                 binding.foundDevice.text = result.device.name
                 selectedRoom = result.device.address
@@ -150,7 +151,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             }
 
         }
-        Log.d("SearchLocation", "scanCompleted null found")
+        Log.d(TAG, "scanCompleted null found")
 //        scannedResult= ""
         binding.foundDevice.visibility = View.VISIBLE
         binding.nextButton.visibility = View.VISIBLE

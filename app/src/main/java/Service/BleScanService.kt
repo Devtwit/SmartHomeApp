@@ -47,7 +47,7 @@ class BleScanService : JobService() {
     companion object {
         //        private const val UUID_FILTER = "Your_UUID_Filter" // Replace with your specific UUID
         const val NOTIFICATION_CHANNEL_ID = "BleScanServiceChannel"
-        private const val TAG = "BleScanService"
+        val TAG = BleScanService::class.java.simpleName
 
         const val NOTIFICATION_ID = 1
         const val ALARM_INTERVAL_MILLIS =

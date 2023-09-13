@@ -53,14 +53,17 @@ class BleScanResultFragment : Fragment() {
         binding.scanResultRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         val dbHelper = DatabaseHelper(requireContext())
         val responseDataList = dbHelper.getAllResponseData()
-        Log.d("Responce", "${responseDataList}")
+        Log.d(TAG, "${responseDataList}")
         adapter = RoomAdapter(responseDataList, awsConfig!!)
         binding.scanResultRecyclerView.adapter = adapter
     }
 
     override fun onResume() {
         super.onResume()
+        Log.d(TAG, "on Resume")
         updateDataBase()
     }
-
+companion object{
+    private val TAG = BleScanResultFragment::class.java.simpleName
+}
 }

@@ -22,7 +22,7 @@ import com.example.bthome.viewModels.DataBaseUpdateViewModel
 class DataBaseUpdateFragment : Fragment() {
 
     companion object {
-        fun newInstance() = DataBaseUpdateFragment()
+        private val TAG = DataBaseUpdateFragment::class.java.simpleName
     }
     private var customPopUp: BottomSheetDialog? = null
     private lateinit var binding: FragmentDataBaseUpdateBinding
@@ -43,7 +43,7 @@ private  fun initialize(){
     viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
         DataBaseUpdateViewModel::class.java)
     binding.viewModel = viewModel
-    Log.d("item clicked",idValue.toString())
+    Log.d(TAG,idValue.toString())
 
     customPopUp = BottomSheetDialog(requireContext())
 }
@@ -60,7 +60,7 @@ private  fun initialize(){
 
         binding.layout.setOnClickListener{
             Log.d(
-                "MainActivity",
+                TAG,
                 "ON DELETE + ${AddBleDeviceFragment.responseAdapter.getString(idValue.toInt()).toString()}"
             )
 

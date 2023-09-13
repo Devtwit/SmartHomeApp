@@ -28,7 +28,7 @@ class NotificationButtonReceiver : BroadcastReceiver() {
         when (action) {
 
             ACTION_BUTTON_1 -> {
-                Log.d("NotificationButtonReceiver", "Button1")
+                Log.d(TAG, "Button1")
                 updatedRemoteViews.setInt(R.id.button1, "setTextColor", Color.GRAY)
                 updatedRemoteViews.setTextViewText(
                     R.id.notificationText,
@@ -54,7 +54,7 @@ class NotificationButtonReceiver : BroadcastReceiver() {
             }
 
             ACTION_BUTTON_2 -> {
-                Log.d("NotificationButtonReceiver", "Button2")
+                Log.d(TAG, "Button2")
 
                 updatedRemoteViews.setInt(R.id.button1, "setTextColor", Color.GRAY)
                 updatedRemoteViews.setTextViewText(
@@ -80,7 +80,7 @@ class NotificationButtonReceiver : BroadcastReceiver() {
             }
 
             ACTION_BUTTON_3 -> {
-                Log.d("NotificationButtonReceiver", "Button3")
+                Log.d(TAG, "Button3")
                 updatedRemoteViews.setInt(R.id.button2, "setTextColor", Color.GRAY)
                 updatedRemoteViews.setTextViewText(
                     R.id.notificationText,
@@ -106,7 +106,7 @@ class NotificationButtonReceiver : BroadcastReceiver() {
             }
 
             ACTION_BUTTON_4 -> {
-                Log.d("NotificationButtonReceiver", "Button4")
+                Log.d(TAG, "Button4")
                 updatedRemoteViews.setInt(R.id.button2, "setTextColor", Color.GRAY)
                 updatedRemoteViews.setTextViewText(
                     R.id.notificationText,
@@ -150,6 +150,7 @@ class NotificationButtonReceiver : BroadcastReceiver() {
         const val ACTION_BUTTON_2 = "ACTION_BUTTON_2"
         const val ACTION_BUTTON_3 = "ACTION_BUTTON_3"
         const val ACTION_BUTTON_4 = "ACTION_BUTTON_4"
+        val TAG = NotificationButtonReceiver::class.java.simpleName
         const val DELAY_TIME_IN_MILLIS = 1000 // Adjust the delay time as needed (in milliseconds)
     }
 }

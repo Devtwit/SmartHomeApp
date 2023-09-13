@@ -10,6 +10,7 @@ import android.provider.MediaStore
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
@@ -40,7 +41,7 @@ class ChangeIconFragment : Fragment() {
     }
     override fun onResume() {
         super.onResume()
-
+        Log.d(TAG, "On Resume")
         setUpListener()
     }
     private val SELECT_IMAGE_REQUEST_CODE = 101
@@ -51,7 +52,9 @@ class ChangeIconFragment : Fragment() {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
         return stream.toByteArray()
     }
-
+companion object{
+    private val TAG = ChangeIconFragment::class.java.simpleName
+}
 
     private val CROP_IMAGE_REQUEST_CODE = 102
 

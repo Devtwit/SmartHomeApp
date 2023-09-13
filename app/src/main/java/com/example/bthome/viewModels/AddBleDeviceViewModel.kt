@@ -26,11 +26,15 @@ import com.example.bthome.fragments.AddBleDeviceFragment
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isFanPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isLightPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.publishStatus
+import com.example.bthome.fragments.SearchLocationFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class AddBleDeviceViewModel :ViewModel(){
     private val selectedDevices = mutableListOf<DeviceSelection>()
+    companion object{
+        private val TAG = AddBleDeviceViewModel::class.java.simpleName
+    }
     @SuppressLint("SuspiciousIndentation")
     fun precessScanResult(
         mScanResult: java.util.ArrayList<ScanResult>,
@@ -45,10 +49,10 @@ class AddBleDeviceViewModel :ViewModel(){
         //if different update device
         val dbHelper = DatabaseHelper(context)
         val initialData = dbHelper.getAllResponseData()
-        Log.d("Response Data list"," $responseDataList")
-        Log.d("Response Data list initialData"," ${initialData} ${initialData.isNotEmpty()}")
+        Log.d(TAG," $responseDataList")
+        Log.d(TAG," ${initialData} ${initialData.isNotEmpty()}")
         if(initialData.isNotEmpty())
-        Log.d("Response Data list initialData"," ${initialData.get(0).location}")
+        Log.d(TAG," ${initialData.get(0).location}")
 
         for (i in mScanResult.indices) {
 
@@ -61,7 +65,7 @@ class AddBleDeviceViewModel :ViewModel(){
         }
 
         if (!hasDeviceInRange) {
-            Log.d("Range_No ", "" + result.rssi + " " + publishStatus)
+            Log.d(TAG, "" + result.rssi + " " + publishStatus)
             AddBleDeviceFragment.receivedNearestDeviceName = ""
 //            aws!!.publishData("No device found", AwsConfigConstants.SET_CONFIG)
             if(initialData.isNotEmpty()) {
@@ -76,24 +80,24 @@ class AddBleDeviceViewModel :ViewModel(){
 //          else{
                 if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
 //              if(initialData.get(0).location.equals("BT-Beacon_room1")) {
-                Log.d("Range has device ", "" + result.rssi + " " + publishStatus)
+                Log.d(TAG, "" + result.rssi + " " + publishStatus)
 //            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
 //                if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
 //                    aws!!.publishDeviceName("BT-Beacon_room1")
 
                     if(isFanPref && isLightPref){
-                        Log.d("SelectedDevices", "Both Fan and Light selected")
+                        Log.d(TAG, "Both Fan and Light selected")
                         aws!!.publishDeviceName("BT-Beacon_room1")
                     } else if(isLightPref){
-                        Log.d("SelectedDevices", "Only Light selected")
+                        Log.d(TAG, "Only Light selected")
 //                        aws!!.publishDeviceNameLightOn("BT-Beacon_room1")
                         aws!!.publishDeviceTurnOnLight("BT-Beacon_room1")
                     } else if(isFanPref){
-                        Log.d("SelectedDevices", "Only Fan selected")
+                        Log.d(TAG, "Only Fan selected")
 //                        aws!!.publishDeviceNameFanOn("BT-Beacon_room1")
                         aws!!.publishDeviceTurnOnFan("BT-Beacon_room1")
                     } else{
-                        Log.d("SelectedDevices", "Not selected")
+                        Log.d(TAG, "Not selected")
 //                        aws!!.publishDeviceName("BT-Beacon_room1")
                         aws!!.publishDeviceNameOff("BT-Beacon_room1")
                     }
@@ -170,13 +174,7 @@ class AddBleDeviceViewModel :ViewModel(){
             }
 
         }
-//        if (lightisSelected) {
-//            lightItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.selected_device_orange))
-//            lightImageButton!!.setImageResource(R.drawable.baseline_lightbulb_black)
-//        } else {
-//            lightItemLayout.setBackground(ContextCompat.getDrawable(context, R.drawable.select_device_unselected_bg))
-//            lightImageButton!!.setImageResource(R.drawable.custom_checkbox_light)
-//        }
+
 
         dialog.findViewById<Button>(R.id.okButton)!!.setOnClickListener {
             // Update the selectedDevices list with the new selections
