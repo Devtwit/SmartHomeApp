@@ -122,7 +122,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     }
 
     private fun setUpListener() {
-        binding.dotbutton.setOnClickListener {
+        binding.fab.setOnClickListener {
             Log.d(TAG, "Button Clicked")
             viewModel.showLocationDialog(requireContext(),awsConfig)
         }

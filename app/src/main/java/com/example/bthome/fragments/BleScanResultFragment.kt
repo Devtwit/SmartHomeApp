@@ -14,6 +14,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
 import com.example.bthome.R
 import com.example.bthome.databinding.FragmentBleScanResultBinding
 import com.example.bthome.viewModels.BleScanResultViewModel
@@ -62,6 +63,9 @@ class BleScanResultFragment : Fragment() {
         super.onResume()
         Log.d(TAG, "on Resume")
         updateDataBase()
+        binding.imageButton.setOnClickListener{
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+        }
     }
 companion object{
     private val TAG = BleScanResultFragment::class.java.simpleName
