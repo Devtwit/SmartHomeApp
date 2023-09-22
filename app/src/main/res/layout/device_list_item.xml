@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!-- device_list_item.xml -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Display the device name -->
+<!--        <TextView-->
+<!--            android:id="@+id/deviceName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Device Name"-->
+<!--            android:textSize="18sp"-->
+<!--            android:textStyle="bold" />-->
+
+        <!-- Display additional device information -->
+        <TextView
+            android:id="@+id/deviceInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_15dp"
+            android:text="Device Info"
+            android:textSize="20sp" />
+
+        <!-- Add any other UI elements or data you want to display for each device -->
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

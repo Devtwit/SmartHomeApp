@@ -7,12 +7,16 @@ import Bluetooth.HandleBluetooth
 import Bluetooth.LeScanCallback
 import Data.DeviceSelection
 import DatabaseHelper
+import Service.FloatingWidgetService
 import android.Manifest
 import android.annotation.SuppressLint
 import android.arch.lifecycle.ViewModelProvider
 import android.bluetooth.le.ScanResult
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.KeyEvent
@@ -192,14 +196,47 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
             .navigate(R.id.action_addBleDeviceFragment_to_dataBaseUpdateFragment)
     }
-
+    private val overlayPermissionRequestCode = 101 // You can choose any request code
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "on resume")
         blueTooth()
         setupGridView()
         checkPreferedData()
+
+
+// Check if the permission is granted
+        if (!Settings.canDrawOverlays(requireContext())) {
+            // Permission is not granted, request it
+            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+            intent.data = Uri.parse("package:${requireActivity().packageName}")
+            startActivityForResult(intent, overlayPermissionRequestCode)
+        } else {
+            // Permission is already granted, initialize the floating widget
+            startFloatingWidgetService()
+        }
+//        startFloatingWidgetService()
+
     }
+    private fun startFloatingWidgetService() {
+        val intent = Intent(requireContext(), FloatingWidgetService::class.java)
+        requireActivity().startService(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == overlayPermissionRequestCode) {
+            if (Settings.canDrawOverlays(requireContext())) {
+                // Permission has been granted, initialize the floating widget
+                startFloatingWidgetService()
+            } else {
+                // Permission was not granted by the user
+                // You can show a message or take appropriate action here
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
 
     fun setupGridView() {
         val dbHelper = DatabaseHelper(activity!!.applicationContext)
