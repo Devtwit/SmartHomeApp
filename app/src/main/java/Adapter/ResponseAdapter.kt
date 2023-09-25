@@ -6,6 +6,8 @@ import DatabaseHelper
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.CardView
 import android.util.Log
 import android.view.LayoutInflater
@@ -16,6 +18,7 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import com.example.bthome.R
+import com.example.bthome.fragments.AddBleDeviceFragment.Companion.apkContext
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
 
 interface ItemClickListener {
@@ -102,6 +105,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         private val addressTextView: TextView = view.findViewById(R.id.address)
         private val cardView: CardView = view.findViewById(R.id.card)
         private val selectedImg: ImageView = view.findViewById(R.id.selectedImg)
+        private val selectedImgBlack: ImageView = view.findViewById(R.id.selectedImgBack)
 
 
         fun bind(responseData: ResponseData) {
@@ -114,15 +118,41 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
             if(isNear){
                 Log.d("isNear", receivedNearestDeviceName )
                 Log.d("isNear", isNear.toString())
-                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
-                cardView.setBackgroundResource(R.drawable.select_device_selected_bg)
+//                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
+                cardView.setCardBackgroundColor(Color.parseColor("#424358")) // Set your desired background color here
+//                cardView.setCardBackgroundColor(Color.parseColor("#424000")) // Set your desired background color here
+                selectedImg.visibility = View.VISIBLE
+                selectedImgBlack.visibility = View.GONE
+//                cardView.setBackgroundResource(R.drawable.select_device_selected_bg)
             } else {
                 Log.d("isNear", receivedNearestDeviceName )
                 Log.d("isNear", isNear.toString())
-                cardView.setBackgroundColor(Color.WHITE)
-                cardView.setBackgroundResource(R.drawable.selected_device_orange)
+//                cardView.setBackgroundColor(Color.parseColor("#424358"))
+//                cardView.setCardBackgroundColor(Color.parseColor("#424358"))
+//                cardView.setCardBackgroundColor(Color.parseColor("#B5BCDA"))
+                cardView.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
+                selectedImg.visibility = View.GONE
+                selectedImgBlack.visibility = View.VISIBLE
+
+                messageTextView.setTextColor(Color.parseColor("#FF00083A"))
+////                val circleImageView = findViewById<CircleImageView>(R.id.selectedImg)
+//                val borderColor = ContextCompat.getColor(apkContext, R.color.black) // Change R.color.new_color to the desired color resource
+//
+//// Create a drawable with a border
+//                val drawable = GradientDrawable()
+//                drawable.shape = GradientDrawable.OVAL
+//                drawable.setStroke(2.dpToPx(), borderColor) // You can change the border width as needed
+//
+//// Set the custom drawable as the background
+//                selectedImg.background = drawable
+
            }
         }
+        fun Int.dpToPx(): Int {
+            val scale = apkContext.resources.displayMetrics.density
+            return (this * scale + 0.5f).toInt()
+        }
+
 
 
         fun setImage(name : String){

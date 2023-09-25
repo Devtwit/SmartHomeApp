@@ -21,6 +21,7 @@ import androidx.navigation.Navigation
 
 import com.example.bthome.R
 import com.example.bthome.databinding.FragmentChangeIconBinding
+import com.soundcloud.android.crop.CropImageView
 import java.io.ByteArrayOutputStream
 import java.io.InputStream
 
@@ -70,8 +71,8 @@ companion object{
                 cropIntent.putExtra("crop", "true")
                 cropIntent.putExtra("aspectX", 1)
                 cropIntent.putExtra("aspectY", 1)
-                cropIntent.putExtra("outputX", 250) // Adjust the output size as needed (100x100)
-                cropIntent.putExtra("outputY", 250)
+                cropIntent.putExtra("outputX", 300) // Adjust the output size as needed (100x100)
+                cropIntent.putExtra("outputY", 300)
                 cropIntent.putExtra("return-data", true)
 
                 startActivityForResult(cropIntent, CROP_IMAGE_REQUEST_CODE)
