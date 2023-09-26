@@ -54,7 +54,7 @@
         android:singleLine="false"
         android:background="@color/back_color"
         android:textColor="@color/light_water_"
-        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+        android:fontFamily="@font/segoeui"
         android:textSize="30sp"
         android:text="@string/smart_home"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
@@ -7,53 +8,62 @@
             type="com.example.bthome.viewModels.ChangeIconViewModel" />
     </data>
     <ScrollView
+        android:background="@color/light_water_"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <android.support.constraint.ConstraintLayout
-        xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/white"
+        android:background="@color/light_water_"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragments.ChangeNameFragment">
-
-        <ImageView
-            android:id="@+id/imageButton"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="47dp"
-            android:src="@drawable/img"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/header_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/bg_layout"
+            android:background="@color/back_color"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-            android:gravity="center_vertical"
-            android:lineHeight="40dp"
-            android:lineSpacingExtra="4sp"
-            android:maxLines="3"
-            android:minLines="1"
-            android:paddingStart="55dp"
-            android:paddingTop="@dimen/_55dp"
-            android:paddingBottom="@dimen/_15dp"
-            android:singleLine="false"
-            android:text="Change Icon"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:flow_horizontalAlign="center"
-            app:layout_constraintStart_toEndOf="@+id/imageButton"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:ignore="MissingConstraints">
+
+            <ImageView
+                android:id="@+id/imageButton"
+                android:layout_width="43dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="47dp"
+                android:background="@drawable/back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/header_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/back_color"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center_vertical"
+                android:lineHeight="40dp"
+                android:lineSpacingExtra="4sp"
+                android:maxLines="3"
+                android:minLines="1"
+                android:paddingStart="25dp"
+                android:paddingTop="@dimen/_55dp"
+                android:paddingBottom="@dimen/_15dp"
+                android:singleLine="false"
+                android:text="Change Icon"
+                android:textColor="@color/light_water_"
+                android:textSize="30sp"
+                app:flow_horizontalAlign="center"
+                app:layout_constraintStart_toEndOf="@+id/imageButton"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_20dp"
+            android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/customName">
@@ -61,7 +71,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_22dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -112,7 +121,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_22dp"
+
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -163,7 +172,6 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_22dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -208,15 +216,16 @@
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
+            android:layout_marginTop="@dimen/_15dp"
             android:id="@+id/customName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_36dp"
             android:layout_marginEnd="@dimen/_16dp"
             android:orientation="vertical"
-            app:layout_constraintEnd_toEndOf="@+id/header_title"
-            app:layout_constraintStart_toStartOf="@+id/header_title"
-            app:layout_constraintTop_toBottomOf="@+id/header_title">
+            app:layout_constraintEnd_toEndOf="@+id/bg_layout"
+            app:layout_constraintStart_toStartOf="@+id/bg_layout"
+            app:layout_constraintTop_toBottomOf="@+id/bg_layout">
 
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless"
@@ -235,33 +244,43 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/next_button"
-            style="@style/PrimaryButton"
-            android:layout_width="@dimen/_222dp"
-            android:layout_height="@dimen/_44dp"
-            android:layout_marginStart="@dimen/_100dp"
-            android:layout_marginBottom="@dimen/_10dp"
-            android:background="@drawable/primary_button_background_selector"
-            android:text="@string/next"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/skipButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout3"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
 
-        <Button
-            android:id="@+id/skipButton"
-            style="@style/PrimaryWhiteButton"
-            android:layout_width="@dimen/_210dp"
-            android:layout_height="@dimen/_53dp"
-            android:layout_marginBottom="@dimen/_16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/next_button"
-            app:layout_constraintStart_toStartOf="@+id/next_button"
-            android:text="@string/cancel"
-            tools:text="@string/skip" />
+            <ImageView
+                android:id="@+id/skipButton"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
 
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_background_white"
+                android:padding="@dimen/_5dp"
+                android:src="@drawable/clear"
+                android:text="@string/next"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            <ImageView
+                android:id="@+id/next_button"
+                android:layout_marginStart="@dimen/_50dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_background_white"
+                android:padding="@dimen/_5dp"
+                android:src="@drawable/baseline_next_plan_24"
+                android:text="@string/cancel"
+                app:layout_constraintStart_toEndOf="@+id/next_button"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                tools:text="@string/skip" />
+        </LinearLayout>
     </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </layout>

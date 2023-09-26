@@ -109,6 +109,13 @@ companion object{
             binding.selectedImageView.visibility = View.VISIBLE
 
     }
+        binding.selectedImageView.setOnClickListener {
+            // Open the image picker when the button is clicked
+            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            startActivityForResult(intent, SELECT_IMAGE_REQUEST_CODE)
+            binding.selectedImageView.visibility = View.VISIBLE
+
+        }
                 binding.bedroomlayout.setOnClickListener {
                     binding.bedroom.setBackground(ContextCompat.getDrawable(context!!, R.drawable.selected_device_orange))
                     binding.study.setBackground(ContextCompat.getDrawable(context!!, R.drawable.select_device_unselected_bg))

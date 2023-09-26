@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/monotype_plantin_mt_pro_regular"
             android:gravity="center_vertical"
-            android:background="@color/white"
+            android:background="@color/light_water_"
             android:lineHeight="40dp"
             android:lineSpacingExtra="4sp"
             android:maxLines="3"

@@ -115,7 +115,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         }
 
         fun cardColor(isNear : Boolean){
-            if(isNear){
+            if(!isNear){
                 Log.d("isNear", receivedNearestDeviceName )
                 Log.d("isNear", isNear.toString())
 //                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
@@ -160,26 +160,33 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                "Hall" ->{
                    messageTextView.text= name
                    selectedImg.setBackgroundResource(R.drawable.hall)
+                   selectedImgBlack.setBackgroundResource(R.drawable.hall)
                }
                "Store Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.storeroom)}
+                   selectedImg.setBackgroundResource(R.drawable.storeroom)
+                   selectedImgBlack.setBackgroundResource(R.drawable.storeroom)}
                "Study Room" ->{
                    messageTextView.text= name
 //                   selectedImg.setBackgroundResource(R.drawable.study)}
-                   selectedImg.setBackgroundResource(R.drawable.study)}
+                   selectedImg.setBackgroundResource(R.drawable.study)
+                   selectedImgBlack.setBackgroundResource(R.drawable.study)}
                "Bed Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.bedroom)}
+                   selectedImg.setBackgroundResource(R.drawable.bedroom)
+                   selectedImgBlack.setBackgroundResource(R.drawable.bedroom)}
                "Pooja Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.poojadiya)}
+                   selectedImg.setBackgroundResource(R.drawable.poojadiya)
+                   selectedImgBlack.setBackgroundResource(R.drawable.poojadiya)}
                "Kitchen" ->{
                    messageTextView.text= "Kitchen"
-                   selectedImg.setBackgroundResource(R.drawable.kitchen)}
+                   selectedImg.setBackgroundResource(R.drawable.kitchen)
+                   selectedImgBlack.setBackgroundResource(R.drawable.kitchen)}
                else ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.other)}
+                   selectedImg.setBackgroundResource(R.drawable.other)
+                   selectedImgBlack.setBackgroundResource(R.drawable.other)}
            }
 
         }
@@ -188,27 +195,37 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                 "Hall" ->{
                     messageTextView.text= name
                     selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)
                 }
                 "Store Room" -> {
                     messageTextView.text = name
                     selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)
+
                 }
                 "Study Room" ->{
                     messageTextView.text= name
 //                   selectedImg.setBackgroundResource(R.drawable.study)}
-                    selectedImg.setImageBitmap(locationImg)}
+                    selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)
+                }
+
                 "Bed Room" ->{
                     messageTextView.text= name
-                    selectedImg.setImageBitmap(locationImg)}
+                    selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)}
                 "Pooja Room" ->{
                     messageTextView.text= name
-                    selectedImg.setImageBitmap(locationImg)}
+                    selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)}
                 "Kitchen" ->{
                     messageTextView.text= "Kitchen"
-                    selectedImg.setImageBitmap(locationImg)}
+                    selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)}
                 else ->{
                     messageTextView.text= name
-                    selectedImg.setImageBitmap(locationImg)}
+                    selectedImg.setImageBitmap(locationImg)
+                    selectedImgBlack.setImageBitmap(locationImg)}
             }
 
         }

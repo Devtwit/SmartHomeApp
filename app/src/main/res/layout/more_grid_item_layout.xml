@@ -9,7 +9,7 @@
         android:weightSum="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+        android:background="@color/light_water_"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -31,7 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-medium"
-
+                android:background="@color/light_water_"
                 android:paddingLeft="@dimen/_45dp"
                 android:paddingTop="@dimen/_20dp"
                android:paddingBottom="@dimen/_20dp"

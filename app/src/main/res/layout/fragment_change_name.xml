@@ -9,42 +9,50 @@
     </data>
 
 <android.support.constraint.ConstraintLayout
-    android:background="@color/white"
+    android:background="@color/light_water_"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ChangeNameFragment">
-    <ImageView
-        android:id="@+id/imageButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="47dp"
-        android:src="@drawable/img"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/header_title"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/bg_layout"
+        android:background="@color/back_color"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-        android:gravity="center_vertical"
-        android:lineHeight="40dp"
-        android:lineSpacingExtra="4sp"
-        android:maxLines="3"
-        android:minLines="1"
-        android:paddingStart="55dp"
-        android:paddingTop="@dimen/_55dp"
-        android:paddingBottom="@dimen/_15dp"
-        android:singleLine="false"
-        android:text="@string/change_name"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-        app:flow_horizontalAlign="center"
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:ignore="MissingConstraints">
 
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="43dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="47dp"
+            android:background="@drawable/baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/back_color"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center_vertical"
+            android:lineHeight="40dp"
+            android:lineSpacingExtra="4sp"
+            android:maxLines="3"
+            android:minLines="1"
+            android:paddingStart="25dp"
+            android:paddingTop="@dimen/_55dp"
+            android:paddingBottom="@dimen/_15dp"
+            android:singleLine="false"
+            android:text="@string/change_name"
+            android:textColor="@color/light_water_"
+            android:textSize="30sp"
+            app:flow_horizontalAlign="center"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -126,9 +134,9 @@
         android:layout_marginStart="@dimen/_36dp"
         android:layout_marginEnd="@dimen/_16dp"
         android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="@+id/header_title"
-        app:layout_constraintStart_toStartOf="@+id/header_title"
-        app:layout_constraintTop_toBottomOf="@+id/header_title">
+        app:layout_constraintEnd_toEndOf="@+id/bg_layout"
+        app:layout_constraintStart_toStartOf="@+id/bg_layout"
+        app:layout_constraintTop_toBottomOf="@+id/bg_layout">
 
         <EditText
             android:id="@+id/device_name_edit_text"
