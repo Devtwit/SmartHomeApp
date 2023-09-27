@@ -3,6 +3,7 @@ package Adapter
 import AwsConfigThing.AwsConfigClass
 import Data.ResponseData
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,9 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.airbnb.lottie.LottieAnimationView
 import com.example.bthome.R
 import com.example.bthome.fragments.MoreFragment
 import com.example.bthome.fragments.MoreFragment.Companion.idValue
@@ -97,21 +100,26 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                             fanAnimation.repeatCount = Animation.INFINITE
 
                             hold.menuButton2.setImageResource(R.drawable.fan_on)
-                            hold.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
+//                            hold.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
                             hold.menuButton2.startAnimation(fanAnimation)
+
+                            hold.animationView.setAnimation(R.raw.animation)
+                            hold.animationView.playAnimation()
                             // Update UI for fan turned on
                             // For example, set a fan icon to indicate fan is on
                         } else {
                             Log.d("Response dataui fan room", "$fsui")
                             // Update UI for fan turned off
                             hold.menuButton2.clearAnimation()
-                            hold.menuButton2.setImageResource(R.drawable.baseline_toys_24)
-                            hold.menuButton2.setBackgroundResource(R.drawable.white_round_background)
+                            hold.menuButton2.setImageResource(R.drawable.fan_on)
+//                            hold.menuButton2.setBackgroundResource(R.drawable.white_round_background)
+//                            hold.animationView.pauseAnimation()
+                            hold.animationView.visibility= View.GONE
                         }
 
                         if (lsui == "on") {
                             Log.d("Response dataui light room", "$lsui")
-                            hold.menuButton.setImageResource(R.drawable.bulb)
+//                            hold.menuButton.setImageResource(R.drawable.bulb)
                             hold.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
                             // Light is on, show different animation
                             val lightAnimation = AlphaAnimation(0f, 1f)
@@ -127,7 +135,7 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
 
                             // Light is off, clear animation
                             hold.menuButton.clearAnimation()
-                            hold.menuButton.setImageResource(R.drawable.bulb)
+//                            hold.menuButton.setImageResource(R.drawable.bulb)
                             hold.menuButton.setBackgroundResource(R.drawable.white_background)
 
                         }
@@ -153,7 +161,7 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         item = itemList[position]
         hold= holder
-        if(item.address.equals(itemList[idValue.toInt()].address)) {
+//        if(item.address.equals(itemList[idValue.toInt()].address)) {
 
             // Bind data to views
             holder.textView.text = item.location
@@ -176,8 +184,9 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 lightAnimation.duration = 1000
                 lightAnimation.repeatCount = Animation.INFINITE
                 lightAnimation.repeatMode = Animation.REVERSE
-                holder.menuButton.setImageResource(R.drawable.bulb)
-                holder.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
+//                holder.menuButton.setImageResource(R.drawable.bulb)
+                holder.whole.setBackgroundResource(R.drawable.bulb_glow_background)
+//                holder.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
 //            holder.menuButton.startAnimation(lightAnimation)
             } else {
                 Log.d("Response dataui room", "14")
@@ -187,8 +196,9 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 }
                 // Light is off, clear animation
                 holder.menuButton.clearAnimation()
-                holder.menuButton.setImageResource(R.drawable.bulb)
-                holder.menuButton.setBackgroundResource(R.drawable.white_background)
+//                holder.menuButton.setImageResource(R.drawable.bulb)
+//                holder.menuButton.setBackgroundResource(R.drawable.white_background)
+                holder.whole.setBackgroundResource(R.drawable.gray_background)
             }
 
             if (fanStatus == "on") {
@@ -234,10 +244,10 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
             if (!animatedPositions.contains(position)) {
                 animatedPositions.add(position)
             }
-        }
-        else{
-            holder.itemView.visibility = View.GONE
-        }
+//        }
+//        else{
+//            holder.itemView.visibility = View.GONE
+//        }
     }
     override fun onViewAttachedToWindow(holder: ViewHolder) {
         super.onViewAttachedToWindow(holder)
@@ -260,14 +270,16 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 lightAnimation.duration = 1000
                 lightAnimation.repeatCount = Animation.INFINITE
                 lightAnimation.repeatMode = Animation.REVERSE
-                holder.menuButton.setImageResource(R.drawable.bulb)
-                holder.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
+//                holder.menuButton.setImageResource(R.drawable.bulb)
+                holder.whole.setBackgroundResource(R.drawable.bulb_glow_background)
+//                holder.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
 //                holder.menuButton.startAnimation(lightAnimation)
             } else {
                 // Light is off, clear animation
                 holder.menuButton.clearAnimation()
-                holder.menuButton.setImageResource(R.drawable.bulb)
-                holder.menuButton.setBackgroundResource(R.drawable.white_background)
+//                holder.menuButton.setImageResource(R.drawable.bulb)
+//                holder.menuButton.setBackgroundResource(R.drawable.gray_background)
+                holder.whole.setBackgroundResource(R.drawable.gray_background)
             }
 
             if (fanStatus == "on") {
@@ -284,13 +296,18 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 fanAnimation.interpolator = LinearInterpolator()
                 fanAnimation.repeatCount = Animation.INFINITE
                 holder.menuButton2.setImageResource(R.drawable.fan_on)
-                holder.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
+//                holder.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
                 holder.menuButton2.startAnimation(fanAnimation)
+
+                holder.animationView.setAnimation(R.raw.animation)
+                holder.animationView.playAnimation()
             } else {
                 // Fan is off, clear animation
                 holder.menuButton2.clearAnimation()
-                holder.menuButton2.setImageResource(R.drawable.baseline_toys_24)
-                holder.menuButton2.setBackgroundResource(R.drawable.white_round_background)
+                holder.menuButton2.setImageResource(R.drawable.fan_on)
+//                holder.menuButton2.setBackgroundResource(R.drawable.white_round_background)
+                hold.animationView.pauseAnimation()
+                holder.animationView.visibility= View.GONE
             }
         }
     }
@@ -303,6 +320,8 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
         val textView: TextView = itemView.findViewById(R.id.textView)
         val menuButton: ImageView = itemView.findViewById(R.id.menuButton)
         val menuButton2: ImageView = itemView.findViewById(R.id.menuButton2)
+        val animationView: LottieAnimationView = itemView.findViewById(R.id.animationView)
+        val whole: ConstraintLayout = itemView.findViewById(R.id.wholeItem)
 
         // ... other ViewHolder code ...
 

@@ -51,11 +51,15 @@ class BleScanResultFragment : Fragment() {
 
     private fun updateDataBase() {
         binding.scanResultRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        (binding.scanResultRecyclerView.layoutManager as LinearLayoutManager).orientation = LinearLayoutManager.HORIZONTAL
+//        recyclerView.layoutManager = layoutManager
         val dbHelper = DatabaseHelper(requireContext())
         val responseDataList = dbHelper.getAllResponseData()
         Log.d(TAG, "${responseDataList}")
         adapter = RoomAdapter(responseDataList, awsConfig!!)
         binding.scanResultRecyclerView.adapter = adapter
+        binding.scanResultRecyclerView.scrollToPosition(MoreFragment.idValue.toInt())
     }
 
     override fun onResume() {

@@ -44,7 +44,8 @@ class DatabaseHelper(context: Context?) :
             var customName = getLocationNameByAddress(address)
 
             if (customName.isNullOrBlank()) {
-                customName = "BT-Beacon_room1"
+                customName = "BT-change"
+//                customName = "BT-Beacon_room1"
             }
             val locationId = insertLocationWithImage(db, customName!!, address, imageByteArray)
 

@@ -44,8 +44,8 @@
             android:layout_centerHorizontal="true"
             android:padding="2dp"
             android:layout_marginTop="@dimen/_15dp"
-            android:src="@drawable/diya"
-            app:civ_border_color="@color/orange_color"
+
+            app:civ_border_color="@color/black"
             app:civ_border_width="2dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -55,8 +55,8 @@
             android:layout_centerHorizontal="true"
             android:padding="2dp"
             android:layout_marginTop="@dimen/_15dp"
-            android:src="@drawable/diya"
-            app:civ_border_color="#353A5A"
+
+            app:civ_border_color="@color/black"
             app:civ_border_width="2dp" />
 
     </RelativeLayout>

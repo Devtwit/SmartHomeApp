@@ -2,73 +2,114 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:id="@+id/wholeItem"
+    android:layout_height="match_parent">
     <!-- item_list.xml -->
 
     <LinearLayout
-        android:weightSum="6"
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:orientation="vertical"
+
+        android:orientation="horizontal"
+        android:weightSum="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/animationView">
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-            android:background="@color/light_water_"
-            android:lineHeight="40dp"
-            android:lineSpacingExtra="4sp"
-            android:maxLines="3"
-            android:minLines="1"
-          android:textAlignment="center"
-            android:singleLine="false"
-            android:text="@string/room_name"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    <LinearLayout
-
-        android:weightSum="2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_10dp"
-        android:layout_weight="2"
-        android:orientation="horizontal"
-      >
-
-<!--        <ImageButton-->
-<!--            android:id="@+id/menuButton"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:src="@drawable/baseline_settings_bluetooth_24" />-->
-
         <ImageView
             android:id="@+id/menuButton"
-            android:layout_width="@dimen/_100dp"
+            android:layout_width="164dp"
+            android:layout_height="213dp"
+            android:layout_margin="@dimen/_10dp"
             android:layout_weight="1"
             android:padding="@dimen/_40dp"
-            android:layout_margin="@dimen/_10dp"
-            android:layout_height="@dimen/_180dp"
-            android:src="@drawable/baseline_online_prediction_24" />
-
-
-        <ImageView
-            android:background="@color/gray_transparent"
-            android:id="@+id/menuButton2"
-            android:layout_width="@dimen/_100dp"
-            android:layout_height="@dimen/_180dp"
-            android:layout_margin="@dimen/_10dp"
-            android:layout_weight="1"
-            android:src="@drawable/baseline_toys_24" />
-    </LinearLayout>
+            android:src="@drawable/baseline_lightbulb_circle_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
     </LinearLayout>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animationView"
+        android:layout_width="wrap_content"
+        android:layout_margin="@dimen/_100dp"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout12"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/animation" />
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout13"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="500dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/linearLayout4"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/linearLayout12"-->
+<!--        android:orientation="horizontal">-->
+
+<!--    </LinearLayout>-->
+
+    <LinearLayout
+        android:id="@+id/linearLayout14"
+        android:layout_width="wrap_content"
+        android:layout_height="350dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout12"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/menuButton2"
+        android:layout_width="@dimen/_100dp"
+        android:layout_height="@dimen/_100dp"
+
+        android:layout_weight="1"
+        android:src="@drawable/baseline_toys_24"
+        app:layout_constraintBottom_toBottomOf="@+id/animationView"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/animationView" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/segoeui"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+android:layout_marginTop="120dp"
+        android:maxLines="1"
+        android:minLines="1"
+        android:paddingBottom="20dp"
+        android:singleLine="false"
+        android:text="@string/room_name"
+        android:textAlignment="center"
+        android:textColor="@color/back_color"
+
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/menuButton2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
