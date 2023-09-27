@@ -4,6 +4,7 @@ import Adapter.DeviceListAdapter
 import AwsConfigThing.AwsConfigClass
 import Data.DeviceSelection
 import DatabaseHelper
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.Dialog
 
@@ -13,8 +14,7 @@ import android.content.Intent
 import android.graphics.PixelFormat
 import android.os.IBinder
 import android.provider.Settings
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+
 
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -23,6 +23,8 @@ import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bthome.R
 
 class FloatingWidgetService : Service(),DeviceListAdapter.ItemClickListener  {
@@ -34,6 +36,7 @@ class FloatingWidgetService : Service(),DeviceListAdapter.ItemClickListener  {
     }
     private val selectedDevices = mutableListOf<DeviceSelection>()
    lateinit var listdialog : Dialog
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate() {
         super.onCreate()
 

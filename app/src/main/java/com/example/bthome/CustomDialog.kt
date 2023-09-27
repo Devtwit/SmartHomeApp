@@ -11,7 +11,7 @@ import android.content.Intent
 import android.location.Address
 import android.net.Uri
 import android.provider.Settings
-import android.support.design.widget.BottomSheetDialog
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +22,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class CustomDialog(private val context: Context) {
      fun openAppSettings() {

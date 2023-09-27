@@ -6,16 +6,18 @@ import Bluetooth.HandleBluetooth
 import Bluetooth.LeScanCallback
 import android.Manifest
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModelProvider
+
 import android.bluetooth.le.ScanResult
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.bthome.PermissionHandler

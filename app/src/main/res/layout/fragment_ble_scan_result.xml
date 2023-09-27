@@ -9,7 +9,7 @@
             name="viewModel"
             type="com.example.bthome.viewModels.BleScanResultViewModel" />
     </data>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:background="@color/light_water_"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -49,16 +49,24 @@
             android:text="Room Details"
             android:textColor="@color/light_water_"
             android:textSize="30sp"
-            app:flow_horizontalAlign="center"
+
             app:layout_constraintStart_toEndOf="@+id/imageButton"
             app:layout_constraintTop_toTopOf="parent" />
 
     </LinearLayout>
-    <android.support.v7.widget.RecyclerView
+<!--    <com.airbnb.lottie.LottieAnimationView-->
+<!--        android:id="@+id/animationView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:lottie_url="REPLACE_JSON_URL"-->
+<!--        app:lottie_autoPlay="true"-->
+<!--        app:lottie_loop="true"-->
+<!--        tools:ignore="MissingClass,MissingConstraints" />-->
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/scanResultRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/bg_layout" />
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

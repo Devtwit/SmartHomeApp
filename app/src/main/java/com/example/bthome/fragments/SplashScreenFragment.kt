@@ -5,13 +5,14 @@ import DatabaseHelper
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v4.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.widget.ImageView
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.bthome.R
 

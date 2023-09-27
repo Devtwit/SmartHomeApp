@@ -1,22 +1,23 @@
 package com.example.bthome.fragments
 
 import DatabaseHelper
-import android.arch.lifecycle.ViewModelProvider
 import android.graphics.Color
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog
 import com.example.bthome.R
 import com.example.bthome.ThreeButtonsListener
 import com.example.bthome.databinding.FragmentSelectRoomBinding
 import com.example.bthome.viewModels.SelectRoomViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class SelectRoomFragment : Fragment() {
     private lateinit var binding: FragmentSelectRoomBinding

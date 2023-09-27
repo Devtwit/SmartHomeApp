@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:background="@color/light_water_"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -52,7 +52,7 @@
                 android:text="Change Icon"
                 android:textColor="@color/light_water_"
                 android:textSize="30sp"
-                app:flow_horizontalAlign="center"
+
                 app:layout_constraintStart_toEndOf="@+id/imageButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -99,7 +99,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/customName">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/poojaLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -136,9 +136,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchenlayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -172,9 +172,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/bedroomlayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -210,9 +210,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_16_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -246,7 +246,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -258,7 +258,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_1_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -292,9 +292,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_2_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -329,9 +329,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_3_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -365,8 +365,8 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_17_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -400,7 +400,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -412,7 +412,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_4_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -446,9 +446,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_5_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -482,9 +482,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_6_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -518,8 +518,8 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_18_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -553,7 +553,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -565,7 +565,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_7_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -599,9 +599,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_8_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -635,9 +635,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_9_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -671,8 +671,8 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_19_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -706,7 +706,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -718,7 +718,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_10_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -752,9 +752,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_11_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -788,9 +788,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_12_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -824,8 +824,8 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_20_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -859,7 +859,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -871,7 +871,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_13_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -905,9 +905,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_14_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -941,9 +941,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_15_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -977,8 +977,8 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_21_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1012,7 +1012,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
                 <LinearLayout
@@ -1024,7 +1024,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/studylayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1058,9 +1058,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/halllayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1095,9 +1095,9 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/storeRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1131,8 +1131,8 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
-                    <android.support.v7.widget.CardView
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/kitchen_22_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1166,7 +1166,7 @@
                             app:civ_border_color="@color/back_color"
                             app:civ_border_width="2dp" />
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
@@ -1193,7 +1193,7 @@
                 android:textStyle="bold"
                 android:textSize="24sp"
                 android:padding="@dimen/_10dp"/>
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/selectedImageView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -1230,7 +1230,7 @@
                     app:civ_border_color="@color/back_color"
                     app:civ_border_width="2dp" />
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
 <!--            <ImageView-->
 
 <!--                android:id="@+id/selectedImageView"-->
@@ -1280,6 +1280,6 @@ android:layout_marginBottom="@dimen/_15dp"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
                 tools:text="@string/skip" />
         </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

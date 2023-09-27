@@ -5,14 +5,14 @@ import Data.DeviceSelection
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModel
+
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.content.ContextCompat
-import android.support.v7.app.AlertDialog
+
+import androidx.core.content.ContextCompat
+
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
@@ -20,6 +20,8 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.ViewModel
 import com.amazonaws.auth.policy.Resource
 import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
@@ -27,10 +29,11 @@ import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isFanPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.isLightPref
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.publishStatus
 import com.example.bthome.fragments.SearchLocationFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class AddBleDeviceViewModel :ViewModel(){
+class AddBleDeviceViewModel : ViewModel(){
     private val selectedDevices = mutableListOf<DeviceSelection>()
     companion object{
         private val TAG = AddBleDeviceViewModel::class.java.simpleName

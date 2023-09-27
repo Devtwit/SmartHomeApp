@@ -12,7 +12,7 @@ import android.content.pm.PackageManager
 import android.os.Handler
 import android.os.Looper
 import android.os.ParcelUuid
-import android.support.v4.app.ActivityCompat
+import androidx.core.app.ActivityCompat
 import android.util.Log
 import java.util.UUID
 

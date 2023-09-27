@@ -1,8 +1,8 @@
 package com.example.bthome.viewModels
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 
-class SearchLocationViewModel :ViewModel(){
+class SearchLocationViewModel : ViewModel(){
 //    // TODO: Implement the ViewModel
 }

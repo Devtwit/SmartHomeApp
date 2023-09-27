@@ -1,7 +1,8 @@
 package com.example.bthome.viewModels
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
-class SelectRoomViewModel :ViewModel(){
+
+class SelectRoomViewModel : ViewModel(){
 //    // TODO: Implement the ViewModel
 }

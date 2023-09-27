@@ -6,9 +6,9 @@ import Data.ResponseData
 import DatabaseHelper
 import android.bluetooth.BluetoothClass
 import android.content.Context
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
+
+import androidx.core.content.ContextCompat
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +18,11 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.apkContext
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

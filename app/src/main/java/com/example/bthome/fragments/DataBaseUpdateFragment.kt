@@ -1,16 +1,17 @@
 package com.example.bthome.fragments
 
 import DatabaseHelper
-import android.arch.lifecycle.ViewModelProvider
+
 import android.os.Bundle
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.app.Fragment
+
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.example.bthome.CustomDialog
 import com.example.bthome.R
@@ -18,6 +19,7 @@ import com.example.bthome.ThreeButtonsListener
 import com.example.bthome.databinding.FragmentDataBaseUpdateBinding
 import com.example.bthome.fragments.MoreFragment.Companion.idValue
 import com.example.bthome.viewModels.DataBaseUpdateViewModel
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class DataBaseUpdateFragment : Fragment() {
 

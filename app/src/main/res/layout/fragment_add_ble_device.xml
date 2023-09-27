@@ -6,7 +6,7 @@
             name="viewModel"
             type="com.example.bthome.viewModels.AddBleDeviceViewModel" />
     </data>
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:background="@color/light_water_"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -27,7 +27,7 @@
         android:src="@drawable/down_background"
         app:layout_constraintBottom_toBottomOf="@+id/gridView" />
 
-    <android.support.design.widget.FloatingActionButton
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        app:flow_horizontalAlign="center"
+
         android:paddingTop="@dimen/_55dp"
         android:paddingBottom="@dimen/_15dp"
         android:paddingStart="@dimen/_95dp"
@@ -133,5 +133,5 @@
     </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

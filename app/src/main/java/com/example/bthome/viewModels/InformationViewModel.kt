@@ -1,6 +1,6 @@
 package com.example.bthome.viewModels
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
 
 
 class InformationViewModel : ViewModel() {

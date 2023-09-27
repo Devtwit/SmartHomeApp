@@ -17,7 +17,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.os.Handler
-import android.support.v4.app.NotificationCompat
+import androidx.core.app.NotificationCompat
 import android.util.Log
 import android.widget.RemoteViews
 import com.amazonaws.auth.CognitoCachingCredentialsProvider

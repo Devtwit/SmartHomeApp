@@ -8,15 +8,15 @@
             type="com.example.bthome.viewModels.InformationViewModel" />
     </data>
 
-<android.support.constraint.ConstraintLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".fragments.InformationFragment">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

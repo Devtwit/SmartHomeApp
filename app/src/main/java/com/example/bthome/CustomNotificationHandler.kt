@@ -10,8 +10,8 @@ import android.app.job.JobService
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import android.support.v4.app.NotificationCompat
-import android.support.v4.content.ContextCompat.getSystemService
+import androidx.core.app.NotificationCompat
+import androidx.core.content.ContextCompat.getSystemService
 import android.util.Log
 import android.widget.RemoteViews
 

@@ -10,20 +10,21 @@ import DatabaseHelper
 import Service.FloatingWidgetService
 import android.Manifest
 import android.annotation.SuppressLint
-import android.arch.lifecycle.ViewModelProvider
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
-import android.support.v4.app.Fragment
+
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.bthome.CustomDialog
@@ -97,7 +98,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         view.requestFocus()
         view.setOnKeyListener { _, keyCode, event ->
             if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_UP) {
-                if(fragmentManager!!.fragments.count() < 2){
+                if(requireFragmentManager().fragments.count() < 2){
 //                    exitProcess(0)
                     requireActivity().finish()
                 }
@@ -119,7 +120,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         )
         binding.viewModel = viewModel
 
-        apkContext = activity!!.applicationContext
+        apkContext = requireActivity().applicationContext
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
         dialog = CustomDialog(requireContext())
@@ -239,7 +240,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 
 
     fun setupGridView() {
-        val dbHelper = DatabaseHelper(activity!!.applicationContext)
+        val dbHelper = DatabaseHelper(requireActivity().applicationContext)
         val responseDataList = dbHelper.getAllResponseData()
         responseAdapter = ResponseAdapter(responseDataList, this, awsConfig!!)
 //        responseAdapter = ResponseAdapter(responseDataList,this)

@@ -1,6 +1,7 @@
 package com.example.bthome.viewModels
 
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.ViewModel
+
 
 class BleScanResultViewModel : ViewModel() {
 

@@ -10,11 +10,12 @@ import android.content.pm.PackageManager
 import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.wifi.WifiManager
-import android.support.design.widget.BottomSheetDialog
-import android.support.v4.content.ContextCompat
+
+import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import com.example.bthome.fragments.AddBleDeviceFragment
 import com.example.bthome.fragments.MoreFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class PermissionHandler( private val context: Context,private val activity: Activity) {
 

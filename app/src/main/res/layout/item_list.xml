@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -19,7 +20,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-            android:gravity="center_vertical"
             android:background="@color/light_water_"
             android:lineHeight="40dp"
             android:lineSpacingExtra="4sp"
@@ -30,7 +30,7 @@
             android:text="@string/room_name"
             android:textColor="@color/black"
             android:textSize="30sp"
-            app:flow_horizontalAlign="center"
+
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     <LinearLayout
@@ -71,4 +71,4 @@
     </LinearLayout>
 
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
