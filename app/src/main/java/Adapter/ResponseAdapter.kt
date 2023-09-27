@@ -115,12 +115,13 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         }
 
         fun cardColor(isNear : Boolean){
-            if(!isNear){
+            if(isNear){
                 Log.d("isNear", receivedNearestDeviceName )
                 Log.d("isNear", isNear.toString())
 //                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
                 cardView.setCardBackgroundColor(Color.parseColor("#424358")) // Set your desired background color here
 //                cardView.setCardBackgroundColor(Color.parseColor("#424000")) // Set your desired background color here
+
                 selectedImg.visibility = View.VISIBLE
                 selectedImgBlack.visibility = View.GONE
 //                cardView.setBackgroundResource(R.drawable.select_device_selected_bg)
@@ -159,34 +160,34 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
            when(name){
                "Hall" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.hall)
-                   selectedImgBlack.setBackgroundResource(R.drawable.hall)
+                   selectedImg.setBackgroundResource(R.drawable.balcony)
+                   selectedImgBlack.setBackgroundResource(R.drawable.balcony_back)
                }
                "Store Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.storeroom)
-                   selectedImgBlack.setBackgroundResource(R.drawable.storeroom)}
+                   selectedImg.setBackgroundResource(R.drawable.cleaning_services)
+                   selectedImgBlack.setBackgroundResource(R.drawable.cleaning_services_back)}
                "Study Room" ->{
                    messageTextView.text= name
 //                   selectedImg.setBackgroundResource(R.drawable.study)}
-                   selectedImg.setBackgroundResource(R.drawable.study)
-                   selectedImgBlack.setBackgroundResource(R.drawable.study)}
+                   selectedImg.setBackgroundResource(R.drawable.local_library)
+                   selectedImgBlack.setBackgroundResource(R.drawable.local_library_back)}
                "Bed Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.bedroom)
-                   selectedImgBlack.setBackgroundResource(R.drawable.bedroom)}
+                   selectedImg.setBackgroundResource(R.drawable.bed_1)
+                   selectedImgBlack.setBackgroundResource(R.drawable.bed_1_back)}
                "Pooja Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.poojadiya)
-                   selectedImgBlack.setBackgroundResource(R.drawable.poojadiya)}
+                   selectedImg.setBackgroundResource(R.drawable.diya_1)
+                   selectedImgBlack.setBackgroundResource(R.drawable.diya_1_back)}
                "Kitchen" ->{
                    messageTextView.text= "Kitchen"
-                   selectedImg.setBackgroundResource(R.drawable.kitchen)
-                   selectedImgBlack.setBackgroundResource(R.drawable.kitchen)}
+                   selectedImg.setBackgroundResource(R.drawable.soup_kitchen)
+                   selectedImgBlack.setBackgroundResource(R.drawable.soup_kitchen_back)}
                else ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.other)
-                   selectedImgBlack.setBackgroundResource(R.drawable.other)}
+                   selectedImg.setBackgroundResource(R.drawable.living)
+                   selectedImgBlack.setBackgroundResource(R.drawable.living_back)}
            }
 
         }
