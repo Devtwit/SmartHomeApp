@@ -122,12 +122,12 @@ companion object{
 
         }
                 binding.bedroomlayout.setOnClickListener {
-                    binding.poojaLayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-                    binding.kitchenlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-                    binding.halllayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-                    binding.storeRoom.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-                    binding.studylayout.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
-                    binding.bedroomlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
+                    binding.poojaLayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+                    binding.kitchenlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+                    binding.halllayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+                    binding.storeRoom.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+                    binding.studylayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+                    binding.bedroomlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
                     binding.poojaSelected.visibility = View.VISIBLE
                     binding.kitchenSelected.visibility = View.VISIBLE
                     binding.bedSelected.visibility = View.GONE
@@ -158,16 +158,16 @@ companion object{
                     binding.studySelected.visibility = View.VISIBLE
 
                     // Load the vector drawable from resources
-                    drawableToBitmap(R.drawable.bed_1)
+                    drawableToBitmap(R.drawable.outline_single_bed_back)
 //             imageBitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.bedroom)
             }
         binding.kitchenlayout.setOnClickListener {
-            binding.poojaLayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.kitchenlayout.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
-            binding.halllayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.storeRoom.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.studylayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.bedroomlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
+            binding.poojaLayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.kitchenlayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.halllayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.storeRoom.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.studylayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.bedroomlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
             binding.poojaSelected.visibility = View.VISIBLE
             binding.kitchenSelected.visibility = View.GONE
             binding.bedSelected.visibility = View.VISIBLE
@@ -198,16 +198,16 @@ companion object{
             binding.studySelected.visibility = View.VISIBLE
 
             // Load the vector drawable from resources
-            drawableToBitmap(R.drawable.soup_kitchen)
+            drawableToBitmap(R.drawable.outline_soup_kitchen_back)
 //             imageBitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.kitchen)
            }
         binding.halllayout.setOnClickListener {
-            binding.poojaLayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.kitchenlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.halllayout.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
-            binding.storeRoom.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.studylayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.bedroomlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
+            binding.poojaLayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.kitchenlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.halllayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.storeRoom.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.studylayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.bedroomlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
             binding.poojaSelected.visibility = View.VISIBLE
             binding.kitchenSelected.visibility = View.VISIBLE
             binding.bedSelected.visibility = View.VISIBLE
@@ -242,12 +242,12 @@ companion object{
 //             imageBitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.hall)
            }
         binding.studylayout.setOnClickListener {
-            binding.poojaLayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.kitchenlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.halllayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.storeRoom.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.studylayout.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
-            binding.bedroomlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
+            binding.poojaLayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.kitchenlayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.halllayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.storeRoom.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.studylayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.bedroomlayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
 
             binding.poojaSelected.visibility = View.VISIBLE
             binding.kitchenSelected.visibility = View.VISIBLE
@@ -279,16 +279,16 @@ companion object{
             binding.studySelected.visibility = View.GONE
 
             // Load the vector drawable from resources
-            drawableToBitmap(R.drawable.local_library)
+            drawableToBitmap(R.drawable.outline_local_library_24_back)
 //             imageBitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.study)
             }
         binding.storeRoom.setOnClickListener {
-            binding.poojaLayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.kitchenlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.halllayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.storeRoom.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
-            binding.studylayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.bedroomlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
+            binding.poojaLayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.kitchenlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.halllayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.storeRoom.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.studylayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.bedroomlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
             binding.poojaSelected.visibility = View.VISIBLE
             binding.kitchenSelected.visibility = View.VISIBLE
             binding.bedSelected.visibility = View.VISIBLE
@@ -319,15 +319,15 @@ companion object{
             binding.studySelected.visibility = View.VISIBLE
 
             // Load the vector drawable from resources
-            drawableToBitmap(R.drawable.dry_cleaning)
+            drawableToBitmap(R.drawable.outline_cleaning_services_back_24)
         }
         binding.poojaLayout.setOnClickListener {
-            binding.poojaLayout.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
-            binding.kitchenlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.halllayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.storeRoom.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.studylayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
-            binding.bedroomlayout.setCardBackgroundColor(Color.parseColor("#2f2e3e"))
+            binding.poojaLayout.setCardBackgroundColor(requireContext().getColor(R.color.light_water_))
+            binding.kitchenlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.halllayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.storeRoom.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.studylayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
+            binding.bedroomlayout.setCardBackgroundColor(requireContext().getColor(R.color.back_color))
 
            binding.poojaSelected.visibility = View.GONE
            binding.kitchenSelected.visibility = View.VISIBLE
@@ -359,7 +359,7 @@ companion object{
            binding.studySelected.visibility = View.VISIBLE
 
             // Load the vector drawable from resources
-          drawableToBitmap(R.drawable.diya_1)
+          drawableToBitmap(R.drawable.outline_diya_back)
 
 
         }
@@ -396,7 +396,8 @@ companion object{
             DrawableCompat.setTint(
                 tintedDrawable,
 //                Color.parseColor("#808080")
-                Color.parseColor("#000000")
+//                Color.parseColor("#000000")
+                requireContext().getColor(R.color.back_color)
             ) // Replace with your desired tint color
             tintedDrawable.draw(canvas)
 

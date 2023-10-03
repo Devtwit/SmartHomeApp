@@ -112,9 +112,9 @@ class AwsConfigClass() {
                             Log.d(TAG, "   Topic tag: $topic")
                             Log.d(TAG, " Message json data: $jsonData")
 
-                            if (topic.equals("sdk/Falcon/setconfig_ack", ignoreCase = true)) {
+//                            if (topic.equals("sdk/Falcon/setconfig_ack", ignoreCase = true)) {
                                 handleAcknowledgment(jsonData, context)
-                            }
+//                            }
                         } catch (e: UnsupportedEncodingException) {
                             Log.e(TAG, "Message encoding error.", e)
                         }

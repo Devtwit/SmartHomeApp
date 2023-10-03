@@ -118,7 +118,8 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                 Log.d("isNear", receivedNearestDeviceName )
                 Log.d("isNear", isNear.toString())
 //                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
-                cardView.setCardBackgroundColor(Color.parseColor("#424358")) // Set your desired background color here
+//                cardView.setCardBackgroundColor(Color.parseColor("#424358")) // Set your desired background color here
+                cardView.setCardBackgroundColor(apkContext.getColor(R.color.light_water_)) // Set your desired background color here
 //                cardView.setCardBackgroundColor(Color.parseColor("#424000")) // Set your desired background color here
 
                 selectedImg.visibility = View.VISIBLE
@@ -130,7 +131,8 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 //                cardView.setBackgroundColor(Color.parseColor("#424358"))
 //                cardView.setCardBackgroundColor(Color.parseColor("#424358"))
 //                cardView.setCardBackgroundColor(Color.parseColor("#B5BCDA"))
-                cardView.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
+                cardView.setCardBackgroundColor(apkContext.getColor(R.color.light_water_))
+//                cardView.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
                 selectedImg.visibility = View.GONE
                 selectedImgBlack.visibility = View.VISIBLE
 
@@ -159,34 +161,34 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
            when(name){
                "Hall" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.balcony)
+                   selectedImg.setBackgroundResource(R.drawable.balcony_back)
                    selectedImgBlack.setBackgroundResource(R.drawable.balcony_back)
                }
                "Store Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.cleaning_services)
-                   selectedImgBlack.setBackgroundResource(R.drawable.cleaning_services_back)}
+                   selectedImg.setBackgroundResource(R.drawable.outline_cleaning_services_24)
+                   selectedImgBlack.setBackgroundResource(R.drawable.outline_cleaning_services_24)}
                "Study Room" ->{
                    messageTextView.text= name
 //                   selectedImg.setBackgroundResource(R.drawable.study)}
-                   selectedImg.setBackgroundResource(R.drawable.local_library)
-                   selectedImgBlack.setBackgroundResource(R.drawable.local_library_back)}
+                   selectedImg.setBackgroundResource(R.drawable.outline_local_library_24)
+                   selectedImgBlack.setBackgroundResource(R.drawable.outline_local_library_24)}
                "Bed Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.bed_1)
-                   selectedImgBlack.setBackgroundResource(R.drawable.bed_1_back)}
+                   selectedImg.setBackgroundResource(R.drawable.outline_single_bed)
+                   selectedImgBlack.setBackgroundResource(R.drawable.outline_single_bed)}
                "Pooja Room" ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.diya_1)
-                   selectedImgBlack.setBackgroundResource(R.drawable.diya_1_back)}
+                   selectedImg.setBackgroundResource(R.drawable.outline_diya)
+                   selectedImgBlack.setBackgroundResource(R.drawable.outline_diya)}
                "Kitchen" ->{
                    messageTextView.text= "Kitchen"
-                   selectedImg.setBackgroundResource(R.drawable.soup_kitchen)
-                   selectedImgBlack.setBackgroundResource(R.drawable.soup_kitchen_back)}
+                   selectedImg.setBackgroundResource(R.drawable.outline_soup_kitchen)
+                   selectedImgBlack.setBackgroundResource(R.drawable.outline_soup_kitchen)}
                else ->{
                    messageTextView.text= name
-                   selectedImg.setBackgroundResource(R.drawable.living)
-                   selectedImgBlack.setBackgroundResource(R.drawable.living_back)}
+                   selectedImg.setBackgroundResource(R.drawable.outline_deck)
+                   selectedImgBlack.setBackgroundResource(R.drawable.outline_deck)}
            }
 
         }

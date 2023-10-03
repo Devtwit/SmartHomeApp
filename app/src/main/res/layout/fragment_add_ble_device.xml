@@ -11,21 +11,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/background"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="300dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/background"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/down_background"
-        app:layout_constraintBottom_toBottomOf="@+id/gridView" />
+<!--    <ImageView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@drawable/down_background"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/gridView" />-->
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -94,7 +94,7 @@
 
 
     <LinearLayout
-        android:background="@color/back_color"
+        android:background="@color/light_water_"
         android:id="@+id/button"
         android:padding="@dimen/_20dp"
         android:layout_width="match_parent"
@@ -109,7 +109,7 @@
         <ImageView
             android:id="@+id/addButton"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:background="@color/back_color"
+            android:background="@color/light_water_"
             android:textColor="@color/white"
             android:src="@drawable/baseline_add_24"
             android:layout_width="wrap_content"
@@ -120,7 +120,7 @@
         <ImageView
             style="@style/Widget.AppCompat.Button.Borderless"
             android:id="@+id/moreButton"
-            android:background="@color/back_color"
+            android:background="@color/white"
             android:textColor="@color/white"
             android:src="@drawable/baseline_settings_suggest_24"
             android:layout_width="wrap_content"

@@ -105,13 +105,21 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
 
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/poojaSelected"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:padding="2dp"
+                            android:src="@drawable/outline_diya_back"
+                            />
 
                         <!-- Circular Image View  -->
                         <de.hdodenhof.circleimageview.CircleImageView
@@ -119,22 +127,10 @@
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-
                             android:padding="2dp"
-                            android:src="@drawable/diya_1_back"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_diya"
+                            />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/poojaSelected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-
-                            android:padding="2dp"
-                            android:src="@drawable/diya_1"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -143,24 +139,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
                         app:layout_constraintStart_toEndOf="@+id/poojaLayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/soup_kitchen_back"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchenSelected"
@@ -168,9 +152,19 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/soup_kitchen"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_soup_kitchen_back"
+                            />
+                        <!-- Circular Image View  -->
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/kitchen"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:padding="2dp"
+                            android:src="@drawable/outline_soup_kitchen"
+                            />
+
+
 
                     </androidx.cardview.widget.CardView>
 
@@ -179,7 +173,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -195,9 +189,8 @@
                             android:layout_centerHorizontal="true"
 
                             android:padding="2dp"
-                            android:src="@drawable/bed_1_back"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_single_bed"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/bedSelected"
@@ -206,9 +199,8 @@
                             android:layout_centerHorizontal="true"
 
                             android:padding="2dp"
-                            android:src="@drawable/bed_1"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_single_bed_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
 
@@ -217,7 +209,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -232,9 +224,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/food_bank"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_food_bank"
+                           />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_16_Selected"
@@ -242,9 +233,7 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/food_bank"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_food_bank_back" />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -263,7 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -278,9 +267,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/dinner_dining"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_dinner_dining"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_1_selected"
@@ -288,9 +276,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/dinner_dining"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_dinner_dining_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -300,7 +287,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
 
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -315,9 +302,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/delivery_dining"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_delivery_dining"
+                            />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_2_selected"
@@ -325,9 +311,7 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/delivery_dining"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_delivery_dining_back" />
 
                     </androidx.cardview.widget.CardView>
 
@@ -336,7 +320,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -351,9 +335,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/bakery_dining"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_bakery_dining_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_3_selected"
@@ -361,9 +344,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/bakery_dining"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_bakery_dining_24_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -371,7 +353,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -386,9 +368,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/curtains_closed"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_curtains_closed_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_17_Selected"
@@ -396,9 +377,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/curtains_closed"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_curtains_closed_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -417,7 +397,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -432,9 +412,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/fastfood"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_fastfood_24"
+                            />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_4_selected"
@@ -442,9 +421,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/fastfood"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_fastfood_24_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
 
@@ -453,7 +431,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -468,9 +446,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/cruelty_free"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_cruelty_free_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_5_selected"
@@ -478,9 +455,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/cruelty_free"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_cruelty_free_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -489,7 +465,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -504,9 +480,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/child_friendly"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_child_friendly_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_6_selected"
@@ -514,9 +489,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/child_friendly"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_child_friendly_24_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -524,7 +498,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -539,9 +513,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/bathroom"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_emoji_food_beverage_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_18_Selected"
@@ -549,9 +522,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/bathroom"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_emoji_food_beverage_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -570,7 +542,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -585,9 +557,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/filter_vintage"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_filter_vintage_24"
+                            />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_7_selected"
@@ -595,9 +566,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/filter_vintage"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_filter_vintage_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -606,7 +576,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -621,9 +591,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/flatware"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_breakfast_dining_24"
+                           />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_8_selected"
@@ -631,9 +600,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/flatware"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_breakfast_dining_24_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
 
@@ -642,7 +610,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -657,9 +625,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/table_restaurant"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_table_restaurant_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_9_selected"
@@ -667,9 +634,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/table_restaurant"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_table_restaurant_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -677,7 +643,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -692,9 +658,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/bathtub"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_bathtub_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_19_Selected"
@@ -702,9 +667,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/bathtub"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_bathtub_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -723,7 +687,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -739,8 +703,7 @@
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
                             android:src="@drawable/pets_24"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_10_selected"
@@ -748,9 +711,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/pets_24"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/pets_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -759,7 +721,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -774,9 +736,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/two_wheeler"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_outdoor_grill_24"
+                            />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_11_selected"
@@ -784,9 +745,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/two_wheeler"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_outdoor_grill_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -795,7 +755,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -811,8 +771,7 @@
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
                             android:src="@drawable/hot_tub"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_12_selected"
@@ -820,9 +779,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/hot_tub"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/hot_tub_back"
+                           />
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -830,7 +788,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -846,8 +804,7 @@
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
                             android:src="@drawable/blender"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_20_Selected"
@@ -855,9 +812,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/blender"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/blender_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -876,7 +832,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -892,8 +848,7 @@
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
                             android:src="@drawable/pool_24"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_13_selected"
@@ -901,9 +856,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/pool_24"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/pool_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -912,7 +866,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -927,9 +881,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/deck"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_deck"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_14_selected"
@@ -937,9 +890,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/deck"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_deck_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
 
@@ -948,7 +900,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -963,9 +915,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/curtains"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_curtains_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_15_selected"
@@ -973,9 +924,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/curtains"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_curtains_24_back"
+                            />
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -983,7 +933,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -998,9 +948,7 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/clean_hands"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_clean_hands_24" />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_21_Selected"
@@ -1008,9 +956,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/clean_hands"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_clean_hands_24_back"
+                    />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -1029,7 +976,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -1044,9 +991,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/local_library_back"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_local_library_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/studySelected"
@@ -1054,9 +1000,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/local_library"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_local_library_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -1066,7 +1011,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
 
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -1082,8 +1027,7 @@
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
                             android:src="@drawable/balcony_back"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/hallSelected"
@@ -1092,8 +1036,7 @@
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
                             android:src="@drawable/balcony"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                             />
 
                     </androidx.cardview.widget.CardView>
 
@@ -1102,7 +1045,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -1117,9 +1060,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/dry_cleaning_back"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_cleaning_services_24"
+                            />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/storeSelected"
@@ -1127,9 +1069,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/dry_cleaning"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_cleaning_services_back_24"
+                             />
 
                     </androidx.cardview.widget.CardView>
                     <androidx.cardview.widget.CardView
@@ -1137,7 +1078,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/back_color"
+                        app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
@@ -1152,9 +1093,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/living"
-                            app:civ_border_color="@color/orange_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_local_laundry_service_24"
+                             />
 
                         <de.hdodenhof.circleimageview.CircleImageView
                             android:id="@+id/kitchen_22_Selected"
@@ -1162,9 +1102,8 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="2dp"
-                            android:src="@drawable/living"
-                            app:civ_border_color="@color/back_color"
-                            app:civ_border_width="2dp" />
+                            android:src="@drawable/outline_local_laundry_service_24_back"
+                             />
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -1216,8 +1155,7 @@
 
                     android:padding="2dp"
                     android:src="@drawable/baseline_add_24"
-                    app:civ_border_color="@color/orange_color"
-                    app:civ_border_width="2dp" />
+                    />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/selectImageView_selected"
@@ -1226,9 +1164,8 @@
                     android:layout_centerHorizontal="true"
 
                     android:padding="2dp"
-                    android:src="@drawable/baseline_add_24"
-                    app:civ_border_color="@color/back_color"
-                    app:civ_border_width="2dp" />
+                    android:src="@drawable/baseline_add_24_back"
+                    />
 
             </androidx.cardview.widget.CardView>
 <!--            <ImageView-->
