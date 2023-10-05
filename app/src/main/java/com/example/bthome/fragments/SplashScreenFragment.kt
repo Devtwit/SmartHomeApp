@@ -46,7 +46,8 @@ class SplashScreenFragment : Fragment() {
                 findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
 //                findNavController().navigate(R.id.action_splashScreenFragment_to_informationFragment)
             } else {
-                findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
+                findNavController().navigate(R.id.action_splashScreenFragment_to_mainFragment)
+//                findNavController().navigate(R.id.action_splashScreenFragment_to_informationFragment)
             }
         },2000)
 

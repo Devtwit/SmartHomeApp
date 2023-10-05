@@ -43,8 +43,12 @@
 <!--    <color name="grid_light_water_">#BAC0E1</color>-->
 <!--    <color name="back_color">#2f2e3e</color>-->
     <color name="grid_light_water_">#ffffff</color>
-    <color name="back_color">#AD8259</color>
+<!--    <color name="back_color">#11A6D4</color>-->
+    <color name="back_color">#006CAB</color>
+    <color name="back_active_color">#ACDBE3</color>
+<!--    <color name="back_color">#AD8259</color>-->
     <color name="grid_back_color">#424358</color>
     <color name="orange_color">#ee877e</color>
     <color name="light_orange_color">#424358</color>
+
 </resources>

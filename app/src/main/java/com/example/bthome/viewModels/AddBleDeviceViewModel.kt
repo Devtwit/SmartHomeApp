@@ -61,9 +61,9 @@ class AddBleDeviceViewModel : ViewModel(){
 
             if (mScanResult[i].rssi >= -75) {
                 hasDeviceInRange = true
-                Toast.makeText(context,"RSSI : ${mScanResult[i].rssi}", Toast.LENGTH_LONG).show()
+//                Toast.makeText(context,"RSSI : ${mScanResult[i].rssi}", Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(context,"RSSI : ${mScanResult[i].rssi}", Toast.LENGTH_LONG).show()
+//                Toast.makeText(context,"RSSI : ${mScanResult[i].rssi}", Toast.LENGTH_LONG).show()
             }
         }
 

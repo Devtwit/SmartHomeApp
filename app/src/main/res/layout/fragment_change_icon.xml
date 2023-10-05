@@ -109,26 +109,27 @@
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/poojaSelected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_diya_back"
-                            />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/poojaSelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_office_back"-->
+<!--                            />-->
 
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
+<!--                        &lt;!&ndash; Circular Image View  &ndash;&gt;-->
+                        <ImageView
                             android:id="@+id/pooja"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_diya"
+                            android:padding="5dp"
+                            android:src="@drawable/mono_office_back"
                             />
 
 
@@ -143,25 +144,26 @@
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/poojaLayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchenSelected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_soup_kitchen_back"
-                            />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/kitchenSelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_catering_back"-->
+<!--                            />-->
                         <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                             android:id="@+id/kitchen"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_soup_kitchen"
+                            android:padding="5dp"
+                            android:src="@drawable/mono_catering_back"
                             />
 
 
@@ -177,35 +179,35 @@
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
 
                         <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                             android:id="@+id/bedroom"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
 
-                            android:padding="2dp"
-                            android:src="@drawable/outline_single_bed"
+                            android:padding="5dp"
+                            android:src="@drawable/mono_bed_back"
                              />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/bedSelected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-
-                            android:padding="2dp"
-                            android:src="@drawable/outline_single_bed_back"
-                            />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/bedSelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_bed"-->
+<!--                            />-->
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_16_layout"
+                        android:id="@+id/halllayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -213,27 +215,28 @@
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
 
                         <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_16"
+                        <ImageView
+                            android:id="@+id/hall"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_food_bank"
+                            android:padding="5dp"
+                            android:src="@drawable/mono_hall_back"
                            />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_16_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_food_bank_back" />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/hallselected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_hall" />-->
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -248,799 +251,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_1_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_1"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_dinner_dining"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_1_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_dinner_dining_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_2_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_2"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_delivery_dining"
-                            />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_2_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_delivery_dining_back" />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_3_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/halllayout"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_3"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_bakery_dining_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_3_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_bakery_dining_24_back"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_17_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
-                        app:layout_constraintTop_toBottomOf="@+id/customName">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_17"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_curtains_closed_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_17_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_curtains_closed_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout8"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout7">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_4_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_4"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_fastfood_24"
-                            />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_4_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_fastfood_24_back"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_5_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_5"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_cruelty_free_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_5_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_cruelty_free_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_6_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/halllayout"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_6"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_child_friendly_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_6_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_child_friendly_24_back"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_18_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
-                        app:layout_constraintTop_toBottomOf="@+id/customName">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_18"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_emoji_food_beverage_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_18_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_emoji_food_beverage_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout9"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_7_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_7"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_filter_vintage_24"
-                            />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_7_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_filter_vintage_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_8_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_8"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_breakfast_dining_24"
-                           />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_8_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_breakfast_dining_24_back"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_9_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/halllayout"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_9"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_table_restaurant_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_9_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_table_restaurant_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_19_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
-                        app:layout_constraintTop_toBottomOf="@+id/customName">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_19"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_bathtub_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_19_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_bathtub_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout9">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_10_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_10"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/pets_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_10_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/pets_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_11_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_11"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_outdoor_grill_24"
-                            />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_11_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_outdoor_grill_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_12_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/halllayout"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_12"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/hot_tub"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_12_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/hot_tub_back"
-                           />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_20_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
-                        app:layout_constraintTop_toBottomOf="@+id/customName">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_20"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/blender"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_20_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/blender_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout11"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout10">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_13_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_13"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/pool_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_13_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/pool_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_14_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_14"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_deck"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_14_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_deck_back"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_15_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/halllayout"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_15"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_curtains_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_15_selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_curtains_24_back"
-                            />
-
-                    </androidx.cardview.widget.CardView>
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_21_layout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
-                        app:layout_constraintTop_toBottomOf="@+id/customName">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_21"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_clean_hands_24" />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_21_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_clean_hands_24_back"
-                    />
-
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayout6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/studylayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/study"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_local_library_24"
-                             />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/studySelected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_local_library_24_back"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/halllayout"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-
-                        app:cardBackgroundColor="@color/light_water_"
-                        app:cardCornerRadius="20dp"
-                        app:cardPreventCornerOverlap="true"
-                        app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
-
-
-                        <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/hall"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/balcony_back"
-                            />
-
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/hallSelected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/balcony"
-                             />
-
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
                         android:id="@+id/storeRoom"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1049,32 +259,69 @@
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        app:layout_constraintStart_toEndOf="@+id/halllayout"
+                        android:elevation="8dp"
+                        app:layout_constraintStart_toEndOf="@+id/storeRoom"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
 
                         <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
+                        <ImageView
                             android:id="@+id/store"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_cleaning_services_24"
-                            />
+                            android:padding="5dp"
+                            android:src="@drawable/mono_storage_back"
+                             />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/storeSelected"
+<!--                        <ImageView-->
+<!--                            android:id="@+id/storeSelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_storage"-->
+<!--                             />-->
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/studylayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+
+                        app:cardBackgroundColor="@color/light_water_"
+                        app:cardCornerRadius="20dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+
+                        <!-- Circular Image View  -->
+                        <ImageView
+                            android:id="@+id/study"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_cleaning_services_back_24"
-                             />
+                            android:padding="5dp"
+                            android:src="@drawable/mono_child_back"
+                            />
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/studySelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_child" />-->
 
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/kitchen_22_layout"
+                        android:id="@+id/carLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -1082,31 +329,68 @@
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
+                        app:layout_constraintStart_toEndOf="@+id/halllayout"
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+
+                        <!-- Circular Image View  -->
+                        <ImageView
+                            android:id="@+id/car"
+                            android:layout_width="75dp"
+                            android:layout_height="75dp"
+                            android:layout_centerHorizontal="true"
+                            android:padding="5dp"
+                            android:src="@drawable/mono_carparking_back"
+                             />
+
+<!--                        <ImageView-->
+<!--                            android:id="@+id/carSelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_carparking"-->
+<!--                            />-->
+
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/bathLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:cardBackgroundColor="@color/light_water_"
+                        app:cardCornerRadius="20dp"
+                        app:cardPreventCornerOverlap="true"
+                        app:cardUseCompatPadding="true"
+                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
 
                         <!-- Circular Image View  -->
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_22"
+                        <ImageView
+                            android:id="@+id/bath"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_local_laundry_service_24"
+                            android:padding="5dp"
+                            android:src="@drawable/mono_bath_back"
                              />
 
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/kitchen_22_Selected"
-                            android:layout_width="75dp"
-                            android:layout_height="75dp"
-                            android:layout_centerHorizontal="true"
-                            android:padding="2dp"
-                            android:src="@drawable/outline_local_laundry_service_24_back"
-                             />
+<!--                        <ImageView-->
+<!--                            android:id="@+id/bathSelected"-->
+<!--                            android:layout_width="75dp"-->
+<!--                            android:layout_height="75dp"-->
+<!--                            android:layout_centerHorizontal="true"-->
+<!--                            android:padding="5dp"-->
+<!--                            android:src="@drawable/mono_bath"-->
+<!--                             />-->
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
+
+
             </LinearLayout>
         </ScrollView>
         <LinearLayout
@@ -1177,46 +461,48 @@
 <!--                android:src="@drawable/baseline_image_search_24" />-->
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-android:layout_marginBottom="@dimen/_15dp"
-            android:orientation="horizontal"
+<!--        <LinearLayout-->
+<!--            android:id="@+id/linearLayout2"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--android:layout_marginBottom="@dimen/_15dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/scrollView2">-->
+
+
+<!--            <ImageView-->
+<!--                android:id="@+id/skipButton"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="50dp"-->
+<!--                android:layout_marginBottom="@dimen/_15dp"-->
+<!--                android:layout_marginTop="20dp"-->
+<!--                android:background="@drawable/circle_background_white"-->
+<!--                android:padding="@dimen/_5dp"-->
+<!--                android:src="@drawable/clear"-->
+<!--                android:text="@string/next"-->
+<!--                android:textSize="20sp"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />-->
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/back_color"
+
+            android:padding="@dimen/_5dp"
+            android:text="Save"
+            android:textColor="@color/light_water_"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2">
-
-
-            <ImageView
-                android:id="@+id/skipButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_background_white"
-                android:padding="@dimen/_5dp"
-                android:src="@drawable/clear"
-                android:text="@string/next"
-                android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-            <ImageView
-                android:id="@+id/next_button"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginBottom="@dimen/_15dp"
-                android:layout_marginStart="@dimen/_50dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/circle_background_white"
-                android:padding="@dimen/_5dp"
-                android:src="@drawable/baseline_next_plan_24"
-                android:text="@string/cancel"
-                app:layout_constraintStart_toEndOf="@+id/next_button"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                tools:text="@string/skip" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+            tools:text="Save" />
+<!--        </LinearLayout>-->
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

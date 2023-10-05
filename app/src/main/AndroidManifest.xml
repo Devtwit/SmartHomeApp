@@ -29,9 +29,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/smart3_1"
+        android:icon="@drawable/outline_home_24_back"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/smart3_1"
+        android:roundIcon="@drawable/outline_home_24_back"
         android:supportsRtl="true"
         android:theme="@style/Theme.BtHome"
         tools:targetApi="31">

@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_navigation"
     app:startDestination="@id/splashScreenFragment">
-
     <fragment
         android:id="@+id/addBleDeviceFragment"
         android:name="com.example.bthome.fragments.AddBleDeviceFragment"
@@ -42,6 +41,9 @@
         <action
             android:id="@+id/action_splashScreenFragment_to_informationFragment"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_splashScreenFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/moreFragment"
@@ -81,6 +83,9 @@
         <action
             android:id="@+id/action_changeNameFragment_to_addBleDeviceFragment"
             app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_changeNameFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectRoomFragment"
@@ -111,6 +116,12 @@
         <action
             android:id="@+id/action_searchLocationFragment_to_selectRoomFragment"
             app:destination="@id/selectRoomFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_successfullyAddedFragment"
+            app:destination="@id/successfullyAddedFragment" />
     </fragment>
     <fragment
         android:id="@+id/informationFragment"
@@ -130,5 +141,74 @@
         <action
             android:id="@+id/action_changeIconFragment_to_addBleDeviceFragment"
             app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_changeIconFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.bthome.fragments.mainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
+        <action
+            android:id="@+id/action_mainFragment_to_addBleDeviceFragment"
+            app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_bleScanResultFragment"
+            app:destination="@id/bleScanResultFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_dataBaseUpdateFragment"
+            app:destination="@id/dataBaseUpdateFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_searchLocationFragment"
+            app:destination="@id/searchLocationFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_selectRoomFragment"
+            app:destination="@id/selectRoomFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_dataBaseUpdateFragment"
+            app:destination="@id/dataBaseUpdateFragment" />
+        <action
+            android:id="@+id/action_addBleDeviceFragment_to_bleScanResultFragment"
+            app:destination="@id/bleScanResultFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_selectRoomFragment"
+            app:destination="@id/selectRoomFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_successfullyAddedFragment_to_selectRoomFragment"
+            app:destination="@id/selectRoomFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_successfullyAddedFragment"
+            app:destination="@id/successfullyAddedFragment" />
+        <action
+            android:id="@+id/action_changeNameFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_changeIconFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successfullyAddedFragment"
+        android:name="com.example.bthome.fragments.SuccessfullyAddedFragment"
+        android:label="fragment_successfully_added"
+        tools:layout="@layout/fragment_successfully_added" >
+        <action
+            android:id="@+id/action_successfullyAddedFragment_to_selectRoomFragment"
+            app:destination="@id/selectRoomFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_successfullyAddedFragment"
+            app:destination="@id/successfullyAddedFragment" />
     </fragment>
 </navigation>

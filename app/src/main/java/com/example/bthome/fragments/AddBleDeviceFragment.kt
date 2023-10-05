@@ -132,11 +132,11 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
             viewModel.showLocationDialog(requireContext(),awsConfig)
         }
         Log.d(TAG, "$selectedDevices")
-        binding.moreButton.setOnClickListener {
-            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                .navigate(R.id.action_addBleDeviceFragment_to_moreFragment)
-
-        }
+//        binding.moreButton.setOnClickListener {
+//            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                .navigate(R.id.action_addBleDeviceFragment_to_moreFragment)
+//
+//        }
         binding.addButton.setOnClickListener {
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_addBleDeviceFragment_to_searchLocationFragment)
@@ -240,12 +240,14 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
 
 
     fun setupGridView() {
-        val dbHelper = DatabaseHelper(requireActivity().applicationContext)
-        val responseDataList = dbHelper.getAllResponseData()
-        responseAdapter = ResponseAdapter(responseDataList, this, awsConfig!!)
+        if(isAdded || isVisible) {
+            val dbHelper = DatabaseHelper(requireActivity().applicationContext)
+            val responseDataList = dbHelper.getAllResponseData()
+            responseAdapter = ResponseAdapter(responseDataList, this, awsConfig!!)
 //        responseAdapter = ResponseAdapter(responseDataList,this)
-        Log.d(TAG, "$responseDataList")
-        binding.gridView.adapter = responseAdapter
+            Log.d(TAG, "$responseDataList")
+            binding.gridView.adapter = responseAdapter
+        }
 
     }
 
@@ -265,7 +267,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
         setupGridView()
         processedScanResultIndex =
-            viewModel.precessScanResult(mScanResult!!, result!!, awsConfig, requireContext())
+            viewModel.precessScanResult(mScanResult!!, result!!, awsConfig, apkContext)
         Log.d( TAG, "" + processedScanResultIndex)
 
     }

@@ -20,6 +20,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
+import com.airbnb.lottie.LottieAnimationView
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
 import com.example.bthome.databinding.FragmentSearchLocationBinding
@@ -54,7 +55,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         )
 
     var awsConfig: AwsConfigClass? = null
-
+lateinit var  animationView: LottieAnimationView
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -65,10 +66,12 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             DataBindingUtil.inflate(inflater, R.layout.fragment_search_location, container, false)
         initialize()
         setUpListener()
+
         return binding.root
     }
 
     private fun initialize() {
+        animationView = binding.loadingContainer
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
             SearchLocationViewModel::class.java
         )
@@ -77,13 +80,14 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
 
-        binding.loadingContainer.visibility = View.GONE
+//        binding.loadingContainer.visibility = View.GONE
+        animationView.pauseAnimation()
         binding.nextButton.visibility = View.GONE
     }
 
     private fun setUpListener() {
         binding.skipButton.setOnClickListener {
-            findNavController().popBackStack()
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_mainFragment)
         }
 
         binding.startButton.setOnClickListener {
@@ -91,21 +95,22 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             handleBlueTooth()
         }
         binding.nextButton.setOnClickListener {
-            binding.loadingContainer.visibility = View.GONE
+//            binding.loadingContainer.visibility = View.GONE
+            animationView.pauseAnimation()
             // Publish the scanned data to the MQTT topic
             val topic = AwsConfigConstants.SET_CONFIG // Replace with your desired MQTT topic
             Log.d(TAG, "else on button click")
 //                awsConfig!!.publishData(scannedResult, topic)
             awsConfig!!.publishDeviceName(scannedResult)
 
-            Handler().postDelayed({
-                //doSomethingHere()
+//            Handler().postDelayed({
+//                //doSomethingHere()
                 Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                    .navigate(R.id.action_searchLocationFragment_to_selectRoomFragment)
-            }, 2000)
+                    .navigate(R.id.action_searchLocationFragment_to_successfullyAddedFragment)
+//            }, 2000)
         }
         binding.imageButton.setOnClickListener{
-            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_mainFragment)
         }
 
     }
@@ -117,7 +122,8 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
             if (handleBluetooth == null) {
                 handleBluetooth = HandleBluetooth(requireContext(), awsConfig!!)
             }
-            binding.loadingContainer.visibility = View.VISIBLE
+//            binding.loadingContainer.visibility = View.VISIBLE
+            animationView.playAnimation()
             binding.startButton.visibility = View.GONE
             handleBluetooth!!.scanLeDevices(this)
         }else{
@@ -134,12 +140,14 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     }
 
     override fun scanCompleted(mScanResult: ArrayList<ScanResult>?, result: ScanResult?) {
-        binding.loadingContainer.visibility = View.GONE
+//        binding.loadingContainer.visibility = View.GONE
+        animationView.pauseAnimation()
         Log.d(TAG, "scanCompleted")
         if (result != null) {
             Log.d(TAG, "scanCompleted null")
             if (result.device.name == null) {
                 binding.foundDevice.text = "BT_ER3C"
+
                 selectedRoom = result.device.address
 //                scannedResult = "BT-Beacon_room1 " + result.device.address
                 scannedResult = "BT-Beacon_room1"
@@ -156,7 +164,9 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
         Log.d(TAG, "scanCompleted null found")
 //        scannedResult= ""
         binding.foundDevice.visibility = View.VISIBLE
+        binding.searchLogo.visibility = View.VISIBLE
         binding.nextButton.visibility = View.VISIBLE
+        binding.skipButton.visibility = View.GONE
         binding.startButton.visibility = View.GONE
     }
 

@@ -7,7 +7,7 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="smart_home">Smart Home</string>
+    <string name="smart_home">Welcome to your Smart Home</string>
     <string name="more">More</string>
     <string name="add">Add</string>
     <string name="change_name">Change Name</string>
