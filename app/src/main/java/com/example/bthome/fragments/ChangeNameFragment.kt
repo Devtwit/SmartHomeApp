@@ -72,6 +72,10 @@ class ChangeNameFragment : Fragment() {
             binding.hall.setTextColor(Color.GRAY)
             binding.kitchen.setTextColor(Color.GRAY)
             binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.selected_device_orange))
             binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
@@ -90,6 +94,10 @@ class ChangeNameFragment : Fragment() {
             binding.pooja.setTextColor(Color.GRAY)
             binding.hall.setTextColor(Color.GRAY)
             binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.store.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
@@ -108,6 +116,10 @@ class ChangeNameFragment : Fragment() {
             binding.pooja.setTextColor(Color.GRAY)
             binding.hall.setTextColor(Color.GRAY)
             binding.kitchen.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
@@ -126,6 +138,10 @@ class ChangeNameFragment : Fragment() {
             binding.hall.setTextColor(Color.GRAY)
             binding.kitchen.setTextColor(Color.GRAY)
             binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
@@ -136,23 +152,70 @@ class ChangeNameFragment : Fragment() {
         }
         binding.hall.setOnClickListener {
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.selected_device_orange))
-            newText = "Hall"
+            newText = "Living Room"
             binding.hall.setTextColor(Color.BLACK)
             binding.study.setTextColor(Color.GRAY)
             binding.bed.setTextColor(Color.GRAY)
             binding.pooja.setTextColor(Color.GRAY)
             binding.kitchen.setTextColor(Color.GRAY)
             binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.store.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.study.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.pooja.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+
 //            binding.deviceNameEditText.isFocusable = false
 //            binding.deviceNameEditText.isClickable = false
             binding.deviceNameEditText.text.clear()
 //            binding.deviceNameEditText.isFocusableInTouchMode = true
 
+        }
+        binding.child.setOnClickListener {
+            binding.pooja.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.pooja.setTextColor(Color.GRAY)
+            binding.study.setTextColor(Color.GRAY)
+            binding.bed.setTextColor(Color.GRAY)
+            binding.hall.setTextColor(Color.GRAY)
+            binding.kitchen.setTextColor(Color.GRAY)
+            binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.BLACK)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.selected_device_orange))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            newText = "Child Room"
+            binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.store.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.study.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+//            binding.deviceNameEditText.clearFocus()
+            binding.deviceNameEditText.text.clear()
+        }
+        binding.car.setOnClickListener {
+            binding.pooja.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.pooja.setTextColor(Color.GRAY)
+            binding.study.setTextColor(Color.GRAY)
+            binding.bed.setTextColor(Color.GRAY)
+            binding.hall.setTextColor(Color.GRAY)
+            binding.kitchen.setTextColor(Color.GRAY)
+            binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.BLACK)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.selected_device_orange))
+            newText = "Car Parking"
+            binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.store.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.study.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+//            binding.deviceNameEditText.clearFocus()
+            binding.deviceNameEditText.text.clear()
         }
         binding.pooja.setOnClickListener {
             binding.pooja.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.selected_device_orange))
@@ -162,7 +225,11 @@ class ChangeNameFragment : Fragment() {
             binding.hall.setTextColor(Color.GRAY)
             binding.kitchen.setTextColor(Color.GRAY)
             binding.store.setTextColor(Color.GRAY)
-            newText = "Pooja Room"
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            newText = "Bath Room"
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
@@ -179,6 +246,10 @@ class ChangeNameFragment : Fragment() {
             binding.hall.setTextColor(Color.GRAY)
             binding.kitchen.setTextColor(Color.GRAY)
             binding.store.setTextColor(Color.GRAY)
+            binding.child.setTextColor(Color.GRAY)
+            binding.car.setTextColor(Color.GRAY)
+            binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+            binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.bed.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.kitchen.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
             binding.hall.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
@@ -199,6 +270,8 @@ class ChangeNameFragment : Fragment() {
                binding.store.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
                binding.study.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
                binding.pooja.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+               binding.child.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
+               binding.car.setBackground(ContextCompat.getDrawable(requireContext(), R.drawable.select_device_unselected_bg))
                newText = binding.deviceNameEditText.text.toString()
                DatabaseHelper(requireContext()).updateLocationName(oldName, newText)
            } else {
@@ -207,11 +280,11 @@ class ChangeNameFragment : Fragment() {
        }
             Toast.makeText(requireContext(), "Update option selected", Toast.LENGTH_SHORT).show()
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                .navigate(R.id.action_changeNameFragment_to_addBleDeviceFragment)
+                .navigate(R.id.action_changeNameFragment_to_mainFragment)
         }
 
-        binding.skipButton.setOnClickListener {
-            findNavController().popBackStack()
-        }
+//        binding.skipButton.setOnClickListener {
+//            findNavController().popBackStack()
+//        }
     }
 }

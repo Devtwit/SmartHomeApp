@@ -74,6 +74,9 @@
         <action
             android:id="@+id/action_dataBaseUpdateFragment_to_changeIconFragment"
             app:destination="@id/changeIconFragment" />
+        <action
+            android:id="@+id/action_dataBaseUpdateFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/changeNameFragment"
@@ -107,6 +110,12 @@
         <action
             android:id="@+id/action_selectRoomFragment_to_informationFragment2"
             app:destination="@id/informationFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchLocationFragment"
@@ -197,6 +206,12 @@
             app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_changeIconFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_selectRoomFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_dataBaseUpdateFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
     <fragment

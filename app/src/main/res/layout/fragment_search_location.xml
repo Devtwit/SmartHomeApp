@@ -7,6 +7,7 @@
             name="viewModel"
             type="com.example.bthome.viewModels.SearchLocationViewModel" />
     </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -113,19 +114,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <ImageView
+        <Button
             android:id="@+id/startButton"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="@dimen/_15dp"
-            android:background="@drawable/circle_background_white"
-            android:padding="@dimen/_5dp"
-            android:src="@drawable/done"
-            android:text="@string/next"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+            style="@style/PrimaryButton"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5dp"
+            android:layout_weight="1"
+            android:padding="@dimen/_15dp"
+            android:text="Start"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Start" />
 
 
         <ImageView
@@ -145,16 +145,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/next_button"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginStart="@dimen/_15dp"
-        android:layout_marginEnd="14dp"
-        android:layout_marginTop="25dp"
-        android:background="@color/back_color"
-        android:padding="@dimen/_5dp"
+        android:id="@+id/next_Button"
+        style="@style/PrimaryButton"
+        android:layout_width="@dimen/_200dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5dp"
+        android:layout_weight="1"
+        android:padding="@dimen/_15dp"
         android:text="Add"
-        android:textColor="@color/light_water_"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loading_container"

@@ -87,7 +87,7 @@ private  fun initialize(){
                         .navigate(R.id.action_dataBaseUpdateFragment_to_informationFragment)
                 } else {
                     Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                        .navigate(R.id.action_dataBaseUpdateFragment_to_addBleDeviceFragment)
+                        .navigate(R.id.action_dataBaseUpdateFragment_to_mainFragment)
                 }
             }
 

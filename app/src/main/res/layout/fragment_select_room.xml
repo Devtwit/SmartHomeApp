@@ -7,278 +7,506 @@
             name="viewModel"
             type="com.example.bthome.viewModels.SelectRoomViewModel" />
     </data>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".fragments.SelectRoomFragment">
 
-    <ImageView
-        android:id="@+id/imageButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="47dp"
-        android:src="@drawable/img"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/header_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-        android:gravity="center_vertical"
-        android:lineHeight="40dp"
-        android:lineSpacingExtra="4sp"
-        android:maxLines="3"
-        android:minLines="1"
-        android:paddingStart="55dp"
-        android:paddingTop="@dimen/_55dp"
-        android:paddingBottom="@dimen/_15dp"
-        android:singleLine="false"
-        android:text="@string/select_room"
-        android:textColor="@color/black"
-        android:textSize="30sp"
-
-        app:layout_constraintStart_toEndOf="@+id/imageButton"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
+        android:id="@+id/bg_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/header_title">
+        android:background="@color/back_color"
+        tools:ignore="MissingConstraints">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageButton"
+            android:layout_width="43dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="47dp"
+            android:background="@drawable/back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/header_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_22dp"
-            android:orientation="horizontal">
+            android:background="@color/back_color"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center_vertical"
+            android:lineHeight="40dp"
+            android:lineSpacingExtra="4sp"
+            android:maxLines="3"
+            android:minLines="1"
+            android:paddingStart="25dp"
+            android:paddingTop="@dimen/_55dp"
+            android:paddingBottom="@dimen/_15dp"
+            android:singleLine="false"
+            android:text="Select Room"
+            android:textColor="@color/light_water_"
+            android:textSize="30sp"
 
-            <LinearLayout
-                android:id="@+id/kitchenlayout"
-                android:layout_width="@dimen/_160dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/select_device_unselected_bg"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:text="@string/kitchen" />
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="1dp"
-                    android:paddingBottom="35dp"
-                    android:scaleType="center"
-                    android:src="@drawable/kitchen" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/poojaLayout"
-                android:layout_width="@dimen/_160dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/select_device_unselected_bg"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:text="@string/pooja_room" />
-
-                <ImageView
-                    android:id="@+id/pooja"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="@dimen/_20dp"
-                    android:paddingBottom="@dimen/_16dp"
-
-                    android:scaleType="center"
-                    android:src="@drawable/poojadiya" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_22dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/bedroomlayout"
-                android:layout_width="@dimen/_160dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/select_device_unselected_bg"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:text="@string/bed_room" />
-
-                <ImageView
-                    android:id="@+id/bedroom"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="@dimen/_1dp"
-                    android:paddingBottom="@dimen/_35dp"
-                    android:scaleType="center"
-                    android:src="@drawable/bedroom" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/studylayout"
-                android:layout_width="@dimen/_160dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/select_device_unselected_bg"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:text="@string/study_room" />
-
-                <ImageView
-                    android:id="@+id/study"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="@dimen/_1dp"
-                    android:paddingBottom="@dimen/_20dp"
-                    android:scaleType="center"
-                    android:src="@drawable/study" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_22dp"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/halllayout"
-                android:layout_width="@dimen/_160dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/select_device_unselected_bg"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:text="@string/hall" />
-
-                <ImageView
-                    android:id="@+id/hall"
-                    android:paddingBottom="@dimen/_12dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="@dimen/_1dp"
-                    android:scaleType="center"
-                    android:src="@drawable/hall" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/storeRoom"
-                android:layout_width="@dimen/_160dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_10dp"
-                android:background="@drawable/select_device_unselected_bg"
-                android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-                    android:gravity="center"
-                    android:textColor="#000000"
-                    android:textSize="16dp"
-                    android:text="@string/store_room" />
-
-                <ImageView
-                    android:id="@+id/store"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/_16dp"
-                    android:layout_marginBottom="1dp"
-                    android:scaleType="center"
-                    android:src="@drawable/storeroom" />
-            </LinearLayout>
-        </LinearLayout>
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bathLayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/childLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/bath"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_bath_logo1" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/bathText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="Bath Room"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/bathaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/kitchenLayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/kitchen"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_catering_back1_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/kitchenText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="@string/kitchen"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/kitchenaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/halllayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg_layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/hall"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_hall_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/hallText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="Living Room"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/halladdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/studylayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/storeRoom">
+
+        <RelativeLayout
+            android:layout_width="176dp"
+            android:layout_height="134dp">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/study"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_office_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/studyText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="@string/study_room"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/studyaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/storeRoom"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bathLayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/store"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_storage_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/storeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="Store Room"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/storeaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/childLayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bg_layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/child"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_child_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/childText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="Child Room"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/childaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/carLayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bedroomlayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/car"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_carparking_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/carText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="Car Parking"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/caraddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_20dp"
+        android:layout_marginTop="12dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/studylayout">
 
         <Button
-            android:layout_margin="@dimen/_5dp"
             android:id="@+id/next_button"
             style="@style/PrimaryGrayButton"
-            android:padding="@dimen/_15dp"
             android:layout_width="@dimen/_200dp"
             android:layout_height="@dimen/_50dp"
+            android:layout_margin="@dimen/_5dp"
             android:layout_marginBottom="@dimen/_5dp"
             android:clickable="false"
+            android:padding="@dimen/_15dp"
             android:text="@string/next"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -286,17 +514,80 @@
 
 
         <Button
-            android:layout_margin="@dimen/_5dp"
             android:id="@+id/skipButton"
             style="@style/PrimaryButton"
-            android:padding="@dimen/_15dp"
             android:layout_width="@dimen/_200dp"
             android:layout_height="0dp"
+            android:layout_margin="@dimen/_5dp"
             android:layout_weight="1"
+            android:padding="@dimen/_15dp"
             android:text="@string/skip"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="@string/skip" />
     </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bedroomlayout"
+        android:layout_width="195dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/_5dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="8dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/halllayout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Circular Image View  -->
+            <ImageView
+                android:id="@+id/bed"
+                android:layout_width="75dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_15dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/mono_bed_logo" />
+
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:id="@+id/bedText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="@dimen/_10dp"
+            android:layout_marginBottom="@dimen/_15dp"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:padding="@dimen/_10dp"
+            android:text="Bed Room"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/bedaddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10dp"
+            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
+            android:gravity="center"
+            android:text="@string/kitchen"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </layout>

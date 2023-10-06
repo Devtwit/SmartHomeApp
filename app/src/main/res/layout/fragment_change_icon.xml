@@ -7,22 +7,20 @@
             name="viewModel"
             type="com.example.bthome.viewModels.ChangeIconViewModel" />
     </data>
-    <ScrollView
-        android:background="@color/light_water_"
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@color/light_water_"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".fragments.ChangeNameFragment">
+
         <LinearLayout
             android:id="@+id/bg_layout"
-            android:background="@color/back_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:ignore="MissingConstraints">
+            android:background="@color/back_color"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/imageButton"
@@ -58,38 +56,30 @@
 
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_water_"
-            android:gravity="center"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/customName">
 
             <LinearLayout
                 android:id="@+id/linearLayout_bg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-
+android:layout_marginTop="@dimen/_35dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/customName">
+
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="match_parent"
-                    android:fontFamily="@font/segoeui"
                     android:layout_height="wrap_content"
-                    android:textAlignment="center"
+                    android:fontFamily="@font/segoeui"
+                    android:padding="@dimen/_10dp"
                     android:text="Select Icon"
+                    android:textAlignment="center"
                     android:textColor="@color/black"
-                    android:textStyle="bold"
                     android:textSize="24sp"
-                    android:padding="@dimen/_10dp"/>
+                    android:textStyle="bold" />
+
                 <LinearLayout
                     android:id="@+id/linearLayout5"
                     android:layout_width="wrap_content"
@@ -105,32 +95,31 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
 
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/poojaSelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_office_back"-->
-<!--                            />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/poojaSelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_office_back"-->
+                        <!--                            />-->
 
-<!--                        &lt;!&ndash; Circular Image View  &ndash;&gt;-->
+                        <!--                        &lt;!&ndash; Circular Image View  &ndash;&gt;-->
                         <ImageView
                             android:id="@+id/pooja"
                             android:layout_width="75dp"
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_office_back"
-                            />
+                            android:src="@drawable/mono_office_back" />
 
 
                     </androidx.cardview.widget.CardView>
@@ -140,22 +129,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/poojaLayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/kitchenSelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_catering_back"-->
-<!--                            />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/kitchenSelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_catering_back"-->
+                        <!--                            />-->
                         <!-- Circular Image View  -->
                         <ImageView
                             android:id="@+id/kitchen"
@@ -163,9 +152,7 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_catering_back"
-                            />
-
+                            android:src="@drawable/mono_catering_back" />
 
 
                     </androidx.cardview.widget.CardView>
@@ -175,11 +162,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
@@ -192,17 +179,16 @@
                             android:layout_centerHorizontal="true"
 
                             android:padding="5dp"
-                            android:src="@drawable/mono_bed_back"
-                             />
+                            android:src="@drawable/mono_bed_back" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/bedSelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_bed"-->
-<!--                            />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/bedSelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_bed"-->
+                        <!--                            />-->
 
                     </androidx.cardview.widget.CardView>
 
@@ -211,11 +197,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
@@ -227,16 +213,15 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_hall_back"
-                           />
+                            android:src="@drawable/mono_hall_back" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/hallselected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_hall" />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/hallselected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_hall" />-->
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
@@ -255,11 +240,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/storeRoom"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
@@ -271,17 +256,16 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_storage_back"
-                             />
+                            android:src="@drawable/mono_storage_back" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/storeSelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_storage"-->
-<!--                             />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/storeSelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_storage"-->
+                        <!--                             />-->
 
                     </androidx.cardview.widget.CardView>
 
@@ -291,11 +275,11 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
 
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
 
@@ -307,16 +291,15 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_child_back"
-                            />
+                            android:src="@drawable/mono_child_back" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/studySelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_child" />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/studySelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_child" />-->
 
                     </androidx.cardview.widget.CardView>
 
@@ -325,11 +308,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/halllayout"
                         app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
@@ -341,29 +324,29 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_carparking_back"
-                             />
+                            android:src="@drawable/mono_carparking_back" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/carSelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_carparking"-->
-<!--                            />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/carSelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_carparking"-->
+                        <!--                            />-->
 
                     </androidx.cardview.widget.CardView>
+
                     <androidx.cardview.widget.CardView
                         android:id="@+id/bathLayout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:elevation="8dp"
                         app:cardBackgroundColor="@color/light_water_"
                         app:cardCornerRadius="20dp"
                         app:cardPreventCornerOverlap="true"
                         app:cardUseCompatPadding="true"
-                        android:elevation="8dp"
                         app:layout_constraintStart_toEndOf="@+id/kitchenlayout"
                         app:layout_constraintTop_toBottomOf="@+id/customName">
 
@@ -375,24 +358,23 @@
                             android:layout_height="75dp"
                             android:layout_centerHorizontal="true"
                             android:padding="5dp"
-                            android:src="@drawable/mono_bath_back"
-                             />
+                            android:src="@drawable/mono_bath_back" />
 
-<!--                        <ImageView-->
-<!--                            android:id="@+id/bathSelected"-->
-<!--                            android:layout_width="75dp"-->
-<!--                            android:layout_height="75dp"-->
-<!--                            android:layout_centerHorizontal="true"-->
-<!--                            android:padding="5dp"-->
-<!--                            android:src="@drawable/mono_bath"-->
-<!--                             />-->
+                        <!--                        <ImageView-->
+                        <!--                            android:id="@+id/bathSelected"-->
+                        <!--                            android:layout_width="75dp"-->
+                        <!--                            android:layout_height="75dp"-->
+                        <!--                            android:layout_centerHorizontal="true"-->
+                        <!--                            android:padding="5dp"-->
+                        <!--                            android:src="@drawable/mono_bath"-->
+                        <!--                             />-->
 
                     </androidx.cardview.widget.CardView>
                 </LinearLayout>
 
 
             </LinearLayout>
-        </ScrollView>
+
         <LinearLayout
             android:layout_marginTop="@dimen/_15dp"
             android:id="@+id/customName"
@@ -487,22 +469,23 @@
 <!--                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />-->
 
         <Button
-            android:id="@+id/next_button"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="15dp"
-            android:background="@color/back_color"
-
-            android:padding="@dimen/_5dp"
+            android:id="@+id/nextButton"
+            style="@style/PrimaryButton"
+            android:layout_width="@dimen/_200dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:padding="@dimen/_15dp"
             android:text="Save"
-            android:textColor="@color/light_water_"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout_bg"
             tools:text="Save" />
-<!--        </LinearLayout>-->
+        <!--        </LinearLayout>-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+
 </layout>

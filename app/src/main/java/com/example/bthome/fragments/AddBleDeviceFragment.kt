@@ -214,7 +214,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
             startActivityForResult(intent, overlayPermissionRequestCode)
         } else {
             // Permission is already granted, initialize the floating widget
-            startFloatingWidgetService()
+//            startFloatingWidgetService()
         }
 //        startFloatingWidgetService()
 
@@ -228,7 +228,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         if (requestCode == overlayPermissionRequestCode) {
             if (Settings.canDrawOverlays(requireContext())) {
                 // Permission has been granted, initialize the floating widget
-                startFloatingWidgetService()
+//                startFloatingWidgetService()
             } else {
                 // Permission was not granted by the user
                 // You can show a message or take appropriate action here

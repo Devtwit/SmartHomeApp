@@ -40,7 +40,7 @@ class ChangeIconFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_change_icon, container, false)
-         imageBitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.poojadiya)
+         imageBitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.mono_catering_back1_logo)
 
         return binding.root
     }
@@ -335,7 +335,13 @@ binding.bedroom.setBackgroundResource(R.drawable.card_shadow)
 
         }
         binding.nextButton.setOnClickListener {
-            DatabaseHelper(requireContext()).updateLocationImage("BT-Beacon_room1", imageBitmap!! )
+
+            var oldName = AddBleDeviceFragment.responseAdapter.getString(MoreFragment.idValue.toInt()).toString()
+            if(oldName.isEmpty()){
+                DatabaseHelper(requireContext()).updateLocationImage("", imageBitmap!!)
+            } else {
+                DatabaseHelper(requireContext()).updateLocationImage(oldName, imageBitmap!!)
+            }
             Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_changeIconFragment_to_mainFragment)
 
         }

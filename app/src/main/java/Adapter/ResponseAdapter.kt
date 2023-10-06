@@ -119,7 +119,8 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                 Log.d("isNear", isNear.toString())
 //                cardView.setBackgroundColor(Color.parseColor("#eaf2ee"))
 //                cardView.setCardBackgroundColor(Color.parseColor("#424358")) // Set your desired background color here
-                cardView.setCardBackgroundColor(apkContext.getColor(R.color.light_water_)) // Set your desired background color here
+                cardView.setCardBackgroundColor(apkContext.getColor(R.color.back_active_color))
+//                cardView.setCardBackgroundColor(apkContext.getColor(R.color.light_water_)) // Set your desired background color here
 //                cardView.setCardBackgroundColor(Color.parseColor("#424000")) // Set your desired background color here
 
 //                selectedImg.visibility = View.VISIBLE
@@ -131,7 +132,8 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 //                cardView.setBackgroundColor(Color.parseColor("#424358"))
 //                cardView.setCardBackgroundColor(Color.parseColor("#424358"))
 //                cardView.setCardBackgroundColor(Color.parseColor("#B5BCDA"))
-                cardView.setCardBackgroundColor(apkContext.getColor(R.color.back_active_color))
+                cardView.setCardBackgroundColor(apkContext.getColor(R.color.light_water_))
+//                cardView.setCardBackgroundColor(apkContext.getColor(R.color.back_active_color))
 //                cardView.setCardBackgroundColor(Color.parseColor("#BAC0E1"))
 //                selectedImg.visibility = View.GONE
 //                selectedImgBlack.visibility = View.VISIBLE
@@ -159,7 +161,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
 
         fun setImage(name : String){
            when(name){
-               "Hall" ->{
+               "Living Room" ->{
                    messageTextView.text= name
                    selectedImg.setBackgroundResource(R.drawable.mono_hall_logo)
 //                   selectedImgBlack.setBackgroundResource(R.drawable.balcony_back)
@@ -169,7 +171,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                    selectedImg.setBackgroundResource(R.drawable.mono_storage_logo)
 //                   selectedImgBlack.setBackgroundResource(R.drawable.outline_cleaning_services_24)
                }
-               "Study Room" ->{
+               "Child Room" ->{
                    messageTextView.text= name
 //                   selectedImg.setBackgroundResource(R.drawable.study)}
                    selectedImg.setBackgroundResource(R.drawable.mono_child_logo)
@@ -180,19 +182,29 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                    selectedImg.setBackgroundResource(R.drawable.mono_bed_logo)
 //                   selectedImgBlack.setBackgroundResource(R.drawable.outline_single_bed)
                }
-               "Pooja Room" ->{
+               "Study Room" ->{
                    messageTextView.text= name
                    selectedImg.setBackgroundResource(R.drawable.mono_office_logo)
 //                   selectedImgBlack.setBackgroundResource(R.drawable.outline_diya)
                }
                "Kitchen" ->{
-                   messageTextView.text= "Kitchen"
+                   messageTextView.text= name
                    selectedImg.setBackgroundResource(R.drawable.mono_catering_back1_logo)
 //                   selectedImgBlack.setBackgroundResource(R.drawable.outline_soup_kitchen)
                }
-               else ->{
+               "Bath Room" ->{
                    messageTextView.text= name
                    selectedImg.setBackgroundResource(R.drawable.mono_bath_logo1)
+//                   selectedImgBlack.setBackgroundResource(R.drawable.outline_single_bed)
+               }
+               "Car Parking" ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.mono_carparking_logo)
+//                   selectedImgBlack.setBackgroundResource(R.drawable.outline_diya)
+               }
+               else ->{
+                   messageTextView.text= name
+                   selectedImg.setBackgroundResource(R.drawable.mono_catering_back1_logo)
 //                   selectedImgBlack.setBackgroundResource(R.drawable.outline_deck)
                }
            }
@@ -200,7 +212,7 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
         }
         fun setImageBitMap(name: String,locationImg: Bitmap){
             when(name){
-                "Hall" ->{
+                "Living Room" ->{
                     messageTextView.text= name
                     selectedImg.setImageBitmap(locationImg)
 //                    selectedImgBlack.setImageBitmap(locationImg)
@@ -223,15 +235,26 @@ class ResponseAdapter(private var responseDataList: List<ResponseData>, private 
                     selectedImg.setImageBitmap(locationImg)
 //                    selectedImgBlack.setImageBitmap(locationImg)
                 }
-                "Pooja Room" ->{
+                "Child Room" ->{
                     messageTextView.text= name
                     selectedImg.setImageBitmap(locationImg)
 //                    selectedImgBlack.setImageBitmap(locationImg)
                 }
                 "Kitchen" ->{
-                    messageTextView.text= "Kitchen"
+                    messageTextView.text= name
                     selectedImg.setImageBitmap(locationImg)
 //                    selectedImgBlack.setImageBitmap(locationImg)
+                }
+
+                "Bath Room" ->{
+                    messageTextView.text= name
+                    selectedImg.setImageBitmap(locationImg)
+//                   selectedImgBlack.setBackgroundResource(R.drawable.outline_single_bed)
+                }
+                "Car Parking" ->{
+                    messageTextView.text= name
+                    selectedImg.setImageBitmap(locationImg)
+//                   selectedImgBlack.setBackgroundResource(R.drawable.outline_diya)
                 }
                 else ->{
                     messageTextView.text= name
