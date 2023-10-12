@@ -1,6 +1,7 @@
 package com.example.bthome.fragments
 
 import DatabaseHelper
+import android.app.Dialog
 
 import android.os.Bundle
 
@@ -26,7 +27,7 @@ class DataBaseUpdateFragment : Fragment() {
     companion object {
         private val TAG = DataBaseUpdateFragment::class.java.simpleName
     }
-    private var customPopUp: BottomSheetDialog? = null
+    private var customPopUp: Dialog? = null
     private lateinit var binding: FragmentDataBaseUpdateBinding
     private lateinit var viewModel: DataBaseUpdateViewModel
 
@@ -47,7 +48,7 @@ private  fun initialize(){
     binding.viewModel = viewModel
     Log.d(TAG,idValue.toString())
 
-    customPopUp = BottomSheetDialog(requireContext())
+    customPopUp = Dialog(requireContext())
 }
     private fun setUpListener(){
         binding.imageButton.setOnClickListener{
@@ -86,8 +87,10 @@ private  fun initialize(){
                     Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                         .navigate(R.id.action_dataBaseUpdateFragment_to_informationFragment)
                 } else {
+//                    Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                        .navigate(R.id.action_dataBaseUpdateFragment_to_mainFragment)
                     Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                        .navigate(R.id.action_dataBaseUpdateFragment_to_mainFragment)
+                        .navigate(R.id.action_dataBaseUpdateFragment_to_addBleDeviceFragment)
                 }
             }
 

@@ -1,6 +1,7 @@
 package com.example.bthome.fragments
 
 import DatabaseHelper
+import android.app.Dialog
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
@@ -25,7 +26,7 @@ class SelectRoomFragment : Fragment() {
     private lateinit var binding: FragmentSelectRoomBinding
     private lateinit var viewModel: SelectRoomViewModel
 
-    private var customPopUp: BottomSheetDialog? = null
+    private var customPopUp: Dialog? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -43,7 +44,7 @@ class SelectRoomFragment : Fragment() {
             SelectRoomViewModel::class.java
         )
         binding.viewModel = viewModel
-        customPopUp = BottomSheetDialog(requireContext())
+        customPopUp = Dialog(requireContext())
     }
 
     private fun setUplistener() {
@@ -141,7 +142,14 @@ class SelectRoomFragment : Fragment() {
                 if (selectedRooms.any { it }) {
                     val dbHelper = DatabaseHelper(requireContext())
                     val initialData = dbHelper.getAllResponseData()
-                    var oldName = AddBleDeviceFragment.responseAdapter.getString(MoreFragment.idValue.toInt()).toString()
+                    var oldName = ""
+//                    if (initialData.isEmpty()) {
+//                         oldName = "BT_Beacon_Room1"
+//                    } else {
+//                         oldName = AddBleDeviceFragment.responseAdapter.getString(MoreFragment.idValue.toInt()).toString()
+//                    }
+                     oldName = SearchLocationFragment.scannedResult
+//                    oldName = SearchLocationFragment.selectedRoom
                     var imageBitmap : Bitmap = BitmapFactory.decodeResource(requireContext().resources, R.drawable.mono_catering_back1_logo)
                     when{
                         binding.kitchenLayout.isSelected ->{
@@ -180,7 +188,9 @@ class SelectRoomFragment : Fragment() {
                             .navigate(R.id.action_selectRoomFragment_to_informationFragment)
                     } else {
                         Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                            .navigate(R.id.action_selectRoomFragment_to_mainFragment)
+                            .navigate(R.id.action_selectRoomFragment_to_addBleDeviceFragment)
+//                        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                            .navigate(R.id.action_selectRoomFragment_to_mainFragment)
                     }
                 } else {
                     // Handle the case when no room is selected
@@ -231,4 +241,5 @@ class SelectRoomFragment : Fragment() {
 //        room.setBackgroundResource(R.drawable.select_device_selected_bg)
         room.setCardBackgroundColor(requireContext().getColor(R.color.back_active_color))
     }
+
 }

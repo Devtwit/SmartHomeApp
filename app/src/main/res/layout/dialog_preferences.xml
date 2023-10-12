@@ -1,122 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
     <!-- dialog_preferences.xml -->
-    <LinearLayout
+
+
+    <TextView
+        android:id="@+id/header_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
+
+        android:background="@color/white"
+        android:fontFamily="@font/segoeui"
+        android:gravity="center_vertical"
+        android:lineHeight="40dp"
+        android:lineSpacingExtra="4sp"
+        android:maxLines="3"
+        android:minLines="1"
+        android:padding="15dp"
+        android:singleLine="false"
+        android:text="Select Preferance"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/fanLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/select_device_unselected_bg"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/header_title">
+
+        <ImageButton
+            android:id="@+id/fanImageButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/baseline_toys_24" />
 
         <TextView
-            android:id="@+id/header_title"
+            android:id="@+id/fanTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-            android:gravity="center_vertical"
-            android:lineHeight="40dp"
-            android:lineSpacingExtra="4sp"
-            android:maxLines="3"
-            android:minLines="1"
-            android:paddingStart="45dp"
-            android:paddingTop="55dp"
-            android:paddingBottom="15dp"
-            android:singleLine="false"
-            android:text="Select Preferences"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="26dp"
-            android:id="@+id/fanLayout"
-            android:clickable="true"
-            android:background="@drawable/select_device_unselected_bg">
-
-            <ImageButton
-                android:id="@+id/fanImageButton"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/baseline_toys_24" />
-
-            <TextView
-                android:id="@+id/fanTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Fan"
-                android:textSize="26sp"
-                android:layout_marginStart="16dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingStart="26dp"
-            android:id="@+id/lightLayout"
-            android:clickable="true"
-            android:background="@drawable/select_device_unselected_bg">
-
-            <ImageButton
-                android:id="@+id/lightImageButton"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:src="@drawable/custom_checkbox_light" />
-
-            <TextView
-                android:id="@+id/lightTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Light"
-                android:textSize="26sp"
-                android:layout_marginStart="16dp" />
-
-        </LinearLayout>
-
-
-        <Button
-            android:id="@+id/okButton"
-            style="@style/PrimaryButton"
-            android:layout_width="250dp"
-            android:layout_height="44dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="43dp"
-
-            android:text="OK"
-            android:textStyle="normal" />
-
-        <Button
-            android:id="@+id/cancelButton"
-            style="@style/PrimaryWhiteButton"
-            android:layout_width="250dp"
-
-            android:layout_height="44dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="43dp"
-            android:text="Cancel" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:text="Fan  "
+            android:textSize="16sp" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lightLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/select_device_unselected_bg"
+        android:clickable="true"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fanLayout">
+
+        <ImageButton
+            android:id="@+id/lightImageButton"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/custom_checkbox_light" />
+
+        <TextView
+            android:id="@+id/lightTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:text="Light"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/okButton"
+        style="@style/PrimaryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:padding="15dp"
+        android:text="Okay"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancelButton"
+        app:layout_constraintTop_toBottomOf="@+id/lightLayout" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:background="@drawable/card_shadow_back"
+        android:text="Cancel"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

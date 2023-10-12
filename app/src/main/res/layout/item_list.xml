@@ -85,7 +85,7 @@
         android:layout_height="@dimen/_100dp"
 
         android:layout_weight="1"
-        android:src="@drawable/baseline_toys_24"
+        android:src="@drawable/fan_on"
         app:layout_constraintBottom_toBottomOf="@+id/animationView"
         app:layout_constraintEnd_toEndOf="parent"
 

@@ -4,25 +4,25 @@ import Adapter.RoomAdapter
 import AwsConfigThing.AwsConfigClass
 import DatabaseHelper
 import android.annotation.SuppressLint
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bthome.R
-
+import com.example.bthome.databinding.FragmentActiveRoomBinding
+import com.example.bthome.databinding.FragmentBleScanResultBinding
+import com.example.bthome.viewModels.ActiveRoomViewModel
 import com.example.bthome.viewModels.BleScanResultViewModel
 
-
-class BleScanResultFragment : Fragment() {
-
-    private lateinit var binding: com.example.bthome.databinding.FragmentBleScanResultBinding
-    private lateinit var viewModel: BleScanResultViewModel
+class ActiveRoomFragment : Fragment() {
+    private lateinit var binding: FragmentActiveRoomBinding
+    private lateinit var viewModel: ActiveRoomViewModel
     private lateinit var adapter: RoomAdapter
     var awsConfig: AwsConfigClass? = null
 
@@ -31,7 +31,7 @@ class BleScanResultFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_ble_scan_result, container, false)
+        binding =  DataBindingUtil.inflate(inflater, R.layout.fragment_active_room, container, false)
         initialize()
         updateDataBase()
 
@@ -41,7 +41,7 @@ class BleScanResultFragment : Fragment() {
 
     private fun initialize() {
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            BleScanResultViewModel::class.java
+            ActiveRoomViewModel::class.java
         )
         binding.viewModel = viewModel
 
@@ -59,6 +59,7 @@ class BleScanResultFragment : Fragment() {
         Log.d(TAG, "${responseDataList}")
         adapter = RoomAdapter(responseDataList, awsConfig!!)
         binding.scanResultRecyclerView.adapter = adapter
+        Log.d(TAG, "on Resume ${MoreFragment.idValue.toInt()}")
         binding.scanResultRecyclerView.scrollToPosition(MoreFragment.idValue.toInt())
     }
 
@@ -66,24 +67,8 @@ class BleScanResultFragment : Fragment() {
         super.onResume()
         Log.d(TAG, "on Resume")
         updateDataBase()
-        binding.imageButton.setOnClickListener{
-            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
-//            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_bleScanResultFragment_to_mainFragment)
-        }
-        binding.aButton.setOnClickListener {
-            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                .navigate(R.id.action_bleScanResultFragment_to_addBleDeviceFragment)
-        }
-//            binding.sButton.setOnClickListener {
-//                Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-//                    .navigate(R.id.action_addBleDeviceFragment_to_searchLocationFragment)
-//            }
-            binding.mButton.setOnClickListener {
-                Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                    .navigate(R.id.action_bleScanResultFragment_to_moreFragment)
-            }
     }
-companion object{
-    private val TAG = BleScanResultFragment::class.java.simpleName
-}
+    companion object{
+        private val TAG = ActiveRoomFragment::class.java.simpleName
+    }
 }

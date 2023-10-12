@@ -85,9 +85,21 @@ class MoreFragment : Fragment(), ItemClickListener {
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_moreFragment_to_searchLocationFragment)
         }
-        binding.imageButton.setOnClickListener{
-            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+//        binding.imageButton.setOnClickListener{
+//            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+//        }
+        binding.aButton.setOnClickListener {
+            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                .navigate(R.id.action_moreFragment_to_addBleDeviceFragment)
         }
+            binding.sButton.setOnClickListener {
+                Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                    .navigate(R.id.action_moreFragment_to_bleScanResultFragment)
+            }
+//        binding.mButton.setOnClickListener {
+//            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                .navigate(R.id.action_addBleDeviceFragment_to_moreFragment)
+//        }
     }
 
     override fun onItemClick(itemId: Long) {

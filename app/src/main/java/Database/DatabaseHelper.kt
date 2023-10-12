@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Log
-import com.example.bthome.fragments.AddBleDeviceFragment.Companion.apkContext
+import com.example.bthome.fragments.SplashScreenFragment.Companion.apkContext
+
 import java.io.ByteArrayOutputStream
 
 class DatabaseHelper(context: Context?) :
@@ -27,6 +28,26 @@ class DatabaseHelper(context: Context?) :
         db.execSQL(createLocationTable)
         db.execSQL(createDeviceTable)
     }
+
+    @SuppressLint("Range")
+    fun getLocationIdByAddress(address: String): Long {
+        val db = this.readableDatabase
+        val query = "SELECT $COLUMN_LOCATION_ID FROM $TABLE_LOCATION WHERE $COLUMN_LOCATION_ADDRESS = ?"
+        val selectionArgs = arrayOf(address)
+        var locationId: Long = -1
+
+        val cursor = db.rawQuery(query, selectionArgs)
+
+        if (cursor.moveToFirst()) {
+            locationId = cursor.getLong(cursor.getColumnIndex(COLUMN_LOCATION_ID))
+        }
+
+//        cursor.close()
+//        db.close()
+
+        return locationId
+    }
+
 
     fun insertDataWithImage(location: String, devices: Map<String, Map<String, Any>>, imageBitmap: Bitmap) {
         val db = this.writableDatabase

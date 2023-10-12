@@ -279,8 +279,10 @@ class ChangeNameFragment : Fragment() {
            }
        }
             Toast.makeText(requireContext(), "Update option selected", Toast.LENGTH_SHORT).show()
+//            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                .navigate(R.id.action_changeNameFragment_to_mainFragment)
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
-                .navigate(R.id.action_changeNameFragment_to_mainFragment)
+                .navigate(R.id.action_changeNameFragment_to_addBleDeviceFragment)
         }
 
 //        binding.skipButton.setOnClickListener {

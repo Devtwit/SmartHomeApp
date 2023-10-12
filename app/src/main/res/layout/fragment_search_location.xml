@@ -45,7 +45,7 @@
             android:paddingTop="@dimen/_55dp"
             android:paddingBottom="@dimen/_15dp"
             android:singleLine="false"
-            android:text="Search near by device"
+            android:text="Search near by Room"
             android:textColor="@color/light_water_"
             android:textSize="30sp"
 
@@ -93,8 +93,8 @@
         android:id="@+id/foundDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="232dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginStart="200dp"
+        android:layout_marginTop="280dp"
         android:fontFamily="@font/segoeui"
         android:gravity="start"
         android:padding="@dimen/_20dp"
@@ -157,6 +157,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/loading_container"
         tools:text="Add" />
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:weightSum="3"-->
+
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/aButton"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginBottom="28dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/light_water_"-->
+<!--            android:padding="15dp"-->
+<!--            android:src="@drawable/baseline_home_24_gray"-->
+<!--            android:text="@string/add"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/white" />-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/sButton"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginBottom="28dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="15dp"-->
+<!--            android:src="@drawable/baseline_add_circle_outline_24_back"-->
+<!--            android:text="@string/more"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/black" />-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/mButton"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_marginBottom="28dp"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@color/white"-->
+<!--            android:padding="15dp"-->
+<!--            android:src="@drawable/baseline_settings_suggest_24_gary"-->
+<!--            android:text="@string/more"-->
+<!--            android:textAlignment="center"-->
+<!--            android:textColor="@color/white" />-->
+<!--    </LinearLayout>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:weightSum="3"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/atext"-->
+<!--            android:textAlignment="center"-->
+<!--            android:text="Home"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/stext"-->
+<!--            android:text="Add"-->
+<!--            android:textColor="@color/back_color"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/mtext"-->
+<!--            android:text="More"-->
+<!--            android:textAlignment="center"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1" />-->
+<!--    </LinearLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

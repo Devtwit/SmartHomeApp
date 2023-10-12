@@ -30,6 +30,7 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
 
     companion object {
         lateinit var scannedResult: String
+        lateinit var nameChange: String
         lateinit var selectedRoom: String
         private val TAG = SearchLocationFragment::class.java.simpleName
     }
@@ -48,10 +49,9 @@ class SearchLocationFragment : Fragment(), LeScanCallback.DeviceFound {
     private val permissions = arrayOf(
         Manifest.permission.BLUETOOTH,
         Manifest.permission.BLUETOOTH_ADMIN,
-        Manifest.permission.BLUETOOTH_SCAN,
+//        Manifest.permission.BLUETOOTH_SCAN,
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS,
-
         )
 
     var awsConfig: AwsConfigClass? = null
@@ -83,15 +83,18 @@ lateinit var  animationView: LottieAnimationView
 //        binding.loadingContainer.visibility = View.GONE
         animationView.pauseAnimation()
         binding.nextButton.visibility = View.GONE
+//        binding.skipButton.visibility = View.GONE
     }
 
     private fun setUpListener() {
         binding.skipButton.setOnClickListener {
-            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_mainFragment)
+//            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_mainFragment)
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_addBleDeviceFragment)
         }
 
         binding.startButton.setOnClickListener {
             binding.startButton.visibility = View.GONE
+            binding.skipButton.visibility = View.VISIBLE
             handleBlueTooth()
         }
         binding.nextButton.setOnClickListener {
@@ -110,8 +113,21 @@ lateinit var  animationView: LottieAnimationView
 //            }, 2000)
         }
         binding.imageButton.setOnClickListener{
-            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_mainFragment)
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()
+//            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_searchLocationFragment_to_mainFragment)
         }
+//        binding.aButton.setOnClickListener {
+//            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                .navigate(R.id.action_searchLocationFragment_to_addBleDeviceFragment)
+//        }
+////            binding.sButton.setOnClickListener {
+////                Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+////                    .navigate(R.id.action_addBleDeviceFragment_to_searchLocationFragment)
+////            }
+//        binding.mButton.setOnClickListener {
+//            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                .navigate(R.id.action_searchLocationFragment_to_moreFragment)
+//        }
 
     }
 
@@ -125,9 +141,11 @@ lateinit var  animationView: LottieAnimationView
 //            binding.loadingContainer.visibility = View.VISIBLE
             animationView.playAnimation()
             binding.startButton.visibility = View.GONE
+            binding.skipButton.visibility = View.VISIBLE
             handleBluetooth!!.scanLeDevices(this)
         }else{
             binding.startButton.visibility = View.VISIBLE
+            binding.skipButton.visibility = View.GONE
         }
     }
 
@@ -156,7 +174,7 @@ lateinit var  animationView: LottieAnimationView
                 binding.foundDevice.text = result.device.name
                 selectedRoom = result.device.address
                 scannedResult = "BT-Beacon_room1"
-//                scannedResult = result.device.name+ " " + result.device.address
+//                scannedResult = result.device.name+" "+result.device.address
 //                scannedResult = result.device.name
             }
 

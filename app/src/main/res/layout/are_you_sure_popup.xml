@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="35dp"
-    android:paddingEnd="20dp">
+    >
+
     <TextView
         android:id="@+id/header_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/monotype_plantin_mt_pro_regular"
-        android:gravity="center_vertical"
+
         android:background="@color/white"
+        android:gravity="center_vertical"
         android:lineHeight="40dp"
         android:lineSpacingExtra="4sp"
         android:maxLines="3"
         android:minLines="1"
-        android:paddingTop="55dp"
-        android:paddingBottom="15dp"
-        android:paddingStart="45dp"
+       android:fontFamily="@font/segoeui"
+        android:padding="15dp"
         android:singleLine="false"
         android:text="Are you sure ? "
         android:textColor="@color/black"
-        android:textSize="30sp"
-
+android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,35 +34,53 @@
         android:id="@+id/descriptionView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="29dp"
-        android:fontFamily="@font/akkurat_pro_light"
         android:lineSpacingExtra="4sp"
+        android:paddingStart="15dp"
+        android:fontFamily="@font/segoeui"
+        android:paddingTop="5dp"
         android:text="Are you sure you want to remove the place"
-        android:textColor="@color/black"
-        android:textSize="20sp" />
+
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header_title" />
 
     <Button
         android:id="@+id/yes_button"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        style="@style/PrimaryButton"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginBottom="20dp"
-        android:text="Yes"
-        android:textStyle="normal" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/card_shadow"
+        android:backgroundTint="@color/back_color"
+        android:fontFamily="@font/segoeui"
+        android:padding="@dimen/_15dp"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:textColor="@color/light_water_"
+        android:textSize="14sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cancel_button"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/cancel_button"
-        style="@style/PrimaryWhiteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/segoeui"
+        android:background="@drawable/card_shadow_back"
         android:text="Cancel"
-        android:layout_width="match_parent"
-        android:layout_height="44dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginEnd="43dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionView"
+        app:layout_constraintVertical_bias="0.0" />
 
-        android:layout_marginBottom="10dp"
-        />
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

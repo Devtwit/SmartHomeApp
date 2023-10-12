@@ -342,7 +342,8 @@ binding.bedroom.setBackgroundResource(R.drawable.card_shadow)
             } else {
                 DatabaseHelper(requireContext()).updateLocationImage(oldName, imageBitmap!!)
             }
-            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_changeIconFragment_to_mainFragment)
+            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_changeIconFragment_to_addBleDeviceFragment)
+//            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).navigate(R.id.action_changeIconFragment_to_mainFragment)
 
         }
 //        binding.skipButton.setOnClickListener {

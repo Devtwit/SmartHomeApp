@@ -29,7 +29,17 @@
         android:id="@+id/bleScanResultFragment"
         android:name="com.example.bthome.fragments.BleScanResultFragment"
         android:label="fragment_ble_scan_result"
-        tools:layout="@layout/fragment_ble_scan_result" />
+        tools:layout="@layout/fragment_ble_scan_result" >
+        <action
+            android:id="@+id/action_bleScanResultFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_bleScanResultFragment_to_addBleDeviceFragment"
+            app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_bleScanResultFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashScreenFragment"
         android:name="com.example.bthome.fragments.SplashScreenFragment"
@@ -56,6 +66,15 @@
         <action
             android:id="@+id/action_moreFragment_to_searchLocationFragment"
             app:destination="@id/searchLocationFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_addBleDeviceFragment"
+            app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_searchLocationFragment2"
+            app:destination="@id/searchLocationFragment" />
+        <action
+            android:id="@+id/action_moreFragment_to_bleScanResultFragment"
+            app:destination="@id/bleScanResultFragment" />
     </fragment>
     <fragment
         android:id="@+id/dataBaseUpdateFragment"
@@ -131,6 +150,15 @@
         <action
             android:id="@+id/action_searchLocationFragment_to_successfullyAddedFragment"
             app:destination="@id/successfullyAddedFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_moreFragment"
+            app:destination="@id/moreFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_addBleDeviceFragment"
+            app:destination="@id/addBleDeviceFragment" />
+        <action
+            android:id="@+id/action_searchLocationFragment_to_moreFragment2"
+            app:destination="@id/moreFragment" />
     </fragment>
     <fragment
         android:id="@+id/informationFragment"
@@ -213,6 +241,10 @@
         <action
             android:id="@+id/action_dataBaseUpdateFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_bleScanResultFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/successfullyAddedFragment"

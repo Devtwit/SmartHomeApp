@@ -17,8 +17,8 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 
 import com.example.bthome.R
-import com.example.bthome.fragments.AddBleDeviceFragment.Companion.apkContext
 import com.example.bthome.fragments.AddBleDeviceFragment.Companion.receivedNearestDeviceName
+import com.example.bthome.fragments.SplashScreenFragment.Companion.apkContext
 
 interface ItemClickListener {
     fun onItemClick(itemId: Long)

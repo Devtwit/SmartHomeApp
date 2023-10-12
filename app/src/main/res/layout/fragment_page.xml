@@ -3,44 +3,31 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/infoLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-<!--    <TextView-->
-<!--        android:id="@+id/header_title"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:fontFamily="@font/monotype_plantin_mt_pro_regular"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:background="@color/white"-->
-<!--        android:lineHeight="40dp"-->
-<!--        android:lineSpacingExtra="4sp"-->
-<!--        android:maxLines="3"-->
-<!--        android:minLines="1"-->
-<!--        android:paddingTop="@dimen/_55dp"-->
-<!--        android:paddingBottom="@dimen/_15dp"-->
-<!--        android:paddingStart="@dimen/_74dp"-->
-<!--        android:singleLine="false"-->
-<!--        android:text="@string/smart_home"-->
-<!--        android:textColor="@color/black"-->
-<!--        android:textSize="30sp"-->
-<!--        app:flow_horizontalAlign="center"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <VideoView
+
+    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/image"
-        android:layout_width="347dp"
-        android:layout_height="569dp"
+        android:layout_width="wrap_content"
+        android:layout_height="500dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/witnessanimation" />
 
     <TextView
         android:id="@+id/introduction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="@dimen/_10dp"
+        android:textColor="@color/black"
+        android:visibility="gone"
         android:text="@string/default_info"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -54,34 +41,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_10dp"
+        android:layout_marginTop="10dp"
         android:padding="@dimen/_10dp"
         android:text="Welcome"
+        android:textColor="@color/back_color"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/infoTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image" />
+        app:layout_constraintTop_toTopOf="@+id/introduction" />
     <TextView
         android:id="@+id/infoTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Experience seamless living with our smart home application, bringing automation and convenience to your fingertips."
-        android:layout_marginStart="10dp"
+       android:textColor="@color/black"
+        android:textAlignment="center"
         android:textSize="18sp"
         android:padding="@dimen/_10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
     <Button
-        android:id="@+id/nextButton"
+        android:id="@+id/okButton"
         style="@style/PrimaryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:text="@string/start"
-        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:padding="15dp"
+        android:text="Get Started"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/cancelButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/infoTextView" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/cancelButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="50dp"
+        android:background="@drawable/card_shadow_back"
+        android:text="Skip"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

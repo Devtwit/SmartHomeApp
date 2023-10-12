@@ -10,6 +10,7 @@ import DatabaseHelper
 import Service.FloatingWidgetService
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.bluetooth.le.ScanResult
 import android.content.Context
 import android.content.Intent
@@ -30,7 +31,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.bthome.CustomDialog
 import com.example.bthome.PermissionHandler
 import com.example.bthome.R
+import com.example.bthome.ThreeButtonsListener
 import com.example.bthome.databinding.FragmentAddBleDeviceBinding
+import com.example.bthome.fragments.SplashScreenFragment.Companion.apkContext
 import com.example.bthome.viewModels.AddBleDeviceViewModel
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -40,7 +43,7 @@ import kotlin.system.exitProcess
 class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickListener {
 
     var awsConfig: AwsConfigClass? = null
-
+    private var customPopUp: Dialog? = null
 
     private lateinit var binding: FragmentAddBleDeviceBinding
     private lateinit var viewModel: AddBleDeviceViewModel
@@ -66,7 +69,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         var receivedNearestDeviceName = ""
         var processedScanResultIndex = 0
         var publishStatus: String = "status"
-        lateinit var apkContext: Context
+//        lateinit var apkContext: Context
         private val TAG = AddBleDeviceFragment::class.java.simpleName
 
         @SuppressLint("StaticFieldLeak")
@@ -120,13 +123,14 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         )
         binding.viewModel = viewModel
 
-        apkContext = requireActivity().applicationContext
+//        apkContext = requireActivity().applicationContext
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
         dialog = CustomDialog(requireContext())
     }
 
     private fun setUpListener() {
+        customPopUp = Dialog(requireContext())
         binding.fab.setOnClickListener {
             Log.d(TAG, "Button Clicked")
             viewModel.showLocationDialog(requireContext(),awsConfig)
@@ -141,10 +145,82 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_addBleDeviceFragment_to_searchLocationFragment)
         }
+        binding.allRoom.setOnClickListener {
+            binding.alltextview.text = "All Room"
+
+            binding.button.visibility = View.VISIBLE
+            binding.gridView.visibility = View.VISIBLE
+            binding.fmContainer.visibility = View.GONE
+            setupGridView()
+        }
+
+        binding.notification.setOnClickListener {
+            showNotificationPopUp()
+        }
+//        binding.aButton.setOnClickListener {
+//            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//                .navigate(R.id.action_addBleDeviceFragment_to_searchLocationFragment)
+//        }
+        binding.sButton.setOnClickListener {
+            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                .navigate(R.id.action_addBleDeviceFragment_to_bleScanResultFragment)
+        }
+        binding.mButton.setOnClickListener {
+            Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                .navigate(R.id.action_addBleDeviceFragment_to_moreFragment)
+        }
+
+
+
+
+        binding.activeRoom.setOnClickListener {
+            if (viewModel.hasDeviceInRange) {
+//            MoreFragment.idValue = 4
+                binding.alltextview.text = "Active Room"
+                binding.gridView.visibility = View.GONE
+                binding.button.visibility = View.GONE
+                binding.fmContainer.visibility = View.VISIBLE
+                val childFragment = ActiveRoomFragment()
+                childFragmentManager.beginTransaction()
+                    .replace(R.id.fmContainer, childFragment)
+                    .commit()
+            Log.d(TAG, "item ID: ${viewModel.hasDeviceInRangeId.toLong()}")
+            MoreFragment.idValue = viewModel.hasDeviceInRangeId.toLong()
+            } else {
+                showPopUp()
+            }
+        }
+    }
+    private fun showPopUp(){
+
+        customPopUp = CustomDialog(requireContext()).buildNoActiveRoomPopup(requireContext(), object :
+            ThreeButtonsListener {
+            override fun onOkButtonClicked() {
+                super.onOkButtonClicked()
+                customPopUp?.dismiss()
+            }
+
+
+        })
+        customPopUp?.show()
+    }
+    private fun showNotificationPopUp(){
+
+        customPopUp = CustomDialog(requireContext()).buildNotificationPopup(requireContext(), object :
+            ThreeButtonsListener {
+            override fun onOkButtonClicked() {
+                super.onOkButtonClicked()
+                CustomDialog(requireContext()).openAppSettings()
+                customPopUp?.dismiss()
+            }
+
+
+        })
+        customPopUp?.show()
     }
 
-    private fun updateDatabase() {
-        val dbHelper = DatabaseHelper(requireContext())
+     fun updateDatabase() {
+        val dbHelper = DatabaseHelper(apkContext)
         // Initialize the adapter
         responseAdapter = ResponseAdapter(emptyList(), this, awsConfig!!)
         binding.gridView.adapter = responseAdapter
@@ -186,6 +262,8 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         MoreFragment.idValue = itemId
         // Handle the item click here
         Log.d(TAG, "Clicked item ID: $itemId")
+//        Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+//            .navigate(R.id.action_mainFragment_to_bleScanResultFragment)
         Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
             .navigate(R.id.action_addBleDeviceFragment_to_bleScanResultFragment)
 
@@ -204,18 +282,19 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
         blueTooth()
         setupGridView()
         checkPreferedData()
+        setUpListener()
 
 
 // Check if the permission is granted
-        if (!Settings.canDrawOverlays(requireContext())) {
-            // Permission is not granted, request it
-            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
-            intent.data = Uri.parse("package:${requireActivity().packageName}")
-            startActivityForResult(intent, overlayPermissionRequestCode)
-        } else {
-            // Permission is already granted, initialize the floating widget
-//            startFloatingWidgetService()
-        }
+//        if (!Settings.canDrawOverlays(requireContext())) {
+//            // Permission is not granted, request it
+//            val intent = Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION)
+//            intent.data = Uri.parse("package:${requireActivity().packageName}")
+//            startActivityForResult(intent, overlayPermissionRequestCode)
+//        } else {
+//            // Permission is already granted, initialize the floating widget
+////            startFloatingWidgetService()
+//        }
 //        startFloatingWidgetService()
 
     }

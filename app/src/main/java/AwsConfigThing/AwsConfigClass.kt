@@ -26,6 +26,7 @@ import com.amazonaws.mobileconnectors.iot.AWSIotMqttManager
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttNewMessageCallback
 import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
 import com.example.bthome.R
+import com.example.bthome.fragments.AddBleDeviceFragment
 import org.json.JSONException
 import org.json.JSONObject
 import java.io.IOException
@@ -112,9 +113,9 @@ class AwsConfigClass() {
                             Log.d(TAG, "   Topic tag: $topic")
                             Log.d(TAG, " Message json data: $jsonData")
 
-//                            if (topic.equals("sdk/Falcon/setconfig_ack", ignoreCase = true)) {
+                            if (topic.equals("sdk/Falcon/setconfig_ack", ignoreCase = true)) {
                                 handleAcknowledgment(jsonData, context)
-//                            }
+                            } 
                         } catch (e: UnsupportedEncodingException) {
                             Log.e(TAG, "Message encoding error.", e)
                         }
@@ -412,8 +413,8 @@ class AwsConfigClass() {
         val TAG = AwsConfigClass::class.java.simpleName
         var jsonDataLightFan : String = ""
         lateinit var jsonData : String
-         var light_status : String = ""
-       var fan_status : String = ""
+         var light_status : String = "off"
+       var fan_status : String = "off"
         lateinit var cx:Context
         var isFromAws :Boolean = false
     }

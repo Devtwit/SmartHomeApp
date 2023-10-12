@@ -3,6 +3,7 @@ package com.example.bthome
 //import Database.DatabaseHelper
 import android.Manifest
 import android.app.Activity
+import android.app.Dialog
 import android.bluetooth.BluetoothAdapter
 import android.content.Context
 import android.content.Context.*
@@ -26,8 +27,8 @@ class PermissionHandler( private val context: Context,private val activity: Acti
         val result = ContextCompat.checkSelfPermission(activity, permission)
         return result == PackageManager.PERMISSION_GRANTED
     }
-    private var customPopUp: BottomSheetDialog? = BottomSheetDialog(context)
-    private var appSettingPopup: BottomSheetDialog? = BottomSheetDialog(context)
+    private var customPopUp: Dialog? = Dialog(context)
+    private var appSettingPopup: Dialog? = Dialog(context)
 
     fun checkMultiplePermissions(permissions: Array<String>): Array<String> {
         val permissionsToRequest = ArrayList<String>()

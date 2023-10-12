@@ -4,6 +4,7 @@ import AwsConfigThing.AwsConfigClass
 import Data.ResponseData
 import android.annotation.SuppressLint
 import android.graphics.Color
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -17,11 +18,14 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
+import com.amazonaws.mobileconnectors.iot.AWSIotMqttQos
 import com.example.bthome.R
 import com.example.bthome.fragments.MoreFragment
 import com.example.bthome.fragments.MoreFragment.Companion.idValue
+import com.example.bthome.fragments.SplashScreenFragment
+import com.example.bthome.fragments.SplashScreenFragment.Companion.apkContext
 
-class RoomAdapter(private val itemList: List<ResponseData>,val awsConfig: AwsConfigClass) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
+class RoomAdapter(private val itemList: List<ResponseData>, var awsConfig: AwsConfigClass) : RecyclerView.Adapter<RoomAdapter.ViewHolder>() {
     // Keep track of the positions of the items that have been animated
     private val animatedPositions = HashSet<Int>()
     lateinit var  lightMap : MutableMap<String, String>
@@ -83,10 +87,11 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 for (position in 0 until itemList.size) {
                     item = itemList[position]
                     updateFanLightStatusOnClick(position, fanStatus, lightStatus)
-
+                    Log.d("Response dataui address", "$fsui ${item.address} ${item.address}" )
                     if (item.address == responseData.address) {
                         if (fsui == "on") {
                             Log.d("Response dataui fan room", "$fsui")
+
                             val fanAnimation = RotateAnimation(
                                 0f,
                                 360f,
@@ -98,45 +103,50 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                             fanAnimation.duration = 1000
                             fanAnimation.interpolator = LinearInterpolator()
                             fanAnimation.repeatCount = Animation.INFINITE
-
-                            hold.menuButton2.setImageResource(R.drawable.fan_on)
-//                            hold.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
                             hold.menuButton2.startAnimation(fanAnimation)
+                            SplashScreenFragment.apkActivity?.runOnUiThread {
+                                hold.animationView.visibility = View.VISIBLE
+                            }
+////                            hold.animationView.setAnimation(R.raw.animation)
+//                            hold.animationView.playAnimation()
+//                            hold.menuButton2.setImageResource(R.drawable.fan_on)
+//                            hold.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
 
-                            hold.animationView.setAnimation(R.raw.animation)
-                            hold.animationView.playAnimation()
+
                             // Update UI for fan turned on
                             // For example, set a fan icon to indicate fan is on
                         } else {
                             Log.d("Response dataui fan room", "$fsui")
                             // Update UI for fan turned off
                             hold.menuButton2.clearAnimation()
-                            hold.menuButton2.setImageResource(R.drawable.fan_on)
+//                            hold.menuButton2.setImageResource(R.drawable.fan_on)
 //                            hold.menuButton2.setBackgroundResource(R.drawable.white_round_background)
 //                            hold.animationView.pauseAnimation()
-                            hold.animationView.visibility= View.GONE
+                            SplashScreenFragment.apkActivity?.runOnUiThread {
+                                hold.animationView.visibility = View.GONE
+                            }
                         }
 
                         if (lsui == "on") {
                             Log.d("Response dataui light room", "$lsui")
 //                            hold.menuButton.setImageResource(R.drawable.bulb)
-                            hold.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
-                            // Light is on, show different animation
-                            val lightAnimation = AlphaAnimation(0f, 1f)
-                            lightAnimation.duration = 1000
-                            lightAnimation.repeatCount = Animation.INFINITE
-                            lightAnimation.repeatMode = Animation.REVERSE
+                            hold.whole.setBackgroundResource(R.drawable.bulb_glow_background)
+//                            // Light is on, show different animation
+//                            val lightAnimation = AlphaAnimation(0f, 1f)
+//                            lightAnimation.duration = 1000
+//                            lightAnimation.repeatCount = Animation.INFINITE
+//                            lightAnimation.repeatMode = Animation.REVERSE
                             // Update UI for light turned on
                             // For example, set a light bulb icon to indicate light is on
                         } else {
                             Log.d("Response dataui light room", "$lsui")
                             // Update UI for light turned off
                             Log.d("Response dataui room", "4")
-
+                            hold.whole.setBackgroundResource(R.drawable.gray_background)
                             // Light is off, clear animation
-                            hold.menuButton.clearAnimation()
+//                            hold.menuButton.clearAnimation()
 //                            hold.menuButton.setImageResource(R.drawable.bulb)
-                            hold.menuButton.setBackgroundResource(R.drawable.white_background)
+//                            hold.menuButton.setBackgroundResource(R.drawable.white_background)
 
                         }
 //                       lightMap = (item.devices["light"] as? MutableMap<String, String>)!!
@@ -172,7 +182,7 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
             val lightStatus = item.devices["light"]?.get("status")
             val fanStatus = item.devices["fan"]?.get("status")
 
-            if (lightStatus == "on") {
+            if (lightStatus != "on") {
 //                holder.menuButton.setImageResource(R.drawable.glowbulb)
                 if (isLightclicked) {
                     Log.d("Response dataui room", "12")
@@ -180,10 +190,10 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 }
                 Log.d("Response dataui room", "13")
                 // Light is on, show different animation
-                val lightAnimation = AlphaAnimation(0f, 1f)
-                lightAnimation.duration = 1000
-                lightAnimation.repeatCount = Animation.INFINITE
-                lightAnimation.repeatMode = Animation.REVERSE
+//                val lightAnimation = AlphaAnimation(0f, 1f)
+//                lightAnimation.duration = 1000
+//                lightAnimation.repeatCount = Animation.INFINITE
+//                lightAnimation.repeatMode = Animation.REVERSE
 //                holder.menuButton.setImageResource(R.drawable.bulb)
                 holder.whole.setBackgroundResource(R.drawable.bulb_glow_background)
 //                holder.menuButton.setBackgroundResource(R.drawable.bulb_glow_background)
@@ -195,13 +205,13 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                     awsConfig.publishDeviceNameLightOff("BT-Beacon_room1")
                 }
                 // Light is off, clear animation
-                holder.menuButton.clearAnimation()
+//                holder.menuButton.clearAnimation()
 //                holder.menuButton.setImageResource(R.drawable.bulb)
 //                holder.menuButton.setBackgroundResource(R.drawable.white_background)
                 holder.whole.setBackgroundResource(R.drawable.gray_background)
             }
 
-            if (fanStatus == "on") {
+            if (fanStatus != "on") {
                 Log.d("Response dataui room", "16")
 //            awsConfig.publishDeviceName("BT-Beacon_room1")
                 if (isFanclicked) {
@@ -220,8 +230,13 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 fanAnimation.duration = 1000
                 fanAnimation.interpolator = LinearInterpolator()
                 fanAnimation.repeatCount = Animation.INFINITE
-
                 holder.menuButton2.startAnimation(fanAnimation)
+                SplashScreenFragment.apkActivity?.runOnUiThread {
+                    holder.animationView.visibility = View.VISIBLE
+                }
+////                holder.animationView.setAnimation(R.raw.animation)
+//                holder.animationView.playAnimation()
+
 
             } else {
                 Log.d("Response dataui room", "17")
@@ -231,6 +246,9 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                     awsConfig.publishDeviceNameFanOff("BT-Beacon_room1")
                 }
                 holder.menuButton2.clearAnimation()
+                SplashScreenFragment.apkActivity?.runOnUiThread {
+                    holder.animationView.visibility = View.GONE
+                }
             }
 
             // Create a fade-in animation
@@ -297,17 +315,22 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 fanAnimation.repeatCount = Animation.INFINITE
                 holder.menuButton2.setImageResource(R.drawable.fan_on)
 //                holder.menuButton2.setBackgroundResource(R.drawable.gray_background_round)
+                SplashScreenFragment.apkActivity?.runOnUiThread {
+                    holder.animationView.visibility = View.VISIBLE
+                }
+////                holder.animationView.setAnimation(R.raw.animation)
+//                holder.animationView.playAnimation()
                 holder.menuButton2.startAnimation(fanAnimation)
 
-                holder.animationView.setAnimation(R.raw.animation)
-                holder.animationView.playAnimation()
             } else {
                 // Fan is off, clear animation
                 holder.menuButton2.clearAnimation()
                 holder.menuButton2.setImageResource(R.drawable.fan_on)
 //                holder.menuButton2.setBackgroundResource(R.drawable.white_round_background)
-                hold.animationView.pauseAnimation()
-                holder.animationView.visibility= View.GONE
+//                holder.animationView.pauseAnimation()
+                SplashScreenFragment.apkActivity?.runOnUiThread {
+                    holder.animationView.visibility = View.GONE
+                }
             }
         }
     }
@@ -326,11 +349,14 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
         // ... other ViewHolder code ...
 
         init {
+//            awsConfig = AwsConfigClass()
+//            awsConfig.startAwsConfigurations(apkContext)
             menuButton.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
                     isFanclicked= false
                     isLightclicked = true
+
                     if (lightStatus == "on"){
                         awsConfig.publishDeviceNameLightOff("BT-Beacon_room1")
                     } else {
@@ -346,8 +372,10 @@ Log.d("ANDRD_DEV UpdateFanLight"," lightStatus  ${lightStatus} ")
                 if (position != RecyclerView.NO_POSITION) {
                     isFanclicked= true
                     isLightclicked = false
+
                     if (fanStatus == "on"){
                                 awsConfig.publishDeviceNameFanOff("BT-Beacon_room1")
+
                             } else {
                                 awsConfig.publishDeviceNameFanOn("BT-Beacon_room1")
                             }

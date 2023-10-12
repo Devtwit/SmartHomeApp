@@ -14,9 +14,43 @@
     android:layout_height="match_parent"
     tools:context=".fragments.InformationFragment">
 
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/viewPager2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+
+        <!-- Wrap the dot indicator in a horizontal LinearLayout -->
+<!--        <LinearLayout-->
+<!--            android:id="@+id/dotIndicator"-->
+<!--            android:layout_width="16dp"-->
+<!--            android:layout_height="16dp"-->
+<!--            android:layout_centerHorizontal="true"-->
+<!--            android:layout_centerVertical="true"-->
+
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center"/>-->
+
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+        android:id="@+id/spring_dots_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="150dp"
+        app:dampingRatio="0.5"
+        app:dotsColor="@color/back_color"
+        app:dotsCornerRadius="2dp"
+        app:dotsSize="16dp"
+        app:dotsSpacing="6dp"
+        app:dotsStrokeColor="@color/back_color"
+        app:dotsStrokeWidth="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/viewPager"
+        app:stiffness="300" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

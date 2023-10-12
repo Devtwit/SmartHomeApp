@@ -5,6 +5,7 @@ import Data.DeviceSelection
 import Data.ResponseData
 import DatabaseHelper
 import android.annotation.SuppressLint
+import android.app.Dialog
 
 import android.bluetooth.le.ScanResult
 import android.content.Context
@@ -35,6 +36,8 @@ import com.google.gson.reflect.TypeToken
 
 class AddBleDeviceViewModel : ViewModel(){
     private val selectedDevices = mutableListOf<DeviceSelection>()
+    var hasDeviceInRange = false
+    var hasDeviceInRangeId = -1
     companion object{
         private val TAG = AddBleDeviceViewModel::class.java.simpleName
     }
@@ -46,7 +49,7 @@ class AddBleDeviceViewModel : ViewModel(){
         context: Context,
     ): Int {
         val responseDataList = mutableListOf<ResponseData>()
-        var hasDeviceInRange = false
+//        var hasDeviceInRange = false
         //last nearest device
         //check rssi
         //if different update device
@@ -85,9 +88,9 @@ class AddBleDeviceViewModel : ViewModel(){
 //              if(initialData.get(0).location.equals("BT-Beacon_room1")) {
                 Log.d(TAG, "" + result.rssi + " " + publishStatus)
 //            aws!!.publishData("BT-Beacon_room1", AwsConfigConstants.SET_CONFIG)
-//                if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
+                if (publishStatus.equals("No device found") || publishStatus.equals("status")) {
 //                    aws!!.publishDeviceName("BT-Beacon_room1")
-
+                    hasDeviceInRangeId= dbHelper.getLocationIdByAddress(initialData.get(0).address).toInt()
                     if(isFanPref && isLightPref){
                         Log.d(TAG, "Both Fan and Light selected")
                         aws!!.publishDeviceName("BT-Beacon_room1")
@@ -107,7 +110,7 @@ class AddBleDeviceViewModel : ViewModel(){
                     publishStatus = "BT-Beacon_room1"
 
                 }
-//            }
+            }
         }
         // Update nearestDevice
         return 0

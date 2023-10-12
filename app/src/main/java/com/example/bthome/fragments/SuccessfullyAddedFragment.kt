@@ -39,7 +39,7 @@ class SuccessfullyAddedFragment : Fragment() {
             //doSomethingHere()
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_successfullyAddedFragment_to_selectRoomFragment)
-        }, 2000)
+        }, 3000)
     }
 
 }

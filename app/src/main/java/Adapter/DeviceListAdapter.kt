@@ -21,7 +21,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bthome.R
 import com.example.bthome.fragments.AddBleDeviceFragment
-import com.example.bthome.fragments.AddBleDeviceFragment.Companion.apkContext
+import com.example.bthome.fragments.SplashScreenFragment.Companion.apkContext
+
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
