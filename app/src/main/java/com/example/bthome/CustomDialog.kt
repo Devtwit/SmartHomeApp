@@ -143,6 +143,30 @@ class CustomDialog(private val context: Context) {
         mBottomSheetDialog.setCancelable(false)
         return mBottomSheetDialog
     }
+    fun buildLogOutPopup(context: Context, listener: ThreeButtonsListener) : Dialog {
+        val mBottomSheetDialog = Dialog(context)
+        val inflater = LayoutInflater.from(context)
+        val sheetView: View = inflater.inflate(R.layout.are_you_sure_popup, null)
+//        val sheetView = AreYouSurePopup.inflate(LayoutInflater.from(context))
+        var discription :TextView = sheetView.findViewById(R.id.descriptionView)
+        var title :TextView = sheetView.findViewById(R.id.header_title)
+        title.text = " Are you sure you want to Logout?"
+        discription.visibility = View.GONE
+        var yesButton :Button = sheetView.findViewById(R.id.yes_button)
+        yesButton.text= "Logout"
+        var cancelButton :Button = sheetView.findViewById(R.id.cancel_button)
+        yesButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onOkButtonClicked()
+        }
+        cancelButton.setOnClickListener {
+            mBottomSheetDialog.dismiss()
+            listener.onCancelButtonClicked()
+        }
+        mBottomSheetDialog.setContentView(sheetView)
+        mBottomSheetDialog.setCancelable(false)
+        return mBottomSheetDialog
+    }
     fun buildTurnOffAlertPopup(context: Context, listener: ThreeButtonsListener) : Dialog {
         val mBottomSheetDialog = Dialog(context)
         val inflater = LayoutInflater.from(context)

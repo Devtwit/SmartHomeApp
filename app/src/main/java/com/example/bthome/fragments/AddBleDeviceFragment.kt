@@ -33,6 +33,7 @@ import com.example.bthome.PermissionHandler
 import com.example.bthome.R
 import com.example.bthome.ThreeButtonsListener
 import com.example.bthome.databinding.FragmentAddBleDeviceBinding
+import com.example.bthome.fragments.LoginFragment.Companion.loginName
 import com.example.bthome.fragments.SplashScreenFragment.Companion.apkContext
 import com.example.bthome.viewModels.AddBleDeviceViewModel
 import com.google.gson.Gson
@@ -122,6 +123,7 @@ class AddBleDeviceFragment : Fragment(), LeScanCallback.DeviceFound, ItemClickLi
             AddBleDeviceViewModel::class.java
         )
         binding.viewModel = viewModel
+        binding.name.text = loginName
 
 //        apkContext = requireActivity().applicationContext
         awsConfig = AwsConfigClass()

@@ -6,6 +6,7 @@ import AwsConfigThing.AwsConfigClass
 
 import DatabaseHelper
 import android.annotation.SuppressLint
+import android.app.Dialog
 
 import android.os.Bundle
 
@@ -17,7 +18,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.example.bthome.CustomDialog
 import com.example.bthome.R
+import com.example.bthome.ThreeButtonsListener
 import com.example.bthome.databinding.FragmentMoreBinding
 import com.example.bthome.viewModels.MoreViewModel
 
@@ -27,7 +30,7 @@ class MoreFragment : Fragment(), ItemClickListener {
     private lateinit var binding: FragmentMoreBinding
     private lateinit var viewModel: MoreViewModel
     var awsConfig: AwsConfigClass? = null
-
+    private var customPopUp: Dialog? = null
     companion object {
         private val TAG = MoreFragment::class.java.simpleName
         lateinit var responseAdapter: MoreScreenAdapter
@@ -55,6 +58,7 @@ class MoreFragment : Fragment(), ItemClickListener {
         binding.viewModel = viewModel
         awsConfig = AwsConfigClass()
         awsConfig!!.startAwsConfigurations(requireContext())
+        customPopUp = Dialog(requireContext())
     }
 
     private fun updateDatabase() {
@@ -84,6 +88,23 @@ class MoreFragment : Fragment(), ItemClickListener {
         binding.imgView.setOnClickListener {
             Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
                 .navigate(R.id.action_moreFragment_to_searchLocationFragment)
+        }
+        binding.layoutLogout.setOnClickListener {
+
+            customPopUp = CustomDialog(requireContext()).buildLogOutPopup(requireContext(), object :
+                ThreeButtonsListener {
+                override fun onOkButtonClicked() {
+                    Navigation.findNavController(requireActivity(), R.id.my_nav_host_fragment)
+                        .navigate(R.id.action_moreFragment_to_loginFragment)
+
+                }
+
+                override fun onCancelButtonClicked() {
+                    super.onCancelButtonClicked()
+                    customPopUp?.dismiss()
+                }
+            })
+            customPopUp?.show()
         }
 //        binding.imageButton.setOnClickListener{
 //            Navigation.findNavController(requireActivity(),R.id.my_nav_host_fragment).popBackStack()

@@ -99,6 +99,44 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout_bg" />
+    <LinearLayout
+        android:id="@+id/layout_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:weightSum="3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ghost_view">
+
+
+        <TextView
+            android:background="@color/light_water_"
+            android:id="@+id/logoutid"
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:fontFamily="@font/segoeui"
+            android:textColor="@color/black"
+            android:paddingLeft="@dimen/_45dp"
+            android:paddingTop="@dimen/_20dp"
+            android:paddingBottom="@dimen/_20dp"
+            android:text="Logout"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:background="@color/light_water_"
+            android:id="@+id/logoutimgView"
+            android:layout_width="0dp"
+
+            android:layout_height="match_parent"
+            android:paddingEnd="@dimen/_17dp"
+            android:paddingTop="@dimen/_17dp"
+            android:paddingBottom="@dimen/_17dp"
+            android:layout_weight="1"
+            android:src="@drawable/baseline_keyboard_arrow_right_24" />
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"

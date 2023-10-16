@@ -53,11 +53,13 @@ class SplashScreenFragment : Fragment() {
         Handler(Looper.myLooper()!!).postDelayed({
             if(initialData.isEmpty()){
 //                findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
-                findNavController().navigate(R.id.action_splashScreenFragment_to_informationFragment)
+//                findNavController().navigate(R.id.action_splashScreenFragment_to_informationFragment)
+                findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
 //                findNavController().navigate(R.id.action_splashScreenFragment_to_mainFragment)
             } else {
 //                findNavController().navigate(R.id.action_splashScreenFragment_to_mainFragment)
-                findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
+                findNavController().navigate(R.id.action_splashScreenFragment_to_loginFragment)
+//                findNavController().navigate(R.id.action_splashScreenFragment_to_addBleDeviceFragment)
 //                findNavController().navigate(R.id.action_splashScreenFragment_to_informationFragment)
             }
         },2000)

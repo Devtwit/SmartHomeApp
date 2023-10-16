@@ -195,10 +195,12 @@ class AwsConfigClass() {
 
     fun publishData(msg: String?, topic: String?) {
         try {
+            mqttManager!!.resetReconnect()
             Handler().postDelayed({
                 mqttManager!!.publishString(msg, topic, AWSIotMqttQos.QOS0)
-            }, 2000)
+            }, 3000)
         } catch (e: Exception) {
+            mqttManager!!.resetReconnect()
             updateNotificationWithButtons("\n  Something went wrong, Please wait", cx)
             Log.e(TAG, "Publish error.", e)
         }
